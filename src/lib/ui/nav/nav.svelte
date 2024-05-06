@@ -4,7 +4,7 @@
 	import Button from '../button/button.svelte'
 	import NavTopics from './nav_topics.svelte'
 	//TODO:dynamically set copy
-	$: copy = $page.params.slug ? 'Best from the Left' : ''
+	$: copy = $page.params.slug ? 'Best from the Left' : 'Welcome'
 </script>
 
 <nav
