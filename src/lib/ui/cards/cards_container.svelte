@@ -15,19 +15,21 @@
 		class:continuous={display === 'continuous'}
 		class:desktop_left
 	>
-		{#each cards as card, i}
-			{#if card.cards_id && typeof card.cards_id !== 'string'}
-				{#if card.cards_id.type === 'text'}
-					<CardText {display} card={card.cards_id}></CardText>
+		{#key cards}
+			{#each cards as card, i}
+				{#if card.cards_id && typeof card.cards_id !== 'string'}
+					{#if card.cards_id.type === 'text'}
+						<CardText {display} card={card.cards_id}></CardText>
+					{/if}
+					{#if card.cards_id.type === 'media'}
+						<CardMedia {display} card={card.cards_id}></CardMedia>
+					{/if}
 				{/if}
-				{#if card.cards_id.type === 'media'}
-					<CardMedia {display} card={card.cards_id}></CardMedia>
+				{#if display === 'continuous' && i < cards.length - 1}
+					<div class="separator"></div>
 				{/if}
-			{/if}
-			{#if display === 'continuous' && i < cards.length - 1}
-				<div class="separator"></div>
-			{/if}
-		{/each}
+			{/each}
+		{/key}
 	</div>
 {/if}
 

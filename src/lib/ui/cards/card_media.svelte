@@ -58,6 +58,19 @@
 		background-color: var(--theme-colour-1);
 		border-top: 1px solid var(--theme-colour-5);
 	}
+	.media-card {
+		animation: appear 0.3s ease-in-out forwards;
+	}
+	@keyframes appear {
+		0% {
+			transform: translate(0%, -5%);
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+			transform: translate(0%, 0%);
+		}
+	}
 	.card-list:nth-child(1) {
 		border-top: none;
 	}

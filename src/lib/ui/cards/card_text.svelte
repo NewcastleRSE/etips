@@ -27,6 +27,19 @@
 	.card-text {
 		color: var(--theme-colour-3);
 	}
+	.card-text:not(.nested) {
+		animation: appear 0.3s ease-in-out forwards;
+	}
+	@keyframes appear {
+		0% {
+			transform: translate(0%, -5%);
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+			transform: translate(0%, 0%);
+		}
+	}
 	:global(.card-text) {
 		color: var(--theme-colour-3);
 	}
