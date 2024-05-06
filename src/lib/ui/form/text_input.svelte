@@ -32,6 +32,7 @@
 <style>
 	input {
 		border-radius: 0.5rem;
+		border-color: var(--theme-colour-4);
 	}
 	label[data-required='yes']::after {
 		content: ' *';
