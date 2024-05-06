@@ -1,6 +1,9 @@
-<footer class="fixed bottom-0 left-0 grid w-screen grid-cols-2">
-	<div class="footer-left-col">nu logo</div>
-	<div class="footer-right-col">buttons</div>
+<footer class="fixed bottom-0 left-0 grid h-12 w-screen grid-cols-2 md:h-16">
+	<div class="footer-left-col h-full pl-4">
+		<img src="/nu_logo.png" class="h-12 object-contain md:h-16" />
+		<img src="" alt="" />
+	</div>
+	<div class="footer-right-col"></div>
 </footer>
 
 <style>
