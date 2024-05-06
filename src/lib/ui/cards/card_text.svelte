@@ -12,10 +12,12 @@
 	class="card-text"
 	class:nested
 >
-	<div class="text-title-container mb-4">
-		<h3 class:hidden={!card.title} class="mb-2 text-2xl">{card.title}</h3>
-		<h4 class:hidden={!card.subtitle} class="text-xl">{card.subtitle}</h4>
-	</div>
+	{#if card.title || card.subtitle}
+		<div class="text-title-container mb-4">
+			<h3 class:hidden={!card.title} class="mb-2 text-2xl">{card.title}</h3>
+			<h4 class:hidden={!card.subtitle} class="text-xl">{card.subtitle}</h4>
+		</div>
+	{/if}
 	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm">{@html card.copy}</div>
 </div>
 
