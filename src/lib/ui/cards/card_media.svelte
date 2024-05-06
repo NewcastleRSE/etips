@@ -33,7 +33,11 @@
 					class="gallery-child relative flex h-full w-full flex-shrink-0 snap-center items-center justify-center"
 				>
 					<img class="h-full object-contain" src="/assets/{m.id}" alt="" />
-					<p class="absolute bottom-0 right-0" class:hidden={media.length === 1}>
+					<!-- TODO: add IntersectionObserver -->
+					<p
+						class="absolute bottom-0 right-0 rounded-full bg-slate-600 px-2 text-white"
+						class:hidden={media.length === 1}
+					>
 						{i + 1} of {media.length}
 					</p>
 				</div>
