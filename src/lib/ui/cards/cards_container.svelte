@@ -36,7 +36,7 @@
 <style>
 	.cards-container {
 		border-bottom: 1px solid var(--theme-colour-5);
-		width: min(100% - 2rem, 600px);
+		width: min(100% - 2rem, 1200px);
 		margin-inline: auto;
 	}
 	.cards {
