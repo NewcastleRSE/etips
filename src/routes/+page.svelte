@@ -25,13 +25,8 @@
 <style>
 	@media (min-width: 768px) {
 		.content-container {
-			width: min(100%, 1200px);
+			width: min(100%, 1000px);
 			margin-inline: auto;
 		}
 	}
-
-	/* .cards { */
-	/* 	border-right: 1px solid var(--theme-colour-4); */
-	/* 	border-left: 1px solid var(--theme-colour-4); */
-	/* } */
 </style>
