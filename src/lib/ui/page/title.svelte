@@ -31,4 +31,11 @@
 		background-color: var(--theme-colour-5);
 		color: var(--theme-colour-1);
 	}
+	/* NOTE: to avoid selected marks in desktop */
+	@media (min-width: 1024px) {
+		.selected {
+			color: var(--theme-colour-5);
+			background-color: var(--theme-colour-1);
+		}
+	}
 </style>
