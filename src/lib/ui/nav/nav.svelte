@@ -4,8 +4,7 @@
 	import Button from '../button/button.svelte'
 	import NavTopics from './nav_topics.svelte'
 	//TODO:dynamically set copy
-	const copy = 'Best from the Left'
-	export let data
+	$: copy = $page.params.slug ? 'Best from the Left' : ''
 </script>
 
 <nav
@@ -22,12 +21,13 @@
 		</button>
 		<div
 			class="side-title flex h-full w-full items-center px-4 text-sm lg:justify-center lg:text-base"
+			class:hidden={copy === ''}
 		>
 			<p>{copy}</p>
 		</div>
 	</div>
-	<div class="nav-right-col col-start-2 flex items-center justify-end">
-		<div class="nav-wrapper hidden lg:block">
+	<div class="nav-right-col col-start-2 flex items-center justify-end lg:justify-normal">
+		<div class="nav-wrapper hidden w-full lg:block">
 			{#if $page.params.topic && $page.params.slug}
 				<NavTopics
 					on:click={(e) => {
