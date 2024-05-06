@@ -47,7 +47,7 @@
 	</div>
 {/if}
 <div
-	class="slug-layout-desktop hidden h-full overflow-hidden lg:grid lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
+	class="slug-layout-desktop hidden h-full overflow-hidden pb-12 lg:grid lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
 >
 	<div
 		class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full overflow-y-scroll pb-12"
