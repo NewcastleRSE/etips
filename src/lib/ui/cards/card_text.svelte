@@ -15,6 +15,7 @@
 	<h3 class:hidden={!card.title} class="mb-2 mt-4 font-bold">{card.title}</h3>
 	<h4 class:hidden={!card.subtitle} class="mb-2 font-semibold">{card.subtitle}</h4>
 	<p class:hidden={!card.copy || card.copy === ''} class="prose-sm">{@html card.copy}</p>
+	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm">{@html card.copy}</div>
 </div>
 
 <style>
@@ -50,5 +51,32 @@
 		.card-text:not(.nested) {
 			padding: 2rem;
 		}
+	}
+	h3 {
+		font-family: var(--theme-font-title-2);
+		font-weight: 700;
+	}
+	h4 {
+		font-family: var(--theme-font-subtitle);
+		font-weight: 400;
+	}
+	p {
+		font-family: var(--theme-font-paragraph);
+	}
+
+	:global(.copy > h3) {
+		font-size: 1.25rem /* 24px */;
+		line-height: 1-5rem /* 32px */;
+		font-family: var(--theme-font-title-2);
+		font-weight: 700;
+	}
+	:global(.copy > h4) {
+		font-size: 1.15rem;
+		line-height: 1.25rem;
+		font-family: var(--theme-font-subtitle);
+		font-weight: 400;
+	}
+	:global(.copy > p) {
+		font-family: var(--theme-font-paragraph);
 	}
 </style>

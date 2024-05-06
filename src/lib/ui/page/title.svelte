@@ -19,5 +19,6 @@
 	.page-title {
 		background-color: var(--theme-colour-1);
 		border-bottom: 1px solid var(--theme-colour-4);
+		font-family: var(--theme-font-title);
 	}
 </style>
