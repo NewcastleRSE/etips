@@ -16,7 +16,7 @@
 		<Button
 			label="Go"
 			on:click={() => {
-				goto('/intro')
+				goto('/access')
 			}}
 		></Button>
 	</div>
