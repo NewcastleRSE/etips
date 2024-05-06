@@ -18,7 +18,9 @@
 			<h4 class:hidden={!card.subtitle} class="text-xl">{card.subtitle}</h4>
 		</div>
 	{/if}
-	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm">{@html card.copy}</div>
+	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
+		{@html card.copy}
+	</div>
 </div>
 
 <style>
@@ -81,5 +83,8 @@
 	}
 	:global(.copy > p) {
 		font-family: var(--theme-font-paragraph);
+	}
+	:global(.copy > ul li) {
+		list-style-type: circle;
 	}
 </style>
