@@ -23,17 +23,26 @@
 		></NavPages>
 		<Title
 			on:click={() => {
-				goto(`/${data.page.slug}`)
+				if ($page.params.topic) {
+					goto(`/${data.page.slug}`)
+				} else {
+					const first_topic = data.page.topics ? data.page.topics[0] : null
+					if (first_topic) {
+						goto(`/${data.page.slug}/${first_topic.slug}`)
+					}
+				}
 			}}
 			slug={data.page.slug}
 			title={data.page.title}
 		></Title>
-		<NavTopics
-			on:click={(e) => {
-				goto(`/${data.page.slug}/${e.detail}`)
-			}}
-			topics={data.topics}
-		></NavTopics>
+		{#if $page.params.topic}
+			<NavTopics
+				on:click={(e) => {
+					goto(`/${data.page.slug}/${e.detail}`)
+				}}
+				topics={data.topics}
+			></NavTopics>
+		{/if}
 		<slot />
 	</div>
 {/if}
