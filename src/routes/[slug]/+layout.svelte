@@ -74,14 +74,14 @@
 	<div
 		class="slug-layout-right-col col-span-1 col-start-2 row-span-1 row-start-1 h-full w-full overflow-y-scroll pb-12"
 	>
-		{#if $page.params.topic}
-			<NavTopics
-				on:click={(e) => {
-					goto(`/${data.page.slug}/${e.detail}`)
-				}}
-				topics={data.topics}
-			></NavTopics>
-		{/if}
+		<!-- {#if $page.params.topic} -->
+		<!-- 	<NavTopics -->
+		<!-- 		on:click={(e) => { -->
+		<!-- 			goto(`/${data.page.slug}/${e.detail}`) -->
+		<!-- 		}} -->
+		<!-- 		topics={data.topics} -->
+		<!-- 	></NavTopics> -->
+		<!-- {/if} -->
 		<slot />
 		<!-- <div class="invisible h-12 w-full"></div> -->
 	</div>
