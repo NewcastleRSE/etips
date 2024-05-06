@@ -89,6 +89,8 @@
 		border-color: var(--theme-colour-4);
 	}
 	.accept-page {
-		padding: 0 1rem;
+		width: min(100% - 2rem, 800px);
+		margin-inline: auto;
+		background-color: var(--theme-colour-1);
 	}
 </style>
