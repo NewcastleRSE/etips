@@ -19,7 +19,7 @@
 	class:card-cards={display === 'cards'}
 	class:card-list={display === 'list'}
 	class:card-continuous={display === 'continuous'}
-	class="media-card flex flex-col gap-4 p-8"
+	class="media-card flex flex-col gap-4 p-4 lg:p-8"
 >
 	<!-- <CardText {card}></CardText> -->
 	<div

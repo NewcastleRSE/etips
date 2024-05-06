@@ -14,7 +14,7 @@
 >
 	<div class="text-title-container mb-4">
 		<h3 class:hidden={!card.title} class="mb-2 text-2xl">{card.title}</h3>
-		<h4 class:hidden={!card.subtitle} class="text-xl font-semibold">{card.subtitle}</h4>
+		<h4 class:hidden={!card.subtitle} class="text-xl">{card.subtitle}</h4>
 	</div>
 	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm">{@html card.copy}</div>
 </div>
@@ -66,8 +66,8 @@
 	}
 
 	:global(.copy > h3) {
-		font-size: 1.25rem /* 24px */;
-		line-height: 1-5rem /* 32px */;
+		font-size: 1.5rem /* 24px */;
+		line-height: 2rem /* 32px */;
 		font-family: var(--theme-font-title-2);
 		font-weight: 700;
 	}

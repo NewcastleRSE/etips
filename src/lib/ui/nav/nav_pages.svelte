@@ -9,7 +9,7 @@
 
 <!-- NOTE:Need to enable dynamic colours, fix loading colours only on mount?? -->
 
-<nav class="sticky left-0 top-0 flex h-12 w-full md:h-16">
+<nav class="sticky left-0 top-0 z-50 flex h-12 w-full md:h-16">
 	{#each pages as active_page}
 		{#if active_page.category === 'restricted'}
 			<button

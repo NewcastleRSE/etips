@@ -5,7 +5,7 @@
 	const copy = 'Best from the Left'
 </script>
 
-<nav class="grid h-12 w-screen md:h-16">
+<nav class="z-50 grid h-12 w-screen md:h-16">
 	<div class="nav-left-col flex items-center">
 		<button
 			class="etips-button flex h-full items-center justify-center px-4 lg:w-64 lg:px-0"
