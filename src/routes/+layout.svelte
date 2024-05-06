@@ -1,4 +1,8 @@
 <script lang="ts">
+	import '@fontsource-variable/league-spartan'
+	import '@fontsource-variable/nunito'
+	import '@fontsource-variable/libre-franklin'
+	import '@fontsource/jua'
 	import Nav from '$lib/ui/nav/nav.svelte'
 	import { onMount } from 'svelte'
 	import '../app.pcss'
@@ -11,7 +15,12 @@
 		theme.load(
 			{
 				dark: false,
-				fonts: [{ name: 'Helvetica', type: 'sans-serif', key: 'title' }],
+				fonts: [
+					{ name: 'Jua', type: 'sans-serif', key: 'title' },
+					{ name: 'Nunito Variable', type: 'sans-serif', key: 'title-2' },
+					{ name: 'Libre Franklin Variable', type: 'sans-serif', key: 'paragraph' },
+					{ name: 'League Spartan Variable', type: 'sans-serif', key: 'subtitle' }
+				],
 				colours: ['#FFFDF9', '#F2F9EB', '#013A67', '#44B3CE', '#609A29', '#EA931F', '#BF0034'],
 				version: '0.0.1',
 				language: 'en',
@@ -27,12 +36,10 @@
 	<pre>{JSON.stringify(data, null, 2)}</pre>
 {/if}
 
-<div id="theme-wrapper">
+<div id="theme-wrapper" class="lg:h-screen lg:w-screen lg:overflow-hidden">
 	<Notification></Notification>
 	<Nav></Nav>
-	<main
-		class="relative grid h-full w-screen grid-cols-1 md:grid-cols-[minmax(0,3fr),minmax(0,6fr)]"
-	>
+	<main class="relative grid h-full w-screen grid-cols-1">
 		<slot></slot>
 	</main>
 	<Footer></Footer>

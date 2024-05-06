@@ -12,9 +12,10 @@
 	class="card-text"
 	class:nested
 >
-	<h3 class:hidden={!card.title} class="mb-2 mt-4 font-bold">{card.title}</h3>
-	<h4 class:hidden={!card.subtitle} class="mb-2 font-semibold">{card.subtitle}</h4>
-	<p class:hidden={!card.copy || card.copy === ''} class="prose-sm">{@html card.copy}</p>
+	<div class="text-title-container mb-4">
+		<h3 class:hidden={!card.title} class="mb-2 text-2xl">{card.title}</h3>
+		<h4 class:hidden={!card.subtitle} class="text-xl font-semibold">{card.subtitle}</h4>
+	</div>
 	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm">{@html card.copy}</div>
 </div>
 

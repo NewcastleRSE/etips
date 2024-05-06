@@ -1,12 +1,31 @@
 <script lang="ts">
+	import { goto } from '$app/navigation'
+	import { page } from '$app/stores'
+	import Button from '$lib/ui/button/button.svelte'
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
 	export let data
 </script>
 
 <!-- HACK: to get scroll for now -->
-<div class="content-container min-h-screen w-screen overflow-x-hidden">
+<div class="content-container min-h-screen w-screen overflow-x-hidden lg:w-full">
 	{#if data.page.cards}
-		<CardsContainer cards={data.page.cards}></CardsContainer>
+		<div class="content-mobile lg:hidden">
+			<CardsContainer cards={data.page.cards}></CardsContainer>
+		</div>
+		<div class="content-desktop hidden h-full lg:block">
+			{#if data.page.topics}
+				{#each data.page.topics as topic}
+					<div class="available-topics-button m-8 h-12">
+						<Button
+							label={topic.title}
+							on:click={() => {
+								goto(`/${$page.params.slug}/${topic.slug}`)
+							}}
+						></Button>
+					</div>
+				{/each}
+			{/if}
+		</div>
 	{/if}
 </div>
 

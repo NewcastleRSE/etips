@@ -33,7 +33,7 @@
 </script>
 
 <nav
-	class="topics-nav sticky left-0 top-12 grid h-12 grid-cols-[minmax(0,3rem),minmax(0,1fr),minmax(0,3rem)] md:top-24 md:h-24"
+	class="topics-nav sticky left-0 top-12 grid h-12 grid-cols-[minmax(0,3rem),minmax(0,1fr),minmax(0,3rem)] md:top-0 md:h-16 md:grid-cols-[minmax(0,4rem),minmax(0,1fr),minmax(0,4rem)]"
 >
 	<div class="topics-nav-left-col flex items-center justify-center">
 		<button
@@ -62,15 +62,17 @@
 		class="topics-nav-centre-col flex snap-x snap-mandatory items-center gap-4 overflow-y-hidden overflow-x-scroll px-4"
 	>
 		{#each topics as topic}
-			<Button
-				id="button-{topic.slug}"
-				selected={$page.params.topic === topic.slug}
-				on:click={() => {
-					dispatch('click', topic.slug)
-				}}
-				label={topic.title}
-				height="2rem"
-			></Button>
+			<div class="topics-button-wrapper">
+				<Button
+					id="button-{topic.slug}"
+					selected={$page.params.topic === topic.slug}
+					on:click={() => {
+						dispatch('click', topic.slug)
+					}}
+					label={topic.title}
+					height="2rem"
+				></Button>
+			</div>
 		{/each}
 	</div>
 	<div class="topics-nav-right-col flex items-center justify-center">

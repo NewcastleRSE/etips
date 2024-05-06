@@ -9,7 +9,7 @@
 
 <!-- NOTE:Need to enable dynamic colours, fix loading colours only on mount?? -->
 
-<nav class="sticky left-0 top-0 flex h-12 w-screen md:h-24">
+<nav class="sticky left-0 top-0 flex h-12 w-full md:h-16">
 	{#each pages as active_page}
 		{#if active_page.category === 'restricted'}
 			<button
@@ -41,20 +41,20 @@
 		position: relative;
 		transition: all 0.3 ease-in-out;
 	}
-	.pages-nav-button:hover::after {
-		content: attr(data-title);
-		width: calc(100vw - 4rem);
-		position: absolute;
-		font-size: 0.8rem;
-		bottom: -2rem;
-		left: 2px;
-		background-color: var(--theme-colour-2);
-		padding: 0 1rem;
-		border-radius: 1rem;
-		text-transform: capitalize;
-		border: 1px solid var(--theme-colour-4);
-		z-index: 999;
-	}
+	/* .pages-nav-button:hover::after { */
+	/* 	content: attr(data-title); */
+	/* 	width: calc(100vw - 4rem); */
+	/* 	position: absolute; */
+	/* 	font-size: 0.8rem; */
+	/* 	bottom: -2rem; */
+	/* 	left: 2px; */
+	/* 	background-color: var(--theme-colour-2); */
+	/* 	padding: 0 1rem; */
+	/* 	border-radius: 1rem; */
+	/* 	text-transform: capitalize; */
+	/* 	border: 1px solid var(--theme-colour-4); */
+	/* 	z-index: 999; */
+	/* } */
 	.selected {
 		background-color: var(--theme-colour-6);
 	}

@@ -11,6 +11,18 @@ dependencies:
   '@directus/sdk':
     specifier: ^15.1.0
     version: 15.1.0
+  '@fontsource-variable/league-spartan':
+    specifier: ^5.0.20
+    version: 5.0.20
+  '@fontsource-variable/libre-franklin':
+    specifier: ^5.0.19
+    version: 5.0.19
+  '@fontsource-variable/nunito':
+    specifier: ^5.0.19
+    version: 5.0.19
+  '@fontsource/jua':
+    specifier: ^5.0.19
+    version: 5.0.19
 
 devDependencies:
   '@playwright/test':
@@ -373,6 +385,22 @@ packages:
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@fontsource-variable/league-spartan@5.0.20:
+    resolution: {integrity: sha512-rJJOemaQs2KhQ7LdPjo8I/wZYuewASwNAZAomPEbocKBTa320Xl2zdl+tNSJoix79LNWraMwAe59zrnbMe3FwQ==}
+    dev: false
+
+  /@fontsource-variable/libre-franklin@5.0.19:
+    resolution: {integrity: sha512-s1UD2QPmoDizefgBrkIxY52bT9IyyH3inTw2FlPxYlq4l1ySCBUZbf2CpuoNhThlqU2xJFeMEsoQL00OIgZ5Xw==}
+    dev: false
+
+  /@fontsource-variable/nunito@5.0.19:
+    resolution: {integrity: sha512-kY+1OIFhl167U25iY+V2GLk6E389UKIu0rnJXAj2y4qc6mYqbMcyeT0Y7G+btT6ZdItL2dcvX0bOfe0cbddQYg==}
+    dev: false
+
+  /@fontsource/jua@5.0.19:
+    resolution: {integrity: sha512-JIEOsEYqgeWS1ypBMfCod0AIevpNRAyJ7RM5UD4ynVQhSjuF/hbE6f6jwt+sENCswKF2mTt+jr8ibfjirQ/baA==}
+    dev: false
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}

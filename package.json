@@ -45,6 +45,10 @@
 	"type": "module",
 	"dependencies": {
 		"@arturoguzman/art-ui": "^0.0.1",
-		"@directus/sdk": "^15.1.0"
+		"@directus/sdk": "^15.1.0",
+		"@fontsource-variable/league-spartan": "^5.0.20",
+		"@fontsource-variable/libre-franklin": "^5.0.19",
+		"@fontsource-variable/nunito": "^5.0.19",
+		"@fontsource/jua": "^5.0.19"
 	}
 }
