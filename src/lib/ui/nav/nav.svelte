@@ -5,8 +5,10 @@
 	import NavTopics from './nav_topics.svelte'
 	//TODO:dynamically set copy
 	$: copy = $page.params.slug ? 'Best from the Left' : 'Welcome'
+	let windowWidth = 0
 </script>
 
+<svelte:window bind:innerWidth={windowWidth} />
 <nav
 	class="grid-cols[minmax(0,3fr),minmax(0,1fr)] z-50 grid h-12 w-full md:h-16 lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
 >
@@ -20,36 +22,38 @@
 			<img src="/logo.webp" alt="etips logo" class=" w-32" />
 		</button>
 		<div
-			class="side-title flex h-full w-full items-center px-4 text-sm lg:justify-center lg:text-base"
+			class="side-title flex h-full w-full items-center px-4 text-sm lg:justify-center lg:text-lg"
 			class:hidden={copy === ''}
 		>
 			<p>{copy}</p>
 		</div>
 	</div>
 	<div class="nav-right-col col-start-2 flex items-center justify-end lg:justify-normal">
-		<div class="nav-wrapper hidden w-full lg:block">
-			{#if $page.params.slug && !$page.params.topic}
-				<h3 class="content-desktop-header px-8 text-2xl">
-					Available topics in {$page.data.page.title}
-				</h3>
-			{/if}
-			{#if $page.params.topic && $page.params.slug}
-				<NavTopics
-					on:click={(e) => {
-						goto(`/${$page.params.slug}/${e.detail}`)
+		{#if windowWidth > 1024}
+			<div class="nav-wrapper hidden w-full lg:block">
+				{#if $page.params.slug && !$page.params.topic}
+					<h3 class="content-desktop-header px-8 text-2xl">
+						Available topics in {$page.data.page.title}
+					</h3>
+				{/if}
+				{#if $page.params.topic && $page.params.slug}
+					<NavTopics
+						on:click={(e) => {
+							goto(`/${$page.params.slug}/${e.detail}`)
+						}}
+						topics={$page.data.topics}
+					></NavTopics>
+				{/if}
+			</div>
+			<div class="nav-left-border h-full lg:hidden">
+				<Button
+					on:click={() => {
+						goto('/access')
 					}}
-					topics={$page.data.topics}
-				></NavTopics>
-			{/if}
-		</div>
-		<div class="nav-left-border h-full lg:hidden">
-			<Button
-				on:click={() => {
-					goto('/access')
-				}}
-				label="Enter"
-			></Button>
-		</div>
+					label="Enter"
+				></Button>
+			</div>
+		{/if}
 	</div>
 </nav>
 
@@ -65,7 +69,6 @@
 	.side-title {
 		color: var(--theme-colour-4);
 		font-family: var(--theme-font-title);
-		font-size: 1rem;
 	}
 	.etips-button {
 		border-right: 1px solid var(--theme-colour-4);

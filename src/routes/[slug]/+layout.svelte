@@ -45,47 +45,48 @@
 		{/if}
 		<slot />
 	</div>
-{/if}
-<div
-	class="slug-layout-desktop hidden h-full overflow-hidden pb-12 lg:grid lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
->
+{:else}
 	<div
-		class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full overflow-y-scroll pb-12"
+		class="slug-layout-desktop hidden h-full overflow-hidden pb-12 lg:grid lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
 	>
-		<NavPages
-			on:click={(e) => {
-				goto(`/${e.detail}`)
-			}}
-			{pages}
-		></NavPages>
-		<Title
-			on:click={() => {
-				goto(`/${data.page.slug}`)
-			}}
-			slug={data.page.slug}
-			title={data.page.title}
-		></Title>
+		<div
+			class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full overflow-y-scroll pb-12"
+		>
+			<NavPages
+				on:click={(e) => {
+					goto(`/${e.detail}`)
+				}}
+				{pages}
+			></NavPages>
+			<Title
+				on:click={() => {
+					goto(`/${data.page.slug}`)
+				}}
+				slug={data.page.slug}
+				title={data.page.title}
+			></Title>
 
-		{#if data.page.cards}
-			<CardsContainer desktop_left display="cards" cards={data.page.cards}></CardsContainer>
-		{/if}
-		<!-- <div class="invisible h-12 w-full"></div> -->
+			{#if data.page.cards}
+				<CardsContainer desktop_left display="cards" cards={data.page.cards}></CardsContainer>
+			{/if}
+			<!-- <div class="invisible h-12 w-full"></div> -->
+		</div>
+		<div
+			class="slug-layout-right-col col-span-1 col-start-2 row-span-1 row-start-1 h-full w-full overflow-y-scroll pb-12"
+		>
+			<!-- {#if $page.params.topic} -->
+			<!-- 	<NavTopics -->
+			<!-- 		on:click={(e) => { -->
+			<!-- 			goto(`/${data.page.slug}/${e.detail}`) -->
+			<!-- 		}} -->
+			<!-- 		topics={data.topics} -->
+			<!-- 	></NavTopics> -->
+			<!-- {/if} -->
+			<slot />
+			<!-- <div class="invisible h-12 w-full"></div> -->
+		</div>
 	</div>
-	<div
-		class="slug-layout-right-col col-span-1 col-start-2 row-span-1 row-start-1 h-full w-full overflow-y-scroll pb-12"
-	>
-		<!-- {#if $page.params.topic} -->
-		<!-- 	<NavTopics -->
-		<!-- 		on:click={(e) => { -->
-		<!-- 			goto(`/${data.page.slug}/${e.detail}`) -->
-		<!-- 		}} -->
-		<!-- 		topics={data.topics} -->
-		<!-- 	></NavTopics> -->
-		<!-- {/if} -->
-		<slot />
-		<!-- <div class="invisible h-12 w-full"></div> -->
-	</div>
-</div>
+{/if}
 
 <style>
 	.slug-layout-left-col {
