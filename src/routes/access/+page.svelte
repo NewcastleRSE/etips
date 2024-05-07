@@ -12,6 +12,7 @@
 
 <div class="accept-page">
 	<form
+		class="w-full lg:w-1/2"
 		action="?/register"
 		method="POST"
 		use:enhance={() => {
@@ -70,10 +71,16 @@
 			label="I have read and accept the disclaimer"
 			name="disclaimer-consent"
 		></SelectionInput>
-		{#if disclaimer_consent && criteria_met}
-			<Button type="submit" label="Access" height="3rem" disabled={!disclaimer_consent}></Button>
-			<!-- <Button type="submit" label="Access" height="3rem"></Button> -->
-		{/if}
+		<!-- {#if disclaimer_consent && criteria_met} -->
+		<Button
+			type="submit"
+			label="Access"
+			height="3rem"
+			disabled={!disclaimer_consent || !criteria_met}
+			disabled_notice="You need to accept the disclaimer and criteria before accessing the materials"
+		></Button>
+		<!-- <Button type="submit" label="Access" height="3rem"></Button> -->
+		<!-- {/if} -->
 	</form>
 </div>
 
@@ -84,13 +91,15 @@
 		flex-direction: column;
 		gap: 1rem;
 		min-height: 100lvh;
+	}
+	.accept-page {
+		display: flex;
+		justify-content: center;
+		width: min(100% - 2rem, 1000px);
+		margin-inline: auto;
+		background-color: var(--theme-colour-1);
 		border-width: 0 1px;
 		border-style: solid;
 		border-color: var(--theme-colour-4);
-	}
-	.accept-page {
-		width: min(100% - 2rem, 800px);
-		margin-inline: auto;
-		background-color: var(--theme-colour-1);
 	}
 </style>

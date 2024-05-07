@@ -100,6 +100,10 @@
 </div>
 
 <style>
+	.label {
+		font-family: var(--theme-font-title-2);
+		color: var(--theme-colour-3);
+	}
 	.label[data-required='yes']::after {
 		content: ' *';
 		font-size: 0.8rem;

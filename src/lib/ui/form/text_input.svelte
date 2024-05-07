@@ -9,7 +9,7 @@
 </script>
 
 <div class="text-input flex flex-col gap-2">
-	<label class="text-sm md:text-base" data-required={required ? 'yes' : 'no'} for={id}
+	<label class="label text-sm md:text-base" data-required={required ? 'yes' : 'no'} for={id}
 		>{label}</label
 	>
 	<input
@@ -30,6 +30,10 @@
 </div>
 
 <style>
+	.label {
+		font-family: var(--theme-font-title-2);
+		color: var(--theme-colour-3);
+	}
 	input {
 		border-radius: 0.5rem;
 		border-color: var(--theme-colour-4);
