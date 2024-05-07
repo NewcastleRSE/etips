@@ -19,7 +19,9 @@
 		</div>
 	{/if}
 	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
-		{@html card.copy}
+		{@html card.copy
+			?.replaceAll('LEFT', '<strong>LEFT</strong>')
+			.replaceAll('RIGHT', '<strong>RIGHT</strong>')}
 	</div>
 </div>
 
