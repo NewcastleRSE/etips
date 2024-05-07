@@ -28,6 +28,11 @@
 	</div>
 	<div class="nav-right-col col-start-2 flex items-center justify-end lg:justify-normal">
 		<div class="nav-wrapper hidden w-full lg:block">
+			{#if $page.params.slug && !$page.params.topic}
+				<h3 class="content-desktop-header px-8 text-2xl">
+					Available topics in {$page.data.page.title}
+				</h3>
+			{/if}
 			{#if $page.params.topic && $page.params.slug}
 				<NavTopics
 					on:click={(e) => {
@@ -65,6 +70,12 @@
 	.etips-button {
 		border-right: 1px solid var(--theme-colour-4);
 	}
+	.content-desktop-header {
+		font-family: var(--theme-font-title-2);
+		font-weight: 700;
+		color: var(--theme-colour-4);
+	}
+
 	@media (min-width: 1024px) {
 		.side-title {
 			border-right: 3px solid var(--theme-colour-4);
