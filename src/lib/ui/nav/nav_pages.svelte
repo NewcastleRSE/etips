@@ -23,7 +23,7 @@
 				<DynamicIcon
 					selected={$page.params.slug === active_page.slug}
 					icon={active_page.icon}
-					stroke={1}
+					stroke={1.5}
 				></DynamicIcon>
 			</button>
 		{/if}

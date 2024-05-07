@@ -2,7 +2,7 @@
 	import type { PagesCard, TopicsCard } from '$lib/types'
 	import CardMedia from './card_media.svelte'
 	import CardText from './card_text.svelte'
-	export let display = 'continuous'
+	export let display = 'cards'
 	export let cards: PagesCard[] | TopicsCard[]
 	export let desktop_left = false
 </script>
@@ -13,6 +13,7 @@
 		class:cards={display === 'cards'}
 		class:list={display === 'list'}
 		class:continuous={display === 'continuous'}
+		class:two-columns={display === 'two-columns'}
 		class:desktop_left
 	>
 		{#key cards}
@@ -61,5 +62,9 @@
 			color-mix(in oklab, var(--theme-colour-5) 60%, var(--theme-colour-1) 100%);
 		width: 70%;
 		margin-inline: auto;
+	}
+	.two-columns {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
 	}
 </style>
