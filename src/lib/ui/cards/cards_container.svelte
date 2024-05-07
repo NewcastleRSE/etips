@@ -9,7 +9,7 @@
 
 {#if cards.length > 0}
 	<div
-		class="cards-container mx-4 mb-12 overflow-x-hidden"
+		class="cards-container mx-4 overflow-x-hidden"
 		class:cards={display === 'cards'}
 		class:list={display === 'list'}
 		class:continuous={display === 'continuous'}

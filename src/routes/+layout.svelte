@@ -39,7 +39,9 @@
 <div id="theme-wrapper" class="lg:h-screen lg:w-screen lg:overflow-hidden">
 	<Notification></Notification>
 	<Nav></Nav>
-	<main class="relative grid h-full w-screen grid-cols-1">
+	<main
+		class="relative w-screen pb-12 lg:grid lg:h-[calc(100%-8rem)] lg:grid-cols-1 lg:overflow-hidden lg:pb-0"
+	>
 		<slot></slot>
 	</main>
 	<Footer></Footer>

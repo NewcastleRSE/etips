@@ -47,10 +47,10 @@
 	</div>
 {:else}
 	<div
-		class="slug-layout-desktop hidden h-full overflow-hidden pb-12 lg:grid lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
+		class="slug-layout-desktop hidden h-full overflow-hidden lg:grid lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
 	>
 		<div
-			class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full overflow-y-scroll pb-12"
+			class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full overflow-y-scroll"
 		>
 			<NavPages
 				on:click={(e) => {
@@ -72,7 +72,7 @@
 			<!-- <div class="invisible h-12 w-full"></div> -->
 		</div>
 		<div
-			class="slug-layout-right-col col-span-1 col-start-2 row-span-1 row-start-1 h-full w-full overflow-y-scroll pb-12"
+			class="slug-layout-right-col col-span-1 col-start-2 row-span-1 row-start-1 h-full w-full overflow-y-scroll"
 		>
 			<!-- {#if $page.params.topic} -->
 			<!-- 	<NavTopics -->
