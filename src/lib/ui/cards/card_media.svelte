@@ -27,10 +27,11 @@
 		class:horizontal={direction === 'horizontal'}
 		class:vertical={direction === 'vertical'}
 	>
-		<div class="gallery flex h-64 snap-x snap-mandatory gap-4 overflow-x-scroll">
+		<div class="gallery flex snap-x snap-mandatory gap-4 overflow-x-scroll">
 			{#each media as m, i}
+				{@const custom_class = m.height > m.width ? 'w-full' : 'h-full'}
 				<div
-					class="gallery-child relative flex h-full w-full flex-shrink-0 snap-center items-center justify-center"
+					class="gallery-child relative flex w-full flex-shrink-0 snap-center items-center justify-center"
 				>
 					<img class="h-full object-contain" src="/assets/{m.id}" alt="" />
 					<!-- TODO: add IntersectionObserver -->
@@ -42,7 +43,7 @@
 					</p>
 				</div>
 			{:else}
-				<div class="h-full bg-slate-300 w-full h-full flex justify-center items-center font-mono">
+				<div class="h-64 bg-slate-300 w-full flex justify-center items-center font-mono">
 					<p class="-rotate-45">insert image here</p>
 				</div>
 			{/each}
@@ -85,5 +86,8 @@
 		border-radius: 0.5rem;
 		background-color: var(--theme-colour-1);
 		border: 1px solid var(--theme-colour-5);
+	}
+	.gallery {
+		max-height: 50lvh;
 	}
 </style>
