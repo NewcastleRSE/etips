@@ -13,7 +13,7 @@
 
 <!-- TODO: fix scroll size on desktop -->
 <div
-	class="accept-page h-full w-full overflow-y-scroll pb-96"
+	class="accept-page h-full w-full overflow-y-scroll pb-96 lg:w-auto"
 	class:doctor={role === 'doctor'}
 	class:parent={role === 'parent'}
 >
