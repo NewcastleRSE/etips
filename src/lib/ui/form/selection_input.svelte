@@ -20,7 +20,7 @@
 	})
 </script>
 
-<div class="selection-input-container flex flex-col gap-2">
+<div class="selection-input-container mb-4 flex flex-col gap-2">
 	<div class="label-container grid gap-2 text-sm md:text-base" class:grid-cols-2={information}>
 		<p data-required={required ? 'yes' : 'no'} class="label w-full">
 			{label}
