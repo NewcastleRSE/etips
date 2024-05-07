@@ -1,12 +1,13 @@
 <script lang="ts">
-	export let id: string = crypto.randomUUID()
+	import { getId } from '@arturoguzman/art-ui'
+	export let id: string = getId()
 	export let selected = false
 	export let label = ''
 	export let height = '100%'
 	export let type: 'submit' | 'button' | 'reset' | null | undefined = 'button'
 	export let disabled = false
 	export let disabled_notice = ''
-	export let local_id = crypto.randomUUID()
+	export let local_id = getId()
 	let start_position = 20
 	const animate_title = (e: HTMLElement) => {
 		const titleWidth = e.scrollWidth
