@@ -24,16 +24,46 @@
 				{/each}
 			{/if}
 		</div>
-		<div class="content-desktop hidden h-full lg:block">
+		<div class="content-desktop hidden h-full lg:flex lg:flex-wrap">
+			<!-- <h3 class="content-desktop-header p-8 text-2xl"> -->
+			<!-- 	Available topics in {$page.data.page.title} -->
+			<!-- </h3> -->
 			{#if data.page.topics}
 				{#each data.page.topics as topic}
-					<div class="available-topics-button m-8 h-12">
-						<Button
-							label={topic.title}
+					<div class="available-topics-button-wrapper aspect-square w-1/3 p-12">
+						<button
+							class="available-topics-button flex h-full w-full flex-col items-center justify-evenly rounded-lg p-4"
 							on:click={() => {
 								goto(`/${$page.params.slug}/${topic.slug}`)
 							}}
-						></Button>
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="icon icon-tabler icon-tabler-mood-kid"
+								width="88"
+								height="88"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="#44b3ce"
+								fill="none"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path stroke="none" d="M0 0h24v24H0z" fill="none" />
+								<path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+								<path d="M9 10l.01 0" />
+								<path d="M15 10l.01 0" />
+								<path d="M9.5 15a3.5 3.5 0 0 0 5 0" />
+								<path d="M12 3a2 2 0 0 0 0 4" />
+							</svg>
+							<p>{topic.title}</p>
+						</button>
+						<!-- <Button -->
+						<!-- 	label={topic.title} -->
+						<!-- 	on:click={() => { -->
+						<!-- 		goto(`/${$page.params.slug}/${topic.slug}`) -->
+						<!-- 	}} -->
+						<!-- ></Button> -->
 					</div>
 				{/each}
 			{/if}
@@ -45,6 +75,32 @@
 	.content-mobile {
 		margin-inline: auto;
 	}
+	.available-topics-button {
+		font-family: var(--theme-font-title);
+		font-size: 1.2rem;
+		background-color: var(--theme-colour-1);
+		border: 1px solid var(--theme-colour-4);
+		color: var(--theme-colour-4);
+		transition: all 0.3s ease-in-out;
+	}
+	.available-topics-button:hover {
+		background-color: var(--theme-colour-1);
+		border: 1px solid var(--theme-colour-3);
+		color: var(--theme-colour-3);
+		box-shadow: 10px 10px 100px
+			color-mix(in oklab, var(--theme-colour-4) 70%, var(--theme-colour-1) 90%);
+	}
+	svg {
+		transition: all 0.3s ease-in-out;
+	}
+	.available-topics-button:hover > svg {
+		stroke: var(--theme-colour-3);
+	}
+	/* .content-desktop-header { */
+	/* 	font-family: var(--theme-font-title-2); */
+	/* 	font-weight: 700; */
+	/* 	color: var(--theme-colour-4); */
+	/* } */
 	/* .cards { */
 	/* 	border-right: 1px solid var(--theme-colour-4); */
 	/* 	border-left: 1px solid var(--theme-colour-4); */
