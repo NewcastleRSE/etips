@@ -50,11 +50,12 @@
 	<div
 		class="slug-layout-desktop hidden h-full overflow-hidden transition-all lg:grid {grid_open
 			? 'lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]'
-			: 'lg:grid-cols-[minmax(0,4rem),minmax(0,18fr)]'}"
+			: 'lg:grid-cols-[minmax(0,1fr),minmax(0,18fr)]'}"
 	>
 		<div
 			data-open={grid_open ? 'true' : 'false'}
-			class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full overflow-y-scroll"
+			class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full"
+			class:overflow-y-scroll={grid_open}
 		>
 			<NavPages
 				on:click={(e) => {
@@ -82,7 +83,8 @@
 			class="slug-layout-right-col relative col-span-1 col-start-2 row-span-1 row-start-1 h-full w-full overflow-y-scroll"
 		>
 			<button
-				class="sticky left-0 top-0 z-50 w-12"
+				class="toggle-col-button fixed z-10 w-12"
+				data-hover-message={grid_open ? 'Close' : 'Open'}
 				on:click={() => {
 					grid_open = !grid_open
 				}}
@@ -126,18 +128,7 @@
 						/>
 					</svg>{/if}</button
 			>
-			<!-- {#if $page.params.topic} -->
-			<!-- 	<NavTopics -->
-			<!-- 		on:click={(e) => { -->
-			<!-- 			goto(`/${data.page.slug}/${e.detail}`) -->
-			<!-- 		}} -->
-			<!-- 		topics={data.topics} -->
-			<!-- 	></NavTopics> -->
-			<!-- {/if} -->
-			<div class="relative -top-12 left-0">
-				<slot />
-			</div>
-			<!-- <div class="invisible h-12 w-full"></div> -->
+			<slot />
 		</div>
 	</div>
 {/if}
@@ -146,5 +137,17 @@
 	.slug-layout-left-col[data-open='true'] {
 		border-right: 3px solid var(--theme-colour-6);
 		background-color: color-mix(in oklab, var(--theme-colour-4) 20%, white 90%);
+	}
+	.toggle-col-button[data-hover-message]:hover::after {
+		content: attr(data-hover-message);
+		position: absolute;
+		top: 20%;
+		right: 0px;
+		transform: translate(100%, 0%);
+		color: var(--theme-colour-5);
+		background-color: var(--theme-colour-1);
+		padding: 0 1rem;
+		border-radius: 999px;
+		border: 1px solid var(--theme-colour-5);
 	}
 </style>
