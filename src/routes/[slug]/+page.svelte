@@ -93,8 +93,8 @@
 		background-color: var(--theme-colour-1);
 		border: 1px solid var(--theme-colour-3);
 		color: var(--theme-colour-3);
-		box-shadow: 10px 10px 100px
-			color-mix(in oklab, var(--theme-colour-4) 70%, var(--theme-colour-1) 90%);
+		box-shadow: -5px -5px 50px color-mix(in oklab, var(--theme-colour-4) 50%, var(--theme-colour-1)
+					95%);
 	}
 	svg {
 		transition: all 0.3s ease-in-out;
