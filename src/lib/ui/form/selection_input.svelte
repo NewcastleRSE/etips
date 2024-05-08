@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte'
 	import Button from '../button/button.svelte'
 	import { getId } from '@arturoguzman/art-ui'
+	import { windowStore } from '$lib/stores/layout'
 	export let left_label = 'Yes'
 	export let right_label = 'No'
 	export let name
@@ -17,9 +18,13 @@
 	let checked_opacity = 1
 	let checked_dynamic = false
 	let hovering = false
+	let hover_message: undefined | string = undefined
 	onMount(() => {
 		checked ? (checked_position = 0) : (checked_position = 50)
 	})
+	let cursor_x = 0
+	let cursor_y = 0
+	let timeout: number = 0
 </script>
 
 <div class="selection-input-container mb-4 flex flex-col gap-2">
@@ -48,10 +53,15 @@
 		data-checked={checked ? 'yes' : 'no'}
 		data-option={option ? 'yes' : 'no'}
 		data-hovering={hovering ? 'yes' : 'no'}
+		data-hover-message={hover_message}
 		class="checkbox-button-container flex w-full"
 		style:--checked-position={checked_position + '%'}
 		style:--checked_opacity={checked_opacity}
+		style:--cursor-x="{cursor_x}px"
+		style:--cursor-y="{cursor_y}px"
 		on:pointermove={(e) => {
+			cursor_x = e.clientX
+			cursor_y = e.clientY - 50
 			if (checked_dynamic) {
 				if (e.target.id === `left-${local_id}`) {
 					checked_position = 0
@@ -61,11 +71,16 @@
 			}
 		}}
 		on:pointerenter={() => {
+			timeout = setTimeout(() => {
+				hover_message = 'Click to continue'
+			}, 3000)
 			checked_dynamic = true
 			checked_opacity = 0.5
 			hovering = true
 		}}
 		on:pointerleave={() => {
+			clearTimeout(timeout)
+			hover_message = undefined
 			checked_dynamic = false
 			if (checked) {
 				checked_position = 0
@@ -160,6 +175,20 @@
 	}
 	.checkbox-button-container[data-hovering='yes'] > button {
 		color: var(--theme-colour-3);
+	}
+	.checkbox-button-container[data-hover-message]:hover::after {
+		content: attr(data-hover-message);
+		position: fixed;
+		top: var(--cursor-y);
+		left: var(--cursor-x);
+		color: var(--theme-colour-5);
+		background-color: var(--theme-colour-1);
+		padding: 0 1rem;
+		border: 1px solid var(--theme-colour-5);
+		border-radius: 1000px;
+		transform: translate(-50%, 0);
+		z-index: 100;
+		pointer-events: none;
 	}
 	.button-left {
 		border: 1px solid var(--theme-colour-4);
