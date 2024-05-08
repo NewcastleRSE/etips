@@ -49,6 +49,8 @@
 		"@fontsource-variable/league-spartan": "^5.0.20",
 		"@fontsource-variable/libre-franklin": "^5.0.19",
 		"@fontsource-variable/nunito": "^5.0.19",
-		"@fontsource/jua": "^5.0.19"
+		"@fontsource/jua": "^5.0.19",
+		"@types/vimeo__player": "^2.18.3",
+		"@vimeo/player": "^2.23.0"
 	}
 }

@@ -1,53 +1,61 @@
 <script lang="ts">
-	import type { Card } from '$lib/types'
+	import type { Card, CardsFile } from '$lib/types'
 	import type { DirectusFile } from '@directus/sdk'
 	import CardText from './card_text.svelte'
+	import Vimeo from '../media/vimeo.svelte'
 	export let card: Card
-	export let display: string
+	export let display: string = 'cards'
 	export let direction: 'horizontal' | 'vertical' = 'vertical'
-	$: media = card.media.reduce((acc: DirectusFile[], m) => {
-		if (m && m.directus_files_id && typeof m.directus_files_id !== 'string') {
-			const file = m.directus_files_id
-			acc.push(file)
-		}
-		return acc
-	}, [])
+	$: media =
+		card.media?.reduce((acc, m) => {
+			if (m && m.directus_files_id && typeof m.directus_files_id !== 'string') {
+				const file = m.directus_files_id
+				acc.push(file)
+			}
+			return acc
+		}, [] as DirectusFile[]) || []
 </script>
 
-<!-- class="media-card flex flex-col gap-2 p-4 lg:grid lg:grid-cols-2 lg:grid-rows-1 lg:p-8" -->
 <div
 	class:card-cards={display === 'cards'}
 	class:card-list={display === 'list'}
 	class:card-continuous={display === 'continuous'}
 	class="media-card flex flex-col gap-4 p-4 lg:p-8"
 >
-	<!-- <CardText {card}></CardText> -->
 	<div
 		class="media-card-left-col"
 		class:horizontal={direction === 'horizontal'}
 		class:vertical={direction === 'vertical'}
 	>
-		<div class="gallery flex snap-x snap-mandatory gap-4 overflow-x-scroll">
-			{#each media as m, i}
-				{@const custom_class = m.height > m.width ? 'w-full' : 'h-full'}
-				<div
-					class="gallery-child relative flex w-full flex-shrink-0 snap-center items-center justify-center"
-				>
-					<img class="h-full object-contain" src="/assets/{m.id}" alt="" />
-					<!-- TODO: add IntersectionObserver -->
-					<p
-						class="absolute bottom-0 right-0 rounded-full bg-slate-600 px-2 text-white"
-						class:hidden={media.length === 1}
+		{#if card.media_type === 'photo'}
+			<div class="gallery flex snap-x snap-mandatory gap-4 overflow-x-scroll">
+				{#each media as m, i}
+					<!-- {@const custom_class = m.height > m.width ? 'w-full' : 'h-full'} -->
+					<div
+						class="gallery-child relative flex w-full flex-shrink-0 snap-center items-center justify-center"
 					>
-						{i + 1} of {media.length}
-					</p>
-				</div>
-			{:else}
-				<div class="h-64 bg-slate-300 w-full flex justify-center items-center font-mono">
-					<p class="-rotate-45">insert image here</p>
-				</div>
-			{/each}
-		</div>
+						<img class="h-full object-contain" src="/assets/{m.id}" alt="" />
+						<!-- TODO: add IntersectionObserver -->
+						<p
+							class="absolute bottom-0 right-0 rounded-full bg-slate-600 px-2 text-white"
+							class:hidden={media.length === 1}
+						>
+							{i + 1} of {media.length}
+						</p>
+					</div>
+				{:else}
+					<div class="h-64 bg-slate-300 w-full flex justify-center items-center font-mono">
+						<p class="-rotate-45">insert image here</p>
+					</div>
+				{/each}
+			</div>
+		{/if}
+		{#if card.media_type === 'youtube'}
+			<iframe src={card.url} title={card.title ?? ''} class="aspect-video w-full"></iframe>
+		{/if}
+		{#if card.media_type === 'vimeo'}
+			<Vimeo video_id={card.url?.replaceAll('https://vimeo.com/', '')}></Vimeo>
+		{/if}
 	</div>
 	<div class="media-card-right-col">
 		<CardText nested {card}></CardText>
