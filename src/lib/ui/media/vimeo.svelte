@@ -6,19 +6,21 @@
 	export let video_id: string | number = 0
 	let video: Player | null = null
 	const mountVideo = (e: HTMLElement) => {
-		video = new Player(e, {
-			id: Number(video_id),
-			autoplay: false,
-			muted: false,
-			controls: true,
-			loop: false,
-			quality: 'auto',
-			width: e.getBoundingClientRect().width,
-			dnt: true,
-			portrait: false,
-			title: false,
-			byline: false
-		})
+		setTimeout(() => {
+			video = new Player(e, {
+				id: Number(video_id),
+				autoplay: false,
+				muted: false,
+				controls: true,
+				loop: false,
+				quality: 'auto',
+				width: e.getBoundingClientRect().width,
+				dnt: true,
+				portrait: false,
+				title: false,
+				byline: false
+			})
+		}, 1000)
 	}
 	onDestroy(() => {
 		if (video) video.destroy()

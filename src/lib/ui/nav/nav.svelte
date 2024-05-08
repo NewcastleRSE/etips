@@ -33,7 +33,9 @@
 			<div class="nav-wrapper hidden w-full lg:block">
 				{#if $page.params.slug && !$page.params.topic}
 					<h3 class="content-desktop-header px-8 text-2xl">
-						Available topics in {$page.data.page.title}
+						Available topics in <strong style="color: var(--theme-colour-3)"
+							>{$page.data.page.title}</strong
+						>
 					</h3>
 				{/if}
 				{#if $page.params.topic && $page.params.slug}

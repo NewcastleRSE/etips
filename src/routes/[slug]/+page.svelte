@@ -8,7 +8,7 @@
 </script>
 
 <!-- HACK: to get scroll for now -->
-<div class="content-container min-h-screen w-screen overflow-x-hidden lg:w-full">
+<div class="content-container w-screen overflow-x-hidden lg:w-full">
 	{#if data.page.cards}
 		<div class="content-mobile lg:hidden">
 			<CardsContainer cards={data.page.cards}></CardsContainer>
@@ -25,7 +25,7 @@
 				{/each}
 			{/if}
 		</div>
-		<div class="content-desktop hidden h-full lg:grid lg:grid-cols-3">
+		<div class="content-desktop hidden h-full p-2 lg:grid lg:grid-cols-3 xl:grid-cols-4 xl:p-4">
 			<!-- <h3 class="content-desktop-header p-8 text-2xl"> -->
 			<!-- 	Available topics in {$page.data.page.title} -->
 			<!-- </h3> -->
@@ -33,11 +33,11 @@
 				{#key data.page}
 					{#each data.page.topics as topic, i}
 						<div
-							class="available-topics-button-wrapper aspect-square w-full p-12"
+							class="available-topics-button-wrapper aspect-square w-full p-8 xl:p-6"
 							in:fly={{ duration: 300, x: -200, delay: 100 * i }}
 						>
 							<button
-								class="available-topics-button flex h-full w-full flex-col items-center justify-evenly rounded-lg p-4"
+								class="available-topics-button flex h-full w-full flex-col items-center justify-evenly rounded-lg p-4 xl:p-2"
 								on:click={() => {
 									goto(`/${$page.params.slug}/${topic.slug}`)
 								}}
