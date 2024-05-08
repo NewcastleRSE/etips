@@ -5,25 +5,27 @@
 	export let nested = false
 </script>
 
-<div
-	class:card-cards={display === 'cards'}
-	class:card-list={display === 'list'}
-	class:card-continuous={display === 'continuous'}
-	class="card-text"
-	class:nested
->
-	{#if card.title || card.subtitle}
-		<div class="text-title-container mb-4">
-			<h3 class:hidden={!card.title} class="mb-2 text-2xl">{card.title}</h3>
-			<h4 class:hidden={!card.subtitle} class="text-xl">{card.subtitle}</h4>
+{#if card}
+	<div
+		class:card-cards={display === 'cards'}
+		class:card-list={display === 'list'}
+		class:card-continuous={display === 'continuous'}
+		class="card-text"
+		class:nested
+	>
+		{#if card.title || card.subtitle}
+			<div class="text-title-container mb-4">
+				<h3 class:hidden={!card.title} class="mb-2 text-2xl">{card.title}</h3>
+				<h4 class:hidden={!card.subtitle} class="text-xl">{card.subtitle}</h4>
+			</div>
+		{/if}
+		<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
+			{@html card.copy
+				?.replaceAll('LEFT', '<strong>LEFT</strong>')
+				.replaceAll('RIGHT', '<strong>RIGHT</strong>')}
 		</div>
-	{/if}
-	<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
-		{@html card.copy
-			?.replaceAll('LEFT', '<strong>LEFT</strong>')
-			.replaceAll('RIGHT', '<strong>RIGHT</strong>')}
 	</div>
-</div>
+{/if}
 
 <style>
 	.card-text {
