@@ -11,6 +11,7 @@
 	import FormDisclaimer from './form_disclaimer.svelte'
 	import RoleSelection from './role_selection.svelte'
 	export let data
+	//TODO: dynamically select these blocks!
 	const gdpr_notice = data.page.cards.filter(
 		(c) => c.cards_id.id === '44aebd0d-9cfc-4a6d-9905-31c440b5e194'
 	)[0].cards_id
