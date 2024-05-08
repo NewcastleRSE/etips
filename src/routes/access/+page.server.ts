@@ -1,11 +1,35 @@
+import type { Page } from '$lib/types/index.js'
+import { readItems } from '@directus/sdk'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
 
-export const load = async ({ cookies }) => {
+export const load = async ({ cookies, locals }) => {
 	const etips_side = cookies.get('etips-side')
 	const etips_role = cookies.get('etips-role')
 	const etips_disclaimer_consent = cookies.get('etips-disclaimer-consent')
 	if (etips_side || etips_disclaimer_consent || etips_role) {
 		redirect(307, '/intro/etips-part-of-everyday-life')
+	}
+	const { directus } = locals
+	const page = await directus.request(
+		readItems('pages', {
+			filter: {
+				_and: [
+					{
+						category: {
+							_eq: 'home'
+						}
+					}
+				]
+			},
+			fields: [
+				'*',
+				{ cards: [{ cards_id: ['*'] }] },
+				{ topics: [{ cards: [{ cards_id: ['*'] }] }] }
+			]
+		})
+	)
+	return {
+		page: page[0] as Page
 	}
 }
 

@@ -28,6 +28,7 @@
 		<div class="right-col">
 			{#if information}
 				<Button
+					selected={open_information}
 					height="100%"
 					on:click={() => {
 						open_information = !open_information
@@ -39,9 +40,7 @@
 	</div>
 	<input {name} class="hidden" type="checkbox" {checked} />
 	{#if open_information}
-		<div class="information-container aspect-square w-full overflow-x-hidden overflow-y-scroll p-4">
-			<div class="content h-full w-full bg-black"></div>
-		</div>
+		<slot></slot>
 	{/if}
 	<div
 		data-checked={checked ? 'yes' : 'no'}
