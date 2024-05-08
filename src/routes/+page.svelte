@@ -6,9 +6,7 @@
 	//NOTE:assersion to stop ts yell, add checks?
 </script>
 
-<div
-	class="content-container flex min-h-screen flex-col items-center overflow-x-hidden lg:col-span-full"
->
+<div class="content-container overflow-x-hidden lg:col-span-full">
 	{#if data.page.cards}
 		<CardsContainer cards={data.page.cards}></CardsContainer>
 	{/if}
