@@ -22,7 +22,7 @@
 					{#if card.cards_id.type === 'text'}
 						<CardText {display} card={card.cards_id}></CardText>
 					{/if}
-					{#if card.cards_id.type === 'media'}
+					{#if card.cards_id.type === 'media' || card.cards_id.type === 'hero'}
 						<CardMedia {display} card={card.cards_id}></CardMedia>
 					{/if}
 				{/if}
