@@ -8,16 +8,19 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 		.request(
 			readItems('pages', {
 				fields: [
-					'*',
-					{ cards: [{ cards_id: ['*'] }] },
-					{ topics: [{ cards: [{ cards_id: ['*'] }] }] }
+					'*'
+					// { cards: ['*'] },
+					// { cards: [{ cards_id: ['*'] }] },
+					// { topics: ['*'] }
+					// { topics: [{ cards: [{ cards_id: ['*'] }] }] }
 				]
 			})
 		)
 		.catch(() => error(500, `Backend is not reachable right now...`))
 	const topics = await directus.request(
 		readItems('topics', {
-			fields: ['*', { cards: [{ cards_id: ['*'] }] }]
+			fields: ['*']
+			// fields: ['*', { cards: [{ cards_id: ['*'] }] }]
 		})
 	)
 	return {
