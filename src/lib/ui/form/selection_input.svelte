@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte'
 	import Button from '../button/button.svelte'
+	import { getId } from '@arturoguzman/art-ui'
 	export let left_label = 'Yes'
 	export let right_label = 'No'
 	export let name
@@ -11,6 +12,7 @@
 	export let open_information = false
 	export let option = false
 	export let checked = false
+	let local_id = getId()
 	let checked_position = 0
 	let checked_opacity = 1
 	let checked_dynamic = false
@@ -51,8 +53,11 @@
 		style:--checked_opacity={checked_opacity}
 		on:pointermove={(e) => {
 			if (checked_dynamic) {
-				const current_position = (e.layerX * 100) / e.currentTarget.clientWidth
-				checked_position = current_position > 50 ? 50 : 0
+				if (e.target.id === `left-${local_id}`) {
+					checked_position = 0
+				} else {
+					checked_position = 50
+				}
 			}
 		}}
 		on:pointerenter={() => {
@@ -72,6 +77,7 @@
 		}}
 	>
 		<button
+			id="left-{local_id}"
 			type="button"
 			data-checked={checked ? 'yes' : 'no'}
 			class="button-left z-10 w-1/2 flex-shrink-0 rounded-l-full"
@@ -84,6 +90,7 @@
 			}}>{left_label}</button
 		>
 		<button
+			id="right-{local_id}"
 			type="button"
 			data-checked={checked ? 'no' : 'yes'}
 			class="button-right z-10 w-1/2 flex-shrink-0 rounded-r-full"
