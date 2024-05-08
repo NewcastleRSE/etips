@@ -1,7 +1,5 @@
 <script lang="ts">
-	import NavTopics from '$lib/ui/nav/nav_topics.svelte'
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
-	import { goto } from '$app/navigation'
 	export let data
 </script>
 
