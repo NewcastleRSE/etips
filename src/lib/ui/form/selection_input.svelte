@@ -2,7 +2,6 @@
 	import { onMount } from 'svelte'
 	import Button from '../button/button.svelte'
 	import { getId } from '@arturoguzman/art-ui'
-	import { windowStore } from '$lib/stores/layout'
 	export let left_label = 'Yes'
 	export let right_label = 'No'
 	export let name
