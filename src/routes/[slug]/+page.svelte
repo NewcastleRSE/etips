@@ -37,7 +37,7 @@
 							in:fly={{ duration: 300, x: -200, delay: 100 * i }}
 						>
 							<button
-								class="available-topics-button flex h-full w-full flex-col items-center justify-evenly rounded-lg p-4 xl:p-2"
+								class="available-topics-button flex h-full w-full flex-col items-center justify-evenly rounded-lg p-4 text-lg xl:p-2 xl:text-2xl"
 								on:click={() => {
 									goto(`/${$page.params.slug}/${topic.slug}`)
 								}}
@@ -83,7 +83,6 @@
 	}
 	.available-topics-button {
 		font-family: var(--theme-font-title);
-		font-size: 1.2rem;
 		background-color: var(--theme-colour-1);
 		border: 1px solid var(--theme-colour-4);
 		color: var(--theme-colour-4);
