@@ -1,4 +1,5 @@
 // See https://kit.svelte.dev/docs/types#app
+// <reference types="svelte-adapter-azure-swa" />
 
 import type { Collections } from '$lib/types'
 import type { DirectusClient, RestClient, StaticTokenClient } from '@directus/sdk'
