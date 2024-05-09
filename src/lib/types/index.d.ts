@@ -1,0 +1,1 @@
+/Users/NAG340/apps/directus/model.d.ts
