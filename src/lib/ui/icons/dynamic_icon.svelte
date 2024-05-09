@@ -28,7 +28,7 @@
 
 <style>
 	.svg.selected {
-		background-color: var(--theme-colour-6);
+		/* background-color: var(--theme-colour-6); */
 	}
 	:global(.svg > svg) {
 		stroke: var(--theme-colour-4);

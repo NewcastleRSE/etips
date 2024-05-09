@@ -78,6 +78,9 @@
 </div>
 
 <style>
+	.content-container {
+		background-color: color-mix(in oklab, var(--theme-colour-5) 40%, var(--theme-colour-1) 10%);
+	}
 	.content-mobile {
 		margin-inline: auto;
 	}
@@ -100,6 +103,11 @@
 	}
 	.available-topics-button:hover > svg {
 		stroke: var(--theme-colour-3);
+	}
+	@media (min-width: 1024px) {
+		.content-container {
+			background: inherit;
+		}
 	}
 	/* .content-desktop-header { */
 	/* 	font-family: var(--theme-font-title-2); */

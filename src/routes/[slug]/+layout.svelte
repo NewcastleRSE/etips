@@ -5,7 +5,7 @@
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
 	import NavPages from '$lib/ui/nav/nav_pages.svelte'
 	import NavTopics from '$lib/ui/nav/nav_topics.svelte'
-	import Title from '$lib/ui/page/title.svelte'
+	import Title from '$lib/ui/page/title_button.svelte'
 	export let data
 	const pages = data.pages as Page[]
 	let windowWidth = 0

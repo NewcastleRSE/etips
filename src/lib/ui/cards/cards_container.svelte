@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { PagesCard, TopicsCard } from '$lib/types'
+	import CardEmphasis from './card_emphasis.svelte'
 	import CardMedia from './card_media.svelte'
+	import CardNumbered from './card_numbered.svelte'
 	import CardText from './card_text.svelte'
 	export let display = 'cards'
 	export let cards: PagesCard[] | TopicsCard[]
@@ -24,6 +26,12 @@
 					{/if}
 					{#if card.cards_id.type === 'media' || card.cards_id.type === 'hero'}
 						<CardMedia {display} card={card.cards_id}></CardMedia>
+					{/if}
+					{#if card.cards_id.type === 'numbered'}
+						<CardNumbered {display} card={card.cards_id}></CardNumbered>
+					{/if}
+					{#if card.cards_id.type === 'emphasis'}
+						<CardEmphasis card={card.cards_id}></CardEmphasis>
 					{/if}
 				{/if}
 				{#if display === 'continuous' && i < cards.length - 1}
