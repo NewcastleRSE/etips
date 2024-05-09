@@ -54,6 +54,7 @@
 		"@types/vimeo__player": "^2.18.3",
 		"@vimeo/player": "^2.23.0"
 	},
+	"engineStrict": true,
 	"engines": {
 		"node": ">=18.13"
 	}
