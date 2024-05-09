@@ -1,13 +1,12 @@
-// import { DIRECTUS_TOKEN, DIRECTUS_URL } from '$env/static/private'
-import { directus_token, directus_url } from '$lib/utils/env.js'
+import { DIRECTUS_TOKEN, DIRECTUS_URL } from '$env/static/private'
 import { assetEndpoint } from '@arturoguzman/art-ui'
 
 export const GET = async ({ url, fetch, params }) => {
 	return assetEndpoint(
 		params.id,
-		`${directus_url}/assets`,
+		`${DIRECTUS_URL}/assets`,
 		fetch,
 		encodeURI(url.searchParams.toString()),
-		directus_token
+		DIRECTUS_TOKEN
 	)
 }
