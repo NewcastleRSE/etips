@@ -105,6 +105,9 @@
 		border-bottom: 1px solid var(--theme-colour-4);
 		background-color: var(--theme-colour-1);
 	}
+	.topics-nav-centre-col:hover {
+		scrollbar-width: thin;
+	}
 	.topics-nav-button {
 		background-color: var(--theme-colour-1);
 		border-right: 1px solid var(--theme-colour-4);

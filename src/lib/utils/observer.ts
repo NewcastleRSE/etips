@@ -1,4 +1,4 @@
-export const loadObserver = (elems: string, tracker: HTMLElement, root_el: 'theme-wrapper') => {
+export const loadObserver = (elems: string, tracker: HTMLElement, root_el: string) => {
 	const observer = new IntersectionObserver(
 		(es) => {
 			es.forEach((e, i) => {
@@ -8,7 +8,7 @@ export const loadObserver = (elems: string, tracker: HTMLElement, root_el: 'them
 			})
 		},
 		{
-			root: document.getElementById(root_el),
+			root: document.getElementById(root_el ?? 'theme-wrapper'),
 			threshold: 0.9
 		}
 	)

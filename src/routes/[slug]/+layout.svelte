@@ -134,6 +134,9 @@
 {/if}
 
 <style>
+	.slug-layout-left-col:hover {
+		scrollbar-width: thin;
+	}
 	.slug-layout-left-col[data-open='true'] {
 		border-right: 3px solid var(--theme-colour-6);
 		background-color: color-mix(in oklab, var(--theme-colour-4) 20%, white 90%);
