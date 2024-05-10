@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PagesCard, TopicsCard } from '$lib/types'
+	import CardAlert from './card_alert.svelte'
 	import CardEmphasis from './card_emphasis.svelte'
 	import CardMedia from './card_media.svelte'
 	import CardNumbered from './card_numbered.svelte'
@@ -32,6 +33,9 @@
 					{/if}
 					{#if card.cards_id.type === 'emphasis'}
 						<CardEmphasis card={card.cards_id}></CardEmphasis>
+					{/if}
+					{#if card.cards_id.type === 'alert'}
+						<CardAlert card={card.cards_id}></CardAlert>
 					{/if}
 				{/if}
 				{#if display === 'continuous' && i < cards.length - 1}

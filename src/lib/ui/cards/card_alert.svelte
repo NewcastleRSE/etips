@@ -1,8 +1,5 @@
 <script lang="ts">
 	import type { Card } from '$lib/types'
-	import { Picture } from '@arturoguzman/art-ui'
-	import CardText from './card_text.svelte'
-	import Gallery from '../media/gallery.svelte'
 	export let card: Card
 	export let display = 'cards'
 	export let nested = false
@@ -13,39 +10,33 @@
 		class:card-cards={display === 'cards'}
 		class:card-list={display === 'list'}
 		class:card-continuous={display === 'continuous'}
-		class="card-numbered relative grid grid-rows-1"
-		class:grid-cols-2={card.media?.length > 0}
+		class="card-alert p-8"
 		class:nested
 	>
-		<div class="card-numbered-left-col flex">
-			<div class="card-numbered-number mb-4 ml-4 mt-4 flex-shrink-0 p-2 text-2xl">
-				{card.number}
-			</div>
-			<div class="card-numbered-copy mt-4 px-4">
-				<CardText {card} nested></CardText>
-			</div>
-		</div>
-		{#if card.media && card.media?.length > 0}
-			<div class="card-numbered-right-col">
-				<Gallery media={card.media}></Gallery>
+		{#if card.title || card.subtitle}
+			<div class="text-title-container mb-4 flex justify-start">
+				<h3 class:hidden={!card.title} class="card-title mb-2 flex text-2xl">{card.title}</h3>
+				<h4 class:hidden={!card.subtitle} class="card-subtitle text-xl">{card.subtitle}</h4>
 			</div>
 		{/if}
+		<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
+			{@html card.copy
+				?.replaceAll('LEFT', '<strong>LEFT</strong>')
+				.replaceAll('RIGHT', '<strong>RIGHT</strong>')}
+		</div>
 	</div>
 {/if}
 
 <style>
-	.card-numbered-number {
-		width: 3rem;
-		height: 3rem;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		border-radius: 6px;
-		font-weight: 600;
-		font-family: var(--theme-font-title);
+	.card-alert {
+		color: var(--theme-colour-7);
+	}
+	.card-title {
+		border-radius: 0.4rem;
+		padding: 0 12px;
+		width: auto;
 		color: var(--theme-colour-1);
-		background-color: color-mix(in oklab, var(--theme-colour-5) 95%, white 10%);
-		/* border: 2px solid var(--theme-colour-5); */
+		background: var(--theme-colour-7);
 	}
 	@keyframes appear {
 		0% {
@@ -62,25 +53,37 @@
 	}
 	.card-list:not(.nested) {
 		background-color: var(--theme-colour-1);
-		border-top: 1px solid var(--theme-colour-5);
+		border-top: 1px solid var(--theme-colour-7);
 	}
 	.card-list:nth-child(1):not(.nested) {
 		border-top: none;
 	}
 	.card-list:last-child:not(.nested) {
-		border-bottom: 1px solid var(--theme-colour-5);
+		border-bottom: 1px solid var(--theme-colour-7);
 	}
 	.card-cards:not(.nested) {
 		margin: 1rem 0;
 		border-radius: 0.5rem;
-		background-color: var(--theme-colour-1);
-		border: 1px solid var(--theme-colour-5);
+		background-color: white;
+		border: 1px solid var(--theme-colour-7);
 	}
 	.card-continuous:not(.nested) {
 		margin: 1.5rem 0;
 	}
 	@media (min-width: 768px) {
 	}
+	h3 {
+		font-family: var(--theme-font-title-2);
+		font-weight: 700;
+	}
+	h4 {
+		font-family: var(--theme-font-subtitle);
+		font-weight: 400;
+	}
+	p {
+		font-family: var(--theme-font-paragraph);
+	}
+
 	:global(.copy > h3) {
 		font-size: 1.5rem /* 24px */;
 		line-height: 2rem /* 32px */;
