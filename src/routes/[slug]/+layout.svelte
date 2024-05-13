@@ -49,13 +49,12 @@
 {:else}
 	<div
 		class="slug-layout-desktop hidden h-full overflow-hidden transition-all lg:grid {grid_open
-			? 'lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]'
-			: 'lg:grid-cols-[minmax(0,1fr),minmax(0,18fr)]'}"
+			? 'grid-cols-[minmax(0,4fr),minmax(0,9fr)]'
+			: 'grid-cols-[minmax(0,1fr),minmax(0,18fr)]'}"
 	>
 		<div
-			data-open={grid_open ? 'true' : 'false'}
+			data-open={grid_open ? 'true' : undefined}
 			class="slug-layout-left-col col-span-1 col-start-1 row-span-1 row-start-1 h-full"
-			class:overflow-y-scroll={grid_open}
 		>
 			<NavPages
 				on:click={(e) => {
@@ -134,13 +133,15 @@
 {/if}
 
 <style>
-	.slug-layout-left-col:hover {
-		scrollbar-width: thin;
-	}
-	.slug-layout-left-col[data-open='true'] {
+	.slug-layout-left-col[data-open] {
 		border-right: 3px solid var(--theme-colour-6);
 		background-color: color-mix(in oklab, var(--theme-colour-4) 20%, white 90%);
+		overflow-y: scroll;
 	}
+	/* .slug-layout-left-col[data-open]:hover { */
+	/* 	overflow-y: initial; */
+	/* 	background: red; */
+	/* } */
 	.toggle-col-button[data-hover-message]:hover::after {
 		content: attr(data-hover-message);
 		position: absolute;
@@ -152,5 +153,10 @@
 		padding: 0 1rem;
 		border-radius: 999px;
 		border: 1px solid var(--theme-colour-5);
+	}
+	@media (min-width: 1024px) {
+		.slug-layout-left-col:hover {
+			scrollbar-width: thin;
+		}
 	}
 </style>

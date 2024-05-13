@@ -22,6 +22,8 @@
 	.horizontal {
 		height: 3rem;
 		border-bottom: 1px solid var(--theme-colour-4);
+		overflow-y: hidden;
+		overflow-x: scroll;
 	}
 	.vertical {
 		height: 100%;
@@ -33,6 +35,9 @@
 	@media (min-width: 768px) {
 		.horizontal {
 			height: 4rem;
+		}
+		.horizontal:hover {
+			scrollbar-width: thin;
 		}
 		.vertical {
 			width: 100%;

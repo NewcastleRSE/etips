@@ -13,12 +13,12 @@
 		class:card-cards={display === 'cards'}
 		class:card-list={display === 'list'}
 		class:card-continuous={display === 'continuous'}
-		class="card-numbered relative grid grid-rows-1"
+		class="card-numbered relative flex grid-rows-1 flex-col lg:grid"
 		class:grid-cols-2={card.media?.length > 0}
 		class:nested
 	>
-		<div class="card-numbered-left-col flex">
-			<div class="card-numbered-number mb-4 ml-4 mt-4 flex-shrink-0 p-2 text-2xl">
+		<div class="card-numbered-left-col mb-4 flex">
+			<div class="card-numbered-number mb-4 ml-4 mt-4 flex-shrink-0 p-2 text-sm lg:text-2xl">
 				{card.number}
 			</div>
 			<div class="card-numbered-copy mt-4 px-4">
@@ -35,12 +35,12 @@
 
 <style>
 	.card-numbered-number {
-		width: 3rem;
-		height: 3rem;
+		width: 2rem;
+		height: 2rem;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-radius: 6px;
+		border-radius: 3px;
 		font-weight: 600;
 		font-family: var(--theme-font-title);
 		color: var(--theme-colour-1);
@@ -79,8 +79,14 @@
 	.card-continuous:not(.nested) {
 		margin: 1.5rem 0;
 	}
-	@media (min-width: 768px) {
+	@media (min-width: 1080px) {
+		.card-numbered-number {
+			width: 3rem;
+			height: 3rem;
+			/* border: 2px solid var(--theme-colour-5); */
+		}
 	}
+
 	:global(.copy > h3) {
 		font-size: 1.5rem /* 24px */;
 		line-height: 2rem /* 32px */;
