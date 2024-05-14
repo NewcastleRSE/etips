@@ -9,8 +9,17 @@
 	import { theme } from '$lib/stores/theme'
 	import Footer from '$lib/ui/footer/footer.svelte'
 	import Notification from '$lib/ui/notify/notification.svelte'
+	import { afterNavigate } from '$app/navigation'
+	import { navigated } from '$lib/stores/layout'
 	export let data
 	let debug = false
+	let navigations = 0
+	afterNavigate(() => {
+		if (navigations >= 1) {
+			$navigated = true
+		}
+		navigations++
+	})
 	onMount(() => {
 		theme.load(
 			{

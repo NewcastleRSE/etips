@@ -8,16 +8,11 @@
 	export let stroke = 1
 	export let icon: string
 	export let selected = false
-	const example = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home-2" width="36" height="36" viewBox="0 0 24 24" stroke-width="1.5" stroke="#44B3CE" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-  <path d="M10 12h4v4h-4z" />
-</svg>`
+	export let scale = 1
 </script>
 
 {#if icon}
-	<div class="svg" class:selected>
+	<div class="svg" class:selected style:--scale={scale}>
 		{@html icon
 			.replace(colour_regex, `stroke="${colour}"`)
 			.replace(height_regex, `height="${size}"`)
@@ -27,6 +22,10 @@
 {/if}
 
 <style>
+	.svg {
+		scale: var(--scale);
+		transition: all 0.3 ease-in-out;
+	}
 	.svg.selected {
 		/* background-color: var(--theme-colour-6); */
 	}

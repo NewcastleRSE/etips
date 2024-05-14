@@ -25,7 +25,9 @@
 				{/each}
 			{/if}
 		</div>
-		<div class="content-desktop hidden h-full p-2 lg:grid lg:grid-cols-3 xl:grid-cols-4 xl:p-4">
+		<div
+			class="content-desktop flex h-full flex-wrap p-2 lg:grid lg:grid-cols-3 xl:grid-cols-4 xl:p-4"
+		>
 			<!-- <h3 class="content-desktop-header p-8 text-2xl"> -->
 			<!-- 	Available topics in {$page.data.page.title} -->
 			<!-- </h3> -->
@@ -33,18 +35,18 @@
 				{#key data.page}
 					{#each data.page.topics as topic, i}
 						<div
-							class="available-topics-button-wrapper aspect-square w-full p-8 xl:p-6"
+							class="available-topics-button-wrapper w-full p-8 md:w-1/2 lg:aspect-square lg:w-full xl:p-6"
 							in:fly={{ duration: 300, x: -200, delay: 100 * i }}
 						>
 							<button
-								class="available-topics-button flex h-full w-full flex-col items-center justify-evenly rounded-lg p-4 text-lg xl:p-2 xl:text-2xl"
+								class="available-topics-button flex h-full w-full items-center justify-evenly rounded-lg p-4 text-lg lg:flex-col xl:p-2 xl:text-2xl"
 								on:click={() => {
 									goto(`/${$page.params.slug}/${topic.slug}`)
 								}}
 							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
-									class="icon icon-tabler icon-tabler-mood-kid"
+									class="icon icon-tabler icon-tabler-mood-kid hidden md:block"
 									width="88"
 									height="88"
 									viewBox="0 0 24 24"

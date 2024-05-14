@@ -19,11 +19,12 @@
 				goto(`/`)
 			}}
 		>
-			<img src="/logo.webp" alt="etips logo" class=" w-32" />
+			<img src="/favicon.png" alt="etips logo" class=" w-32" />
 		</button>
 		<div
 			class="side-title flex h-full w-full items-center px-4 text-sm lg:justify-center lg:text-lg"
 			class:hidden={copy === ''}
+			class:side-title-border={$page.params.slug}
 		>
 			<p>{copy}</p>
 		</div>
@@ -83,6 +84,9 @@
 
 	@media (min-width: 1024px) {
 		.side-title {
+			border-right: 1px solid var(--theme-colour-4);
+		}
+		.side-title-border {
 			border-right: 3px solid var(--theme-colour-4);
 		}
 	}

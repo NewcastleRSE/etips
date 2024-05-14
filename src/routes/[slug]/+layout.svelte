@@ -6,6 +6,8 @@
 	import NavPages from '$lib/ui/nav/nav_pages.svelte'
 	import NavTopics from '$lib/ui/nav/nav_topics.svelte'
 	import Title from '$lib/ui/page/title_button.svelte'
+	import { navigated } from '$lib/stores/layout'
+
 	export let data
 	const pages = data.pages as Page[]
 	let windowWidth = 0
@@ -27,10 +29,15 @@
 				if ($page.params.topic) {
 					goto(`/${data.page.slug}`)
 				} else {
+					// if ($navigated) {
+					// 	window.history.back()
+					// 	console.log('going back?1')
+					// } else {
 					const first_topic = data.page.topics ? data.page.topics[0] : null
 					if (first_topic) {
 						goto(`/${data.page.slug}/${first_topic.slug}`)
 					}
+					// }
 				}
 			}}
 			slug={data.page.slug}
@@ -94,7 +101,7 @@
 						height="44"
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
-						stroke="#179100"
+						stroke="#44b3ce"
 						fill="none"
 						stroke-linecap="round"
 						stroke-linejoin="round"
@@ -114,7 +121,7 @@
 						height="44"
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
-						stroke="#179100"
+						stroke="#44b3ce"
 						fill="none"
 						stroke-linecap="round"
 						stroke-linejoin="round"

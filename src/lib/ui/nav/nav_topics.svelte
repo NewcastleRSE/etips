@@ -25,10 +25,12 @@
 	$: buttons = setButtons(topics, $page.params.topic)
 	const dispatch = createEventDispatcher()
 	$: if ($page.params.topic && browser) {
-		const active_button = document.getElementById(`button-${$page.params.topic}`)
-		if (active_button) {
-			active_button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
-		}
+		setTimeout(() => {
+			const active_button = document.getElementById(`button-${$page.params.topic}`)
+			if (active_button) {
+				active_button.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+			}
+		}, 200)
 	}
 </script>
 

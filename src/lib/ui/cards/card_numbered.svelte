@@ -21,7 +21,7 @@
 			<div class="card-numbered-number mb-4 ml-4 mt-4 flex-shrink-0 p-2 text-sm lg:text-2xl">
 				{card.number}
 			</div>
-			<div class="card-numbered-copy mt-4 px-4">
+			<div class="card-numbered-copy mt-3 px-4">
 				<CardText {card} nested></CardText>
 			</div>
 		</div>

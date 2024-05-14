@@ -7,7 +7,7 @@
 
 <!-- NOTE:Need to enable dynamic colours, fix loading colours only on mount?? -->
 
-<nav class="sticky left-0 top-0 z-50 flex w-full {direction}">
+<nav class="sticky left-0 top-0 z-50 flex {direction} w-screen lg:w-full">
 	{#each pages as page_button}
 		{#if page_button.category === 'restricted'}
 			<NavPagesButton {page_button} {direction}></NavPagesButton>
@@ -21,9 +21,10 @@
 	}
 	.horizontal {
 		height: 3rem;
+		width: 100%;
 		border-bottom: 1px solid var(--theme-colour-4);
-		overflow-y: hidden;
-		overflow-x: scroll;
+		/* overflow-y: hidden; */
+		/* overflow-x: scroll; */
 	}
 	.vertical {
 		height: 100%;
@@ -41,7 +42,7 @@
 		}
 		.vertical {
 			width: 100%;
-			max-width: 4rem;
+			max-width: 8rem;
 		}
 	}
 	.selected {
