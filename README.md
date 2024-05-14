@@ -18,8 +18,6 @@ Newcastle University
 
 ## Built With
 
-This section is intended to list the frameworks and tools you're using to develop this software. Please link to the home page or documentation in each case.
-
 [SvelteKit](https://kit.svelte.dev/)  
 [Directus](https://directus.io/)
 
@@ -65,7 +63,11 @@ TBC
 
 ### Local
 
-TBC
+[http://127.0.0.1](Local url)
+
+### Test
+
+[https://blue-flower-03cddcb03.5.azurestaticapps.net](https://blue-flower-03cddcb03.5.azurestaticapps.net/)
 
 ### Production
 
@@ -78,15 +80,19 @@ TBC
 ## Roadmap
 
 - [x] Initial Research
-- [ ] Minimum viable product <-- You are Here
-- [ ] Alpha Release
+- [x] Minimum viable product
+- [x] Alpha Release
 - [ ] Feature-Complete Release
 
 ## Contributing
 
 ### Main Branch
 
+Main
+
 ### Dev Branch
+
+Dev
 
 ### Feature Branches
 
