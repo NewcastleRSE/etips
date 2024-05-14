@@ -18,12 +18,12 @@
 	let checked_dynamic = false
 	let hovering = false
 	let hover_message: undefined | string = undefined
-	onMount(() => {
-		checked ? (checked_position = 0) : (checked_position = 50)
-	})
 	let cursor_x = 0
 	let cursor_y = 0
 	let timeout: number = 0
+	onMount(() => {
+		checked ? (checked_position = 0) : (checked_position = 50)
+	})
 </script>
 
 <div class="selection-input-container mb-4 flex flex-col gap-2">
