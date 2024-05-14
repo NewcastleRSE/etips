@@ -3,7 +3,10 @@
 	export let role: string
 </script>
 
-<div class="role-selection my-12 grid h-96 w-full grid-cols-2 gap-4" use:scrollIntoView>
+<div
+	class="role-selection my-12 flex h-96 w-full grid-cols-2 flex-col gap-4 lg:grid"
+	use:scrollIntoView
+>
 	<button
 		class="role-selection-left-col flex h-full w-full flex-col items-center justify-evenly rounded-lg transition-all hover:opacity-100"
 		class:opacity-60={role === '' || role === 'doctor'}

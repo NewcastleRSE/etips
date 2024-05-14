@@ -7,7 +7,6 @@
 	import SelectionInput from '$lib/ui/form/selection_input.svelte'
 	import TextInput from '$lib/ui/form/text_input.svelte'
 	import { scrollIntoView } from '$lib/utils/scroll'
-	import CardMedia from '../cards/card_media.svelte'
 	import CardText from '../cards/card_text.svelte'
 	import DoctorFormFlow from './doctor_form_flow.svelte'
 	import FormDisclaimer from './form_disclaimer.svelte'
@@ -33,17 +32,10 @@
 		}
 		return acc
 	}, {} as FormCards) || { gdpr_notice: null, animation: null, disclaimer: null }
-	// const gdpr_notice = data.page.cards.filter(
-	// 	(c) => c.cards_id.id === '44aebd0d-9cfc-4a6d-9905-31c440b5e194'
-	// )[0].cards_id
-	// const youtube_video = data.page.cards.filter(
-	// 	(c) => c.cards_id.id === 'dbf6c9d3-0293-4ff0-97b3-e6f52cb94692'
-	// )[0].cards_id
 
 	let criteria_met = false
 	let contact_consent = false
 	let disclaimer_consent = false
-	// let specific_case = false
 	let role = ''
 </script>
 
@@ -87,26 +79,27 @@
 		{#if role === 'parent'}
 			<ParentFormFlow {cards}></ParentFormFlow>
 		{/if}
-		<SelectionInput
-			bind:checked={contact_consent}
-			label="Consent to be contacted in future research?"
-			name="gdpr-consent"
-			information_label="GDPR Notice"
-			information
-			option
-		>
-			{#if cards.gdpr_notice}
-				<CardText card={cards.gdpr_notice}></CardText>
-			{/if}
-		</SelectionInput>
-		{#if contact_consent}
-			<TextInput required label="First name" type="text" name="first-name" id="form-first-name"
-			></TextInput>
-			<TextInput required label="Last name" type="text" name="last-name" id="form-last-name"
-			></TextInput>
-			<TextInput required label="Email" type="email" name="email" id="form-email"></TextInput>
-		{/if}
+
 		{#if role !== ''}
+			<SelectionInput
+				bind:checked={contact_consent}
+				label="Consent to be contacted in future research?"
+				name="gdpr-consent"
+				information_label="GDPR Notice"
+				information
+				option
+			>
+				{#if cards.gdpr_notice}
+					<CardText card={cards.gdpr_notice}></CardText>
+				{/if}
+			</SelectionInput>
+			{#if contact_consent}
+				<TextInput required label="First name" type="text" name="first-name" id="form-first-name"
+				></TextInput>
+				<TextInput required label="Last name" type="text" name="last-name" id="form-last-name"
+				></TextInput>
+				<TextInput required label="Email" type="email" name="email" id="form-email"></TextInput>
+			{/if}
 			<Button
 				type="submit"
 				label="Access"

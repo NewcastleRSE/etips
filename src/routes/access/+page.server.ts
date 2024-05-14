@@ -21,6 +21,21 @@ export const load = async ({ cookies, locals }) => {
 					}
 				]
 			},
+			deep: {
+				cards: {
+					_filter: {
+						_and: [
+							{
+								cards_id: {
+									type: {
+										_eq: 'form'
+									}
+								}
+							}
+						]
+					}
+				}
+			},
 			fields: [
 				'*',
 				{ cards: [{ cards_id: ['*'] }] },
@@ -94,7 +109,7 @@ export const actions: Actions = {
 		return {
 			status: 200,
 			message: 'ok',
-			url: `/intro/etips-part-of-everyday-life`
+			url: `/intro`
 		}
 	}
 }
