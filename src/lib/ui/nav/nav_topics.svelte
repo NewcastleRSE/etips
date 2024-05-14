@@ -35,7 +35,7 @@
 </script>
 
 <nav
-	class="topics-nav sticky left-0 top-12 z-50 grid h-12 grid-cols-[minmax(0,3rem),minmax(0,1fr),minmax(0,3rem)] md:top-0 md:h-16 md:grid-cols-[minmax(0,4rem),minmax(0,1fr),minmax(0,4rem)]"
+	class="topics-nav sticky left-0 top-12 z-50 grid h-12 grid-cols-[minmax(0,3rem),minmax(0,1fr),minmax(0,3rem)] md:top-16 md:h-16 md:grid-cols-[minmax(0,4rem),minmax(0,1fr),minmax(0,4rem)] lg:top-0"
 >
 	<div class="topics-nav-left-col flex items-center justify-center">
 		<button
