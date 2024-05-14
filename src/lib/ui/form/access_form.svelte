@@ -108,8 +108,8 @@
 				disabled_notice="You need to accept the disclaimer and criteria before accessing the materials"
 			></Button>
 		{/if}
+		<div class="its-me h-2 w-2" use:scrollIntoView></div>
 	{/if}
-	<div class="its-me h-2 w-2" use:scrollIntoView></div>
 </form>
 
 <style>
