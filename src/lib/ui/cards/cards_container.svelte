@@ -2,6 +2,7 @@
 	import type { PagesCard, TopicsCard } from '$lib/types'
 	import CardAlert from './card_alert.svelte'
 	import CardEmphasis from './card_emphasis.svelte'
+	import CardHero from './card_hero.svelte'
 	import CardMedia from './card_media.svelte'
 	import CardNumbered from './card_numbered.svelte'
 	import CardText from './card_text.svelte'
@@ -27,7 +28,7 @@
 						{#if card.cards_id.type === 'text'}
 							<CardText {display} card={card.cards_id}></CardText>
 						{/if}
-						{#if card.cards_id.type === 'media' || card.cards_id.type === 'hero'}
+						{#if card.cards_id.type === 'media'}
 							<CardMedia {display} card={card.cards_id}></CardMedia>
 						{/if}
 						{#if card.cards_id.type === 'numbered'}
@@ -38,6 +39,9 @@
 						{/if}
 						{#if card.cards_id.type === 'alert'}
 							<CardAlert card={card.cards_id}></CardAlert>
+						{/if}
+						{#if card.cards_id.type === 'hero'}
+							<CardHero card={card.cards_id}></CardHero>
 						{/if}
 					{/if}
 					{#if display === 'continuous' && i < cards.length - 1}

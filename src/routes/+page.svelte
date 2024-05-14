@@ -13,7 +13,7 @@
 	{/if}
 	<div class="button-wrapper flex h-12 w-full items-center justify-center px-4 lg:w-96">
 		<Button
-			label="Go"
+			label="Access the materials"
 			on:click={() => {
 				goto('/access')
 			}}
