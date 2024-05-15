@@ -6,8 +6,6 @@
 	import NavPages from '$lib/ui/nav/nav_pages.svelte'
 	import NavTopics from '$lib/ui/nav/nav_topics.svelte'
 	import Title from '$lib/ui/page/title_button.svelte'
-	import { navigated } from '$lib/stores/layout'
-
 	export let data
 	const pages = data.pages as Page[]
 	let windowWidth = 0
@@ -78,7 +76,6 @@
 					slug={data.page.slug}
 					title={data.page.title}
 				></Title>
-
 				{#if data.page.cards}
 					<CardsContainer desktop_left display="cards" cards={data.page.cards}></CardsContainer>
 				{/if}

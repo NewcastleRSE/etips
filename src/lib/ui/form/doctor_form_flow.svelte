@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CardMedia from '../cards/card_media.svelte'
+	import CardText from '../cards/card_text.svelte'
 	import SelectionInput from './selection_input.svelte'
 	import TextInput from './text_input.svelte'
 	export let cards
@@ -10,8 +11,8 @@
 	<SelectionInput
 		bind:checked={specific_case}
 		left_label="Specific case"
-		right_label="Research"
-		label="Accessing materials for a specific case or research?"
+		right_label="General information"
+		label="Accessing materials for a specific case or general information?"
 		name="specific-case"
 		option
 	></SelectionInput>
@@ -38,11 +39,11 @@
 			label="Side of brain affected"
 			name="side-affected"
 			information_label="More information"
-			information
 			option
+			open_information={true}
 		>
 			{#if cards.animation}
-				<CardMedia card={cards.animation}></CardMedia>
+				<CardText card={cards.animation}></CardText>
 			{/if}
 		</SelectionInput>
 	{/if}

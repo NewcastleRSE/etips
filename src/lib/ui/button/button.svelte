@@ -36,6 +36,7 @@
 		<p use:animate_title>
 			{disabled ? disabled_notice : label}
 		</p>
+		<slot />
 	</button>
 {/key}
 

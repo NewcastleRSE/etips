@@ -1,5 +1,6 @@
 <script lang="ts">
 	import CardMedia from '../cards/card_media.svelte'
+	import CardText from '../cards/card_text.svelte'
 	import SelectionInput from './selection_input.svelte'
 	import TextInput from './text_input.svelte'
 	export let cards
@@ -28,11 +29,11 @@
 		label="Side of brain affected"
 		name="side-affected"
 		information_label="More information"
-		information
 		option
+		open_information={true}
 	>
 		{#if cards.animation}
-			<CardMedia card={cards.animation}></CardMedia>
+			<CardText card={cards.animation}></CardText>
 		{/if}
 	</SelectionInput>
 </div>
