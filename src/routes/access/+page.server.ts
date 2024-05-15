@@ -7,7 +7,7 @@ export const load = async ({ cookies, locals }) => {
 	const etips_role = cookies.get('etips-role')
 	const etips_disclaimer_consent = cookies.get('etips-disclaimer-consent')
 	if (etips_side || etips_disclaimer_consent || etips_role) {
-		redirect(307, '/intro/etips-part-of-everyday-life')
+		redirect(307, '/intro')
 	}
 	const { directus } = locals
 	const page = await directus.request(
@@ -52,7 +52,7 @@ export const actions: Actions = {
 	register: async ({ request, cookies }) => {
 		const email_regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 		const form = await request.formData()
-		const criteria_met = String(form.get('criteria-met')) === 'on' ? true : false
+		// const criteria_met = String(form.get('criteria-met')) === 'on' ? true : false
 		const disclaimer_consent = String(form.get('disclaimer-consent')) === 'on' ? true : false
 		const gdpr_consent = String(form.get('gdpr-consent')) === 'on' ? true : false
 		const side_affected = String(form.get('side-affected')) === 'on' ? 'left' : 'right'
@@ -60,11 +60,11 @@ export const actions: Actions = {
 		const last_name = String(form.get('last-name'))
 		const email = String(form.get('email'))
 		const age_weeks = Number(form.get('age-weeks'))
-		if (!criteria_met) {
-			return fail(406, {
-				message: `You need to accept the criteria to continue`
-			})
-		}
+		// if (!criteria_met) {
+		// 	return fail(406, {
+		// 		message: `You need to accept the criteria to continue`
+		// 	})
+		// }
 		if (!disclaimer_consent) {
 			return fail(406, {
 				message: `You need to accept the disclaimer to continue`

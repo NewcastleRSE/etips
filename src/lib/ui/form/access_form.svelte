@@ -33,7 +33,7 @@
 		return acc
 	}, {} as FormCards) || { gdpr_notice: null, animation: null, disclaimer: null }
 
-	let criteria_met = false
+	// let criteria_met = false
 	let contact_consent = false
 	let disclaimer_consent = false
 	let role = ''
@@ -59,19 +59,19 @@
 	{#if cards.disclaimer}
 		<FormDisclaimer card={cards.disclaimer}></FormDisclaimer>
 	{/if}
-	<SelectionInput
-		bind:checked={criteria_met}
-		required
-		label="Confirm inclusion/exclusion criteria met"
-		name="criteria-met"
-	></SelectionInput>
+	<!-- <SelectionInput -->
+	<!-- 	bind:checked={criteria_met} -->
+	<!-- 	required -->
+	<!-- 	label="Confirm inclusion/exclusion criteria met" -->
+	<!-- 	name="criteria-met" -->
+	<!-- ></SelectionInput> -->
 	<SelectionInput
 		bind:checked={disclaimer_consent}
 		required
 		label="I have read and accept the disclaimer"
 		name="disclaimer-consent"
 	></SelectionInput>
-	{#if disclaimer_consent && criteria_met}
+	{#if disclaimer_consent}
 		<RoleSelection bind:role></RoleSelection>
 		{#if role === 'doctor'}
 			<DoctorFormFlow {cards}></DoctorFormFlow>
@@ -104,8 +104,8 @@
 				type="submit"
 				label="Access"
 				height="4rem"
-				disabled={!disclaimer_consent || !criteria_met}
-				disabled_notice="You need to accept the disclaimer and criteria before accessing the materials"
+				disabled={!disclaimer_consent}
+				disabled_notice="You need to accept the disclaimer accessing the materials"
 			></Button>
 		{/if}
 		<div class="its-me h-2 w-2" use:scrollIntoView></div>
