@@ -7,11 +7,11 @@
 	//NOTE:assersion to stop ts yell, add checks?
 </script>
 
-<div class="content-container min-h-screen overflow-x-hidden lg:col-span-full">
+<div class="content-container overflow-y-scroll">
 	{#if data.page.cards}
 		<CardsContainer {cards}></CardsContainer>
 	{/if}
-	<div class="button-wrapper flex h-12 w-full items-center justify-center px-4 lg:w-96">
+	<div class="button-wrapper mb-6 flex h-12 w-full items-center justify-center px-4 lg:w-96">
 		<Button
 			label="Access the materials"
 			on:click={() => {
