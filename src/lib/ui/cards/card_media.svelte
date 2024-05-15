@@ -4,6 +4,7 @@
 	import CardText from './card_text.svelte'
 	import Gallery from '$lib/ui/media/gallery.svelte'
 	import Vimeo from '../media/vimeo.svelte'
+	import CardVideo from './card_video.svelte'
 	export let card: Card
 	export let display: string = 'cards'
 	export let direction: 'horizontal' | 'vertical' = 'vertical'
@@ -23,8 +24,19 @@
 		{#if card.media_type === 'photo'}
 			<Gallery media={card.media}></Gallery>
 		{/if}
+		{#if card.media_type === 'video'}
+			<CardVideo media={card.media}></CardVideo>
+			<!-- <pre>{JSON.stringify(card.media, null, 2)}</pre> -->
+		{/if}
 		{#if card.media_type === 'youtube'}
-			<iframe src={card.url} title={card.title ?? ''} class="aspect-video w-full"></iframe>
+			<iframe
+				src={card.url?.replaceAll(
+					'https://www.youtube.com/watch?v=',
+					'https://www.youtube-nocookie.com/embed/'
+				)}
+				title={card.title ?? ''}
+				class="aspect-video w-full"
+			></iframe>
 		{/if}
 		{#if card.media_type === 'vimeo'}
 			<Vimeo video_id={card.url?.replaceAll('https://vimeo.com/', '')}></Vimeo>
