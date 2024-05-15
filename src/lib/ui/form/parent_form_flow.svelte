@@ -15,7 +15,7 @@
 	></TextInput>
 	<TextInput
 		required
-		label="Preterm (in weeks)"
+		label="Was your baby born preterm? And if so, how many weeks before the due date were they born?"
 		type="number"
 		name="age-preterm"
 		id="form-age-preterm"
