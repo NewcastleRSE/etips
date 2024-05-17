@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Card } from '$lib/types'
+	import { getId } from '@arturoguzman/art-ui'
 	export let card: Card
 	export let display = 'cards'
 	export let nested = false
@@ -12,6 +13,7 @@
 		class:card-continuous={display === 'continuous'}
 		class="card-text"
 		class:nested
+		id={!nested ? card.id : getId()}
 	>
 		{#if card.title || card.subtitle}
 			<div class="text-title-container mb-4">

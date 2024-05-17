@@ -11,7 +11,7 @@
 		class:card-list={display === 'list'}
 		class:card-continuous={display === 'continuous'}
 		class="card-alert p-8"
-		class:nested
+		id={card.id}
 	>
 		{#if card.title || card.subtitle}
 			<div class="text-title-container mb-4 flex justify-start">

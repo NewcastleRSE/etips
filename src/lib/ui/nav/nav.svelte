@@ -2,6 +2,7 @@
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
 	import Button from '../button/button.svelte'
+	import SearchBar from '../search/search_bar.svelte'
 	import NavTopics from './nav_topics.svelte'
 	//TODO:dynamically set copy
 	$: copy = $page.params.slug ? 'Best from the Left' : 'Welcome'
@@ -29,7 +30,9 @@
 			<p>{copy}</p>
 		</div>
 	</div>
-	<div class="nav-right-col col-start-2 flex items-center justify-end lg:justify-normal">
+	<div
+		class="nav-right-col col-start-2 flex items-center justify-end transition-all lg:justify-normal"
+	>
 		{#if windowWidth > 1024}
 			<div class="nav-wrapper hidden w-full lg:block">
 				{#if $page.params.slug && !$page.params.topic}
@@ -39,15 +42,14 @@
 						>
 					</h3>
 				{/if}
-				{#if $page.params.topic && $page.params.slug}
-					<NavTopics
-						on:click={(e) => {
-							goto(`/${$page.params.slug}/${e.detail}`)
-						}}
-						topics={$page.data.topics}
-					></NavTopics>
-				{/if}
+				<NavTopics
+					on:click={(e) => {
+						goto(`/${$page.params.slug}/${e.detail}`)
+					}}
+					topics={$page.data.topics}
+				></NavTopics>
 			</div>
+			<SearchBar></SearchBar>
 			<div class="nav-left-border h-full lg:hidden">
 				<Button
 					on:click={() => {

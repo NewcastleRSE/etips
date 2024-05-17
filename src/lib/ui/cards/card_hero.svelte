@@ -14,6 +14,7 @@
 	class:card-list={display === 'list'}
 	class:card-continuous={display === 'continuous'}
 	class="hero-card flex flex-col gap-4 p-4 lg:p-8"
+	id={card.id}
 >
 	<div
 		class="hero-card-left-col relative"

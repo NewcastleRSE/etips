@@ -16,6 +16,7 @@
 		class="card-numbered relative flex grid-rows-1 flex-col lg:grid"
 		class:grid-cols-2={card.media?.length > 0}
 		class:nested
+		id={card.id}
 	>
 		<div class="card-numbered-left-col mb-4 flex">
 			<div class="card-numbered-number mb-4 ml-4 mt-4 flex-shrink-0 p-2 text-sm lg:text-2xl">
