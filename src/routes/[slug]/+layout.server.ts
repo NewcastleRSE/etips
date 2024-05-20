@@ -12,7 +12,36 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 				'*',
 				{ cards: [{ cards_id: ['*', { media: [{ directus_files_id: ['*'] }] }] }] },
 				{ topics: [{ cards: [{ cards_id: ['*'] }] }, 'title', 'slug'] }
-			]
+			],
+			deep: {
+				cards: {
+					_filter: {
+						_or: [
+							{
+								cards_id: {
+									category: {
+										_eq: 'all'
+									}
+								}
+							},
+							{
+								cards_id: {
+									category: {
+										_eq: 'twin'
+									}
+								}
+							},
+							{
+								cards_id: {
+									category: {
+										_eq: locals.session.side
+									}
+								}
+							}
+						]
+					}
+				}
+			}
 		})
 	)
 	if (

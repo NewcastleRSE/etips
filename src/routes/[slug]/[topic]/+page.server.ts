@@ -48,6 +48,35 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 						}
 					}
 				]
+			},
+			deep: {
+				cards: {
+					_filter: {
+						_or: [
+							{
+								cards_id: {
+									category: {
+										_eq: 'all'
+									}
+								}
+							},
+							{
+								cards_id: {
+									category: {
+										_eq: 'twin'
+									}
+								}
+							},
+							{
+								cards_id: {
+									category: {
+										_eq: locals.session.side
+									}
+								}
+							}
+						]
+					}
+				}
 			}
 		})
 	)
@@ -55,7 +84,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 	return {
 		//HACK: remove type assertion
 		page: page[0] as Page,
-		topic: topic[0] as Topic,
-		topics
+		topic: topic[0] as Topic
+		// topics
 	}
 }

@@ -1,34 +1,63 @@
 import { readItems } from '@directus/sdk'
 import { fail, type Actions } from '@sveltejs/kit'
 
-const getResults = async (query: string, directus: App.Locals['directus']) => {
+const getResults = async (query: string, directus: App.Locals['directus'], side: string) => {
 	return directus
 		.request(
 			readItems('topics', {
 				deep: {
 					cards: {
 						_filter: {
-							_or: [
+							_and: [
 								{
-									cards_id: {
-										title: {
-											_icontains: query.trim()
+									_or: [
+										{
+											cards_id: {
+												category: {
+													_eq: 'all'
+												}
+											}
+										},
+										{
+											cards_id: {
+												category: {
+													_eq: 'twin'
+												}
+											}
+										},
+										{
+											cards_id: {
+												category: {
+													_eq: side
+												}
+											}
 										}
-									}
+									]
 								},
 								{
-									cards_id: {
-										subtitle: {
-											_icontains: query.trim()
+									_or: [
+										{
+											cards_id: {
+												title: {
+													_icontains: query.trim()
+												}
+											}
+										},
+										{
+											cards_id: {
+												subtitle: {
+													_icontains: query.trim()
+												}
+											}
+										},
+										{
+											cards_id: {
+												copy: {
+													_icontains: query.trim()
+												}
+											}
 										}
-									}
-								},
-								{
-									cards_id: {
-										copy: {
-											_icontains: query.trim()
-										}
-									}
+									]
 								}
 							]
 						}
@@ -51,7 +80,7 @@ export const load = async ({ locals, url }) => {
 		}
 	}
 	return {
-		results: await getResults(query, locals.directus)
+		results: await getResults(query, locals.directus, locals.session.side)
 	}
 }
 

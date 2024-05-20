@@ -12,6 +12,9 @@ declare global {
 			directus: DirectusClient<Collections> &
 				StaticTokenClient<Collections> &
 				RestClient<Collections>
+			session: {
+				side: string
+			}
 		}
 		// interface PageData {}
 		// interface PageState {}
