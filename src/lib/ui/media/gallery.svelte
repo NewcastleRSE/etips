@@ -1,7 +1,9 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import type { CardsFile } from '$lib/types'
 	import { Picture, getId } from '@arturoguzman/art-ui'
 	export let media: CardsFile[] | null
+	export let category: string
 	let current_visible_element = 0
 	const local_id = getId()
 	const createObserver = (e: HTMLElement) => {
@@ -49,6 +51,7 @@
 			<!-- {@const custom_class = m.height > m.width ? 'w-full' : 'h-full'} -->
 			{#if m && m.type?.includes('image')}
 				<div
+					class:-scale-x-100={$page.data.side === 'right' && category === 'all'}
 					id="gallery-child-{local_id}-{i + 1}"
 					data-observe={i + 1}
 					class="gallery-child gallery-child-{local_id} relative flex w-full flex-shrink-0 snap-center items-center justify-center"

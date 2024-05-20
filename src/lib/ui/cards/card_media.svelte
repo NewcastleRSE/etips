@@ -30,12 +30,11 @@
 >
 	<div
 		class="media-card-left-col relative"
-		class:-scale-x-100={$page.data.side === 'right' && card.category === 'all'}
 		class:horizontal={direction === 'horizontal'}
 		class:vertical={direction === 'vertical'}
 	>
 		{#if card.media_type === 'photo'}
-			<Gallery media={card.media}></Gallery>
+			<Gallery category={card.category} media={card.media}></Gallery>
 		{/if}
 		{#if card.media_type === 'video'}
 			<CardVideo media={card.media}></CardVideo>
