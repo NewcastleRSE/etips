@@ -53,7 +53,8 @@
 					data-observe={i + 1}
 					class="gallery-child gallery-child-{local_id} relative flex w-full flex-shrink-0 snap-center items-center justify-center"
 				>
-					<Picture image={m}></Picture>
+					<!-- <img src="/assets/{m.id}" /> -->
+					<Picture fit="contain" image={m}></Picture>
 				</div>
 			{:else}
 				<div class="flex h-64 w-full items-center justify-center bg-slate-300 font-mono">

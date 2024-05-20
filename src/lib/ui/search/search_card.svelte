@@ -4,11 +4,11 @@
 	import { goto } from '$app/navigation'
 	export let topic: Topic
 	export let query: string
+	const removeTags = (str: string) => str.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, ' ')
 	const sectionString = (str: string, query: string, start: number, buffer: number) => {
 		const result = str
-			.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, ' ')
-			.substring(start - 12, start + buffer)
-			.replaceAll(query, `<mark>${query}</mark>`)
+			.substring(start - 20, start + buffer)
+			.replaceAll(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
 		if (result === '') {
 			return null
 		}
@@ -19,15 +19,18 @@
 		if (!str || !query) {
 			return []
 		}
+		const clean_string = removeTags(str)
 		const regex = new RegExp(query, 'gi')
 		let matches = 0
 		let match: RegExpExecArray | null = null
 		let lines = []
-		while ((match = regex.exec(str)) !== null && matches < limit) {
+		while ((match = regex.exec(clean_string)) !== null && matches < limit) {
 			lines.push(match.index)
 			matches++
 		}
-		return lines.flatMap((st) => sectionString(str, query, st, buffer)).filter((st) => st !== null)
+		return lines
+			.flatMap((st) => sectionString(clean_string, query, st, buffer))
+			.filter((st) => st !== null)
 	}
 </script>
 
@@ -39,7 +42,7 @@
 				{@const card = card_id.cards_id}
 				<div class="search-result-cards mb-4 flex flex-col gap-4 text-xs last-of-type:mb-0">
 					{#if card && typeof card !== 'string'}
-						{@const results = findSearch(card, query, 2, 50)}
+						{@const results = findSearch(card, query, 2, 80)}
 						{#if results.length > 0}
 							{#each results as result}
 								<!-- <Button -->
@@ -72,12 +75,11 @@
 	.search-topic-card {
 		/* border: 1px solid var(--theme-colour-4); */
 		/* border-radius: 0.5rem; */
-		padding: 0.8rem 1rem 0.8rem 0;
 		border-right: 3px solid var(--theme-colour-1);
 		/* background-color: var(--theme-colour-1); */
 	}
 	.results-container {
-		border: 1px solid var(--theme-colour-6);
+		border: 1px dotted var(--theme-colour-6);
 		border-radius: 0.5rem;
 		padding: 0.8rem;
 		background-color: var(--theme-colour-1);

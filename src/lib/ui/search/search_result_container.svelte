@@ -7,10 +7,10 @@
 	const keys = Object.keys(results)
 </script>
 
-<div class="search-result-page px-6">
+<div class="search-result-page relative h-full overflow-x-hidden overflow-y-scroll p-6">
 	{#if keys.length > 0}
 		{#each keys as key}
-			<div class="search-result-page-container my-6 py-3 pl-12 first-of-type:mt-12">
+			<div class="search-result-page-container my-6 p-4 first-of-type:mt-12">
 				<h3 class="mb-2 text-xl md:text-2xl">{key}</h3>
 				<div
 					class="search-cards-container flex max-h-64 flex-col flex-wrap gap-2 overflow-y-scroll"
@@ -22,15 +22,16 @@
 			</div>
 		{/each}
 	{:else}
-		<p>
-			There are no results for {query ? query : 'this search'} :(
+		<p class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+			There are no results for {query ? query : 'this search'}, please try another term!
 		</p>
 	{/if}
 </div>
 
 <style>
-	.search-result-page {
-	}
+	/* .search-result-page { */
+	/**/
+	/* } */
 	.search-result-page-container {
 		border: 1px solid var(--theme-colour-5);
 		border-radius: 1rem;

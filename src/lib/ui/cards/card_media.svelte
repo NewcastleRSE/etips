@@ -5,9 +5,18 @@
 	import Gallery from '$lib/ui/media/gallery.svelte'
 	import Vimeo from '../media/vimeo.svelte'
 	import CardVideo from './card_video.svelte'
+	import { goto } from '$app/navigation'
+	import DynamicIcon from '../icons/dynamic_icon.svelte'
 	export let card: Card
 	export let display: string = 'cards'
 	export let direction: 'horizontal' | 'vertical' = 'vertical'
+	const download_icon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-download" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+  <path d="M12 17v-6" />
+  <path d="M9.5 14.5l2.5 2.5l2.5 -2.5" />
+</svg>`
 </script>
 
 <div
@@ -27,8 +36,23 @@
 		{/if}
 		{#if card.media_type === 'video'}
 			<CardVideo media={card.media}></CardVideo>
-			<!-- <pre>{JSON.stringify(card.media, null, 2)}</pre> -->
 		{/if}
+		{#if card.media_type === 'file'}
+			{#if card.media}
+				{#each card.media as media}
+					{#if media.directus_files_id && typeof media.directus_files_id !== 'string'}
+						<div class="file-download flex items-center gap-4">
+							<DynamicIcon icon={download_icon} size={48}></DynamicIcon>
+							<a
+								href="/assets/{media.directus_files_id.id}"
+								download="/{media.directus_files_id.title}">{media.directus_files_id.title}</a
+							>
+						</div>
+					{/if}
+				{/each}
+			{/if}
+		{/if}
+
 		{#if card.media_type === 'youtube'}
 			<iframe
 				src={card.url?.replaceAll(
@@ -44,7 +68,9 @@
 		{/if}
 	</div>
 	<div class="media-card-right-col">
-		<CardText nested {card}></CardText>
+		{#if card.media_type !== 'file'}
+			<CardText nested {card}></CardText>
+		{/if}
 	</div>
 </div>
 
@@ -80,5 +106,10 @@
 		border-radius: 0.5rem;
 		background-color: var(--theme-colour-1);
 		border: 1px solid var(--theme-colour-5);
+	}
+	.file-download {
+		color: var(--theme-colour-3);
+		font-family: var(--theme-font-title-1);
+		font-weight: 500;
 	}
 </style>

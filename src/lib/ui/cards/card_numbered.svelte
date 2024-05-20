@@ -35,6 +35,9 @@
 {/if}
 
 <style>
+	.card-numbered {
+		animation: appear 0.3s ease-in-out forwards;
+	}
 	.card-numbered-number {
 		width: 2rem;
 		height: 2rem;

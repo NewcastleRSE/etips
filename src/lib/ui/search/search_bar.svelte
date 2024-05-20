@@ -31,7 +31,8 @@
 			}}
 		>
 			<input
-				class="search-input h-full w-full border-0"
+				class="search-input h-full w-full"
+				required
 				type="text"
 				name="query"
 				placeholder="Search for ..."
@@ -72,6 +73,7 @@
 		border-right: none;
 	}
 	.search-input {
+		border-top: none;
 		border-bottom: 1px solid var(--theme-colour-4);
 		border-right: 1px solid var(--theme-colour-4);
 		border-left: 1px solid var(--theme-colour-4);
