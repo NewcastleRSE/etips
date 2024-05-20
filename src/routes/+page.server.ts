@@ -32,13 +32,19 @@ export const actions = {
 	'change-side': async ({ request, cookies }) => {
 		const form = await request.formData()
 		const side = form.get('side-selection')
+		if (
+			!cookies.get('etips-disclaimer-consent') ||
+			!cookies.get('etips-role') ||
+			cookies.get('etips-disclaimer-consent') !== 'true'
+		) {
+			return fail(400, { message: 'Must register first!' })
+		}
 		if (side === 'left' || side === 'right') {
 			const cookies_opts = {
 				path: '/',
 				httpOnly: true,
 				maxAge: 1 * 60 * 60 * 24 * 30 * 12
 			}
-			console.log(side)
 			cookies.set('etips-side', side, cookies_opts)
 			return {
 				message: 'ok'

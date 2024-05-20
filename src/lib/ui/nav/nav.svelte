@@ -34,11 +34,13 @@
 			class:side-title-border={$page.params.slug}
 		>
 			<button
+				disabled={$page.data.side === 'left' || $page.data.side === 'right' ? undefined : true}
 				class="absolute"
 				on:click={() => {
 					openDialog()
-				}}>{copy}</button
-			>
+				}}
+				>{copy}
+			</button>
 		</div>
 	</div>
 	<div
@@ -79,7 +81,6 @@
 	}
 	nav {
 		background-color: var(--theme-colour-1);
-		/* grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); */
 		border-bottom: 1px solid var(--theme-colour-4);
 	}
 	.nav-left-border {

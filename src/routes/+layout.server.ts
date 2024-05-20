@@ -31,7 +31,6 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 			// fields: ['*', { cards: [{ cards_id: ['*'] }] }]
 		})
 	)
-	console.log(`setting with side: ${locals.session.side}`)
 	return {
 		pages,
 		topics,
