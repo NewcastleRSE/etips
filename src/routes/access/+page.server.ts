@@ -99,11 +99,11 @@ export const actions: Actions = {
 
 		//TODO: enable right side, right now (he he) only left is enabled
 
-		if (side_affected === 'right') {
-			return fail(406, {
-				message: `Only left side right now to avoid confusion, thanks :)`
-			})
-		}
+		// if (side_affected === 'right') {
+		// 	return fail(406, {
+		// 		message: `Only left side right now to avoid confusion, thanks :)`
+		// 	})
+		// }
 
 		//TODO: manual checks ready, send to directus at this point; also check redirect url so its not manually set
 		return {

@@ -6,7 +6,6 @@
 	import CardMedia from './card_media.svelte'
 	import CardNumbered from './card_numbered.svelte'
 	import CardText from './card_text.svelte'
-	import CardFile from './card_file.svelte'
 	export let display = 'cards'
 	export let cards: PagesCard[] | TopicsCard[]
 	export let desktop_left = false

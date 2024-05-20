@@ -6,7 +6,9 @@
 	import Vimeo from '../media/vimeo.svelte'
 	import CardVideo from './card_video.svelte'
 	import { goto } from '$app/navigation'
+	import { side } from '$lib/stores/layout'
 	import DynamicIcon from '../icons/dynamic_icon.svelte'
+	import { page } from '$app/stores'
 	export let card: Card
 	export let display: string = 'cards'
 	export let direction: 'horizontal' | 'vertical' = 'vertical'
@@ -28,6 +30,7 @@
 >
 	<div
 		class="media-card-left-col relative"
+		class:-scale-x-100={$page.data.side === 'right' && card.category === 'all'}
 		class:horizontal={direction === 'horizontal'}
 		class:vertical={direction === 'vertical'}
 	>

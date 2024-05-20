@@ -11,7 +11,11 @@
 	import Notification from '$lib/ui/notify/notification.svelte'
 	import { afterNavigate } from '$app/navigation'
 	import { navigated } from '$lib/stores/layout'
+	import Button from '$lib/ui/button/button.svelte'
+	import Reset from '$lib/dialogs/reset.svelte'
+	import { side } from '$lib/stores/layout'
 	export let data
+	$side = data.side
 	let debug = false
 	let navigations = 0
 	afterNavigate(() => {
@@ -44,16 +48,16 @@
 {#if debug}
 	<pre>{JSON.stringify(data, null, 2)}</pre>
 {/if}
-
 <div id="theme-wrapper" class="lg:h-screen lg:w-screen lg:overflow-hidden">
 	<Notification></Notification>
-	<Nav></Nav>
+	<Nav copy={data.copy}></Nav>
 	<main
 		class="relative w-screen pb-12 lg:grid lg:h-[calc(100%-8rem)] lg:grid-cols-1 lg:overflow-hidden lg:pb-0"
 	>
 		<slot></slot>
 	</main>
 	<Footer></Footer>
+	<Reset {data}></Reset>
 </div>
 
 <style>

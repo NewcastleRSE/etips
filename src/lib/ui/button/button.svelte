@@ -4,7 +4,7 @@
 	export let selected = false
 	export let label = ''
 	export let height = '100%'
-	export let type: 'submit' | 'button' | 'reset' | null | undefined = 'button'
+	export let type: 'submit' | 'button' | 'reset' | null | undefined = undefined
 	export let disabled = false
 	export let disabled_notice = ''
 	export let local_id = getId()

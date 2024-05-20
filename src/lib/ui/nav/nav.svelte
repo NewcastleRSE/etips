@@ -4,9 +4,15 @@
 	import Button from '../button/button.svelte'
 	import SearchBar from '../search/search_bar.svelte'
 	import NavTopics from './nav_topics.svelte'
-	//TODO:dynamically set copy
-	$: copy = $page.params.slug ? 'Best from the Left' : 'Welcome'
+	export let copy: string
 	let windowWidth = 0
+	const openDialog = () => {
+		const dialog = document.getElementById('dialog-change-side') as HTMLDialogElement
+		dialog.showModal()
+	}
+	// onMount(() => {
+	// 	openDialog()
+	// })
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
@@ -23,11 +29,16 @@
 			<img src="/favicon.png" alt="etips logo" class=" w-32" />
 		</button>
 		<div
-			class="side-title flex h-full w-full items-center px-4 text-sm lg:justify-center lg:text-lg"
+			class="side-title relative flex h-full w-full items-center px-4 text-sm lg:justify-center lg:text-lg"
 			class:hidden={copy === ''}
 			class:side-title-border={$page.params.slug}
 		>
-			<p>{copy}</p>
+			<button
+				class="absolute"
+				on:click={() => {
+					openDialog()
+				}}>{copy}</button
+			>
 		</div>
 	</div>
 	<div
@@ -63,6 +74,9 @@
 </nav>
 
 <style>
+	.nav-left-col {
+		border-bottom: var(--theme-colour-3);
+	}
 	nav {
 		background-color: var(--theme-colour-1);
 		/* grid-template-columns: minmax(0, 3fr) minmax(0, 1fr); */
