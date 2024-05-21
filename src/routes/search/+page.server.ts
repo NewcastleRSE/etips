@@ -89,12 +89,14 @@ export const actions: Actions = {
 		const form = await request.formData()
 		const query = String(form.get('query'))
 		if (query === '' || query === 'undefined' || query === 'null' || !query || query.length === 0) {
-			return fail(400)
+			return fail(400, {
+				message: `You need to provide a search term!`
+			})
 		}
 		return {
 			status: 200,
 			message: 'ok',
-			results: await getResults(query, locals.directus),
+			results: await getResults(query, locals.directus, locals.session.side),
 			query: query
 		}
 	}
