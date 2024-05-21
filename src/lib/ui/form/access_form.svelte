@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
-	import { goto } from '$app/navigation'
+	import { goto, invalidateAll } from '$app/navigation'
 	import { notify } from '$lib/stores/notify'
 	import type { Card, Page, Topic } from '$lib/types'
 	import Button from '$lib/ui/button/button.svelte'
@@ -52,6 +52,7 @@
 			if (result.type === 'success') {
 				notify.send({ value: `Welcome to eTIPS` })
 				goto(`${result.data?.url}`)
+				await invalidateAll()
 			}
 		}
 	}}
