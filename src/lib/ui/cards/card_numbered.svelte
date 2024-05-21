@@ -27,8 +27,8 @@
 			</div>
 		</div>
 		{#if card.media && card.media?.length > 0}
-			<div class="card-numbered-right-col">
-				<Gallery media={card.media}></Gallery>
+			<div class="card-numbered-right-col relative">
+				<Gallery category={card.category} media={card.media}></Gallery>
 			</div>
 		{/if}
 	</div>

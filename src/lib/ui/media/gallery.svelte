@@ -44,7 +44,7 @@
 <div
 	data-gallery={media && media.length > 1 ? 'true' : undefined}
 	id="gallery-{local_id}"
-	class="gallery-card flex snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll"
+	class="gallery-card relative flex snap-x snap-mandatory gap-4 overflow-y-hidden overflow-x-scroll"
 >
 	{#if files && files.length > 0}
 		{#each files as m, i}
