@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_CMS_ENDPOINT } from '$env/static/public'
 	import type { CardsFile } from '$lib/types'
 	export let media: CardsFile[] | null
 </script>
@@ -9,7 +10,7 @@
 		{#each media as m}
 			{@const file = m.directus_files_id}
 			{#if file && typeof file !== 'string' && file.id && file.type && file.type.includes('video')}
-				<source src={`/assets/${file.id}`} type={file.type} />
+				<source src={`${PUBLIC_CMS_ENDPOINT}/assets/${file.id}`} type={file.type} />
 			{/if}
 		{/each}
 	</video>
