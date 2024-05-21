@@ -19,6 +19,8 @@
   <path d="M12 17v-6" />
   <path d="M9.5 14.5l2.5 2.5l2.5 -2.5" />
 </svg>`
+	let cursorX = 0
+	let cursorY = 0
 </script>
 
 <div
@@ -43,13 +45,20 @@
 			{#if card.media}
 				{#each card.media as media}
 					{#if media.directus_files_id && typeof media.directus_files_id !== 'string'}
-						<div class="file-download flex items-center gap-4">
+						<a
+							href="/assets/{media.directus_files_id.id}"
+							download="/{media.directus_files_id.title}"
+							class="file-download flex items-center gap-4"
+							style:--cursor-x="{cursorX}px"
+							style:--cursor-y="{cursorY}px"
+							on:pointermove={(e) => {
+								cursorX = e.layerX
+								cursorY = e.layerY
+							}}
+						>
 							<DynamicIcon icon={download_icon} size={48}></DynamicIcon>
-							<a
-								href="/assets/{media.directus_files_id.id}"
-								download="/{media.directus_files_id.title}">{media.directus_files_id.title}</a
-							>
-						</div>
+							<p>{media.directus_files_id.title}</p>
+						</a>
 					{/if}
 				{/each}
 			{/if}
@@ -113,5 +122,16 @@
 		color: var(--theme-colour-3);
 		font-family: var(--theme-font-title-1);
 		font-weight: 500;
+		position: relative;
+	}
+	.file-download:hover::after {
+		content: 'Click to download';
+		position: absolute;
+		background: var(--theme-colour-1);
+		border: 1px solid var(--theme-colour-3);
+		border-radius: 9999px;
+		padding: 0 1rem;
+		top: var(--cursor-y);
+		left: var(--cursor-x);
 	}
 </style>
