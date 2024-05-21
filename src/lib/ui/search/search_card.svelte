@@ -57,7 +57,7 @@
 									class="result-button mb-4 w-full text-left last-of-type:mb-0"
 									on:click={() => {
 										if (topic.category && typeof topic.category !== 'string')
-											goto(`/${topic.category.slug}/${topic.slug}#${card.id}`)
+											goto(`/${topic.category.slug}/${topic.slug}?query=${query}#${card.id}`)
 									}}
 								>
 									{@html result}

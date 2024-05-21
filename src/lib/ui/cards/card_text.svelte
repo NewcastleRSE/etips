@@ -1,9 +1,20 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import type { Card } from '$lib/types'
 	import { getId } from '@arturoguzman/art-ui'
+	import { onMount } from 'svelte'
 	export let card: Card
 	export let display = 'cards'
 	export let nested = false
+	const replaceText = (str: string) =>
+		str.replaceAll('LEFT', '<strong>LEFT</strong>').replaceAll('RIGHT', '<strong>RIGHT</strong>')
+	$: copy = replaceText(card.copy ?? '')
+	onMount(() => {
+		const query = $page.url.searchParams.get('query')
+		if (query) {
+			copy = copy.replaceAll(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
+		}
+	})
 </script>
 
 {#if card}
@@ -22,9 +33,9 @@
 			</div>
 		{/if}
 		<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
-			{@html card.copy
-				?.replaceAll('LEFT', '<strong>LEFT</strong>')
-				.replaceAll('RIGHT', '<strong>RIGHT</strong>')}
+			{#if card.copy}
+				{@html copy}
+			{/if}
 		</div>
 	</div>
 {/if}
