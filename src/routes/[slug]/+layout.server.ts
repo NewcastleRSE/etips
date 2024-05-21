@@ -9,7 +9,15 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 		readItems('pages', {
 			filter: { _and: [{ slug: { _eq: params.slug } }] },
 			fields: [
-				'*',
+				'id',
+				'status',
+				'sort',
+				'title',
+				'category',
+				'slug',
+				'copy',
+				'icon',
+				'topics',
 				{ cards: [{ cards_id: ['*', { media: [{ directus_files_id: ['*'] }] }] }] },
 				{ topics: [{ cards: [{ cards_id: ['*'] }] }, 'title', 'slug'] }
 			],
@@ -50,6 +58,9 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 			!cookies.get('etips-role') ||
 			!cookies.get('etips-disclaimer-consent'))
 	) {
+		redirect(307, '/access')
+	}
+	if (page[0].category !== 'restricted') {
 		redirect(307, '/access')
 	}
 	const topics = await directus.request(

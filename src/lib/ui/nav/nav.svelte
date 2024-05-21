@@ -55,12 +55,14 @@
 						>
 					</h3>
 				{/if}
-				<NavTopics
-					on:click={(e) => {
-						goto(`/${$page.params.slug}/${e.detail}`)
-					}}
-					topics={$page.data.topics}
-				></NavTopics>
+				{#if $page.params.slug && $page.params.topic}
+					<NavTopics
+						on:click={(e) => {
+							goto(`/${$page.params.slug}/${e.detail}`)
+						}}
+						topics={$page.data.topics}
+					></NavTopics>
+				{/if}
 			</div>
 			<SearchBar></SearchBar>
 			<div class="nav-left-border h-full lg:hidden">

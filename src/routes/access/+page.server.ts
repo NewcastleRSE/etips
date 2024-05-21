@@ -37,7 +37,15 @@ export const load = async ({ cookies, locals }) => {
 				}
 			},
 			fields: [
-				'*',
+				'id',
+				'status',
+				'sort',
+				'title',
+				'category',
+				'slug',
+				'copy',
+				'icon',
+				'topics',
 				{ cards: [{ cards_id: ['*'] }] },
 				{ topics: [{ cards: [{ cards_id: ['*'] }] }] }
 			]

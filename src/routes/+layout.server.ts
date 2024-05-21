@@ -7,33 +7,12 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	const pages = await directus
 		.request(
 			readItems('pages', {
-				fields: [
-					'id',
-					'status',
-					'sort',
-					'title',
-					'category',
-					'slug',
-					'copy',
-					'icon',
-					'topics'
-					// { cards: ['*'] },
-					// { cards: [{ cards_id: ['*'] }] },
-					// { topics: ['*'] }
-					// { topics: [{ cards: [{ cards_id: ['*'] }] }] }
-				]
+				fields: ['id', 'status', 'sort', 'title', 'category', 'slug', 'copy', 'icon', 'topics']
 			})
 		)
 		.catch(() => error(500, `Backend is not reachable right now...`))
-	const topics = await directus.request(
-		readItems('topics', {
-			fields: ['id', 'status', 'sort', 'display', 'title', 'icon', 'slug']
-			// fields: ['*', { cards: [{ cards_id: ['*'] }] }]
-		})
-	)
 	return {
 		pages,
-		topics,
 		side: locals.session.side,
 		copy:
 			locals.session.side === 'left'

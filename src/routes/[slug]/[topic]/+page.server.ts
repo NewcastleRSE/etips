@@ -4,32 +4,33 @@ import { readItems } from '@directus/sdk'
 
 export const load: PageServerLoad = async ({ locals, params }) => {
 	const { directus } = locals
-	const page = await directus.request(
-		readItems('pages', {
-			filter: { _and: [{ slug: { _eq: params.slug } }] },
-			fields: [
-				'*',
-				{ cards: [{ cards_id: ['*'] }] },
-				{ topics: [{ cards: [{ cards_id: ['*'] }] }] }
-			]
-		})
-	)
-	const topics = await directus.request(
-		readItems('topics', {
-			fields: ['*', { category: ['title', 'slug'] }, { cards: [{ cards_id: ['*'] }] }],
-			filter: {
-				category: {
-					slug: {
-						_eq: params.slug
-					}
-				}
-			}
-		})
-	)
+	// const page = await directus.request(
+	// 	readItems('pages', {
+	// 		filter: { _and: [{ slug: { _eq: params.slug } }] },
+	// 		fields: [
+	// 			'id',
+	// 			'status',
+	// 			'sort',
+	// 			'title',
+	// 			'category',
+	// 			'slug',
+	// 			'copy',
+	// 			'icon',
+	// 			'topics',
+	// 			{ cards: [{ cards_id: ['*'] }] },
+	// 			{ topics: [{ cards: [{ cards_id: ['*'] }] }] }
+	// 		]
+	// 	})
+	// )
 	const topic = await directus.request(
 		readItems('topics', {
 			fields: [
-				'*',
+				'id',
+				'status',
+				'sort',
+				'title',
+				'slug',
+				'icon',
 				{ category: ['title', 'slug'] },
 				{ cards: [{ cards_id: ['*', { media: [{ directus_files_id: ['*'] }] }] }] }
 			],
@@ -83,7 +84,7 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 
 	return {
 		//HACK: remove type assertion
-		page: page[0] as Page,
+		// page: page[0] as Page,
 		topic: topic[0] as Topic
 		// topics
 	}
