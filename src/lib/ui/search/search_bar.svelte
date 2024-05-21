@@ -4,6 +4,7 @@
 	import type { ActionResult } from '@sveltejs/kit'
 	import DynamicIcon from '../icons/dynamic_icon.svelte'
 	import { page } from '$app/stores'
+	import { notify } from '$lib/stores/notify'
 	let query = ''
 	const search_icon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -26,7 +27,12 @@
 			method="post"
 			use:enhance={() => {
 				return async ({ result }) => {
+					if (result.type === 'failure') {
+						notify.send({ value: `${result.data?.message}` })
+						return
+					}
 					await handleResult(result)
+					// await invalidateAll()
 				}
 			}}
 		>

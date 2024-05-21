@@ -1,13 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import type { Card } from '$lib/types'
-	import {
-		findQueryLocation,
-		removeTags,
-		sectionString,
-		highlightStr,
-		singleString
-	} from '$lib/utils/text'
+	import { findQueryLocation, highlightStr, singleString } from '$lib/utils/text'
 	import { getId } from '@arturoguzman/art-ui'
 	import { onMount } from 'svelte'
 	export let card: Card
@@ -112,9 +106,9 @@
 		font-family: var(--theme-font-subtitle);
 		font-weight: 400;
 	}
-	p {
-		font-family: var(--theme-font-paragraph);
-	}
+	/* p { */
+	/* 	font-family: var(--theme-font-paragraph); */
+	/* } */
 
 	:global(.copy > h3) {
 		font-size: 1.5rem /* 24px */;

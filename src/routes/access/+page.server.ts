@@ -60,7 +60,6 @@ export const actions: Actions = {
 	register: async ({ request, cookies }) => {
 		const email_regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
 		const form = await request.formData()
-		// const criteria_met = String(form.get('criteria-met')) === 'on' ? true : false
 		const disclaimer_consent = String(form.get('disclaimer-consent')) === 'on' ? true : false
 		const gdpr_consent = String(form.get('gdpr-consent')) === 'on' ? true : false
 		const side_affected = String(form.get('side-affected')) === 'on' ? 'left' : 'right'
@@ -68,11 +67,6 @@ export const actions: Actions = {
 		const last_name = String(form.get('last-name'))
 		const email = String(form.get('email'))
 		const age_weeks = Number(form.get('age-weeks'))
-		// if (!criteria_met) {
-		// 	return fail(406, {
-		// 		message: `You need to accept the criteria to continue`
-		// 	})
-		// }
 		if (!disclaimer_consent) {
 			return fail(406, {
 				message: `You need to accept the disclaimer to continue`
@@ -104,14 +98,6 @@ export const actions: Actions = {
 		//TODO: add access role from form!
 		cookies.set('etips-role', 'parent', cookies_opts)
 		cookies.set('etips-disclaimer-consent', `${disclaimer_consent}`, cookies_opts)
-
-		//TODO: enable right side, right now (he he) only left is enabled
-
-		// if (side_affected === 'right') {
-		// 	return fail(406, {
-		// 		message: `Only left side right now to avoid confusion, thanks :)`
-		// 	})
-		// }
 
 		//TODO: manual checks ready, send to directus at this point; also check redirect url so its not manually set
 		return {

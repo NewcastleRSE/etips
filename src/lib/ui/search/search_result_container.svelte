@@ -25,7 +25,7 @@
 			</div>
 		{/each}
 	{:else}
-		<p class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+		<p class="search-no-results absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
 			There are no results for {query ? query : 'this search'}, please try another term!
 		</p>
 	{/if}
@@ -37,5 +37,9 @@
 		border-radius: 1rem;
 		background-color: var(--theme-colour-1);
 		color: var(--theme-colour-3);
+	}
+	.search-no-results {
+		color: var(--theme-colour-3);
+		font-family: var(--theme-font-paragraph);
 	}
 </style>

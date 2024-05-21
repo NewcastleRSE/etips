@@ -23,7 +23,7 @@ export const sectionString = (
 
 export const singleString = (
 	str: string,
-	locations: [number, number][],
+	locations: number[][],
 	fn: (t: string) => string
 ): string => {
 	const result = locations.reduce((acc, loc, i, arr) => {

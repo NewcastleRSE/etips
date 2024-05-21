@@ -7,7 +7,6 @@
 	export let type: 'submit' | 'button' | 'reset' | null | undefined = undefined
 	export let disabled = false
 	export let disabled_notice = ''
-	export let local_id = getId()
 	let start_position = 20
 	const animate_title = (e: HTMLElement) => {
 		const titleWidth = e.scrollWidth

@@ -47,7 +47,7 @@
 					{#if media.directus_files_id && typeof media.directus_files_id !== 'string'}
 						<a
 							href="/assets/{media.directus_files_id.id}"
-							download="/{media.directus_files_id.title}"
+							download
 							class="file-download flex items-center gap-4"
 							style:--cursor-x="{cursorX}px"
 							style:--cursor-y="{cursorY}px"
