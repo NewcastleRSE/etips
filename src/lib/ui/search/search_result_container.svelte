@@ -1,19 +1,22 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import type { Topic } from '$lib/types'
 	import SearchCard from './search_card.svelte'
 	export let results: Record<string, Topic[]>
 	export let query: string
 	const keys = Object.keys(results)
+	const getWidth = (e: HTMLElement, key: string) => {
+		e.style.width = `${results[key].length * (results[key].length === 1 ? 16 : 16 / 2)}rem`
+	}
 </script>
 
-<div class="search-result-page relative h-full overflow-x-hidden overflow-y-scroll p-6">
+<div class="search-result-page items relative h-full overflow-x-hidden p-6">
 	{#if keys.length > 0}
 		{#each keys as key}
-			<div class="search-result-page-container my-6 p-4 first-of-type:mt-12">
+			<div class="search-result-page-container my-6 overflow-y-scroll p-4 first-of-type:mt-12">
 				<h3 class="mb-2 text-xl md:text-2xl">{key}</h3>
 				<div
-					class="search-cards-container flex max-h-64 flex-col flex-wrap gap-2 overflow-y-scroll"
+					use:getWidth={key}
+					class="search-cards-container flex max-h-64 flex-col flex-wrap items-start gap-2"
 				>
 					{#each results[key] as topic}
 						<SearchCard {query} {topic}></SearchCard>
@@ -29,13 +32,9 @@
 </div>
 
 <style>
-	/* .search-result-page { */
-	/**/
-	/* } */
 	.search-result-page-container {
 		border: 1px solid var(--theme-colour-5);
 		border-radius: 1rem;
-		/* background-color: color-mix(in oklab, var(--theme-colour-1) 100%, var(--theme-colour-3) 3%); */
 		background-color: var(--theme-colour-1);
 		color: var(--theme-colour-3);
 	}
