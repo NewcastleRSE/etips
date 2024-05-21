@@ -1,6 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import type { Card } from '$lib/types'
+	import {
+		findQueryLocation,
+		removeTags,
+		sectionString,
+		highlightStr,
+		singleString
+	} from '$lib/utils/text'
 	import { getId } from '@arturoguzman/art-ui'
 	import { onMount } from 'svelte'
 	export let card: Card
@@ -12,7 +19,17 @@
 	onMount(() => {
 		const query = $page.url.searchParams.get('query')
 		if (query) {
-			copy = copy.replaceAll(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
+			// copy = copy.replaceAll(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
+			const result = findQueryLocation(copy, query, 2)
+			const test = singleString(copy, result, highlightStr)
+			if (test !== '') {
+				copy = test
+			}
+			//
+			// console.log(test)
+			// if (result.length > 0) {
+			// 	copy = result[0]
+			// }
 		}
 	})
 </script>

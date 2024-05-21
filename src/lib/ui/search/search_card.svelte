@@ -1,36 +1,23 @@
 <script lang="ts">
 	import type { Card, Topic } from '$lib/types'
 	import Button from '../button/button.svelte'
+	import {
+		findQueryLocation,
+		removeTags,
+		sectionString,
+		highlightAndBoldStr
+	} from '$lib/utils/text'
 	import { goto } from '$app/navigation'
 	export let topic: Topic
 	export let query: string
-	const removeTags = (str: string) => str.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, ' ')
-	const sectionString = (str: string, query: string, start: number, buffer: number) => {
-		const result = str
-			.substring(start - 20, start + buffer)
-			.replaceAll(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
-		if (result === '') {
-			return null
-		}
-		return `...${result}${result.at(-1) === '.' ? '' : '...'}`
-	}
-	const findSearch = (card: Card, query: string | null, limit: number, buffer: number) => {
-		const str = card.copy ?? card.subtitle
-		if (!str || !query) {
+	const handleString = (card: Card, query: string, limit: number, buffer: number) => {
+		if (!card.copy) {
 			return []
 		}
-		const clean_string = removeTags(str)
-		const regex = new RegExp(query, 'gi')
-		let matches = 0
-		let match: RegExpExecArray | null = null
-		let lines = []
-		while ((match = regex.exec(clean_string)) !== null && matches < limit) {
-			lines.push(match.index)
-			matches++
-		}
-		return lines
-			.flatMap((st) => sectionString(clean_string, query, st, buffer))
-			.filter((st) => st !== null)
+		const clean_string = removeTags(card.copy)
+		return findQueryLocation(clean_string, query, limit).map((lines) =>
+			sectionString(clean_string, query, lines[0], lines[1], buffer, highlightAndBoldStr)
+		)
 	}
 </script>
 
@@ -42,7 +29,7 @@
 				{@const card = card_id.cards_id}
 				<div class="search-result-cards mb-4 flex flex-col gap-4 text-xs last-of-type:mb-0">
 					{#if card && typeof card !== 'string'}
-						{@const results = findSearch(card, query, 2, 80)}
+						{@const results = handleString(card, query, 2, 40)}
 						{#if results.length > 0}
 							{#each results as result}
 								<!-- <Button -->
