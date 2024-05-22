@@ -6,7 +6,7 @@
 	import Nav from '$lib/ui/nav/nav.svelte'
 	import { onMount } from 'svelte'
 	import '../app.pcss'
-	import { theme } from '$lib/stores/theme'
+	// import { theme } from '$lib/stores/theme'
 	import Footer from '$lib/ui/footer/footer.svelte'
 	import Notification from '$lib/ui/notify/notification.svelte'
 	import { afterNavigate } from '$app/navigation'
@@ -24,31 +24,59 @@
 		}
 		navigations++
 	})
+	const theme = {
+		dark: false,
+		fonts: [
+			{ name: 'Jua', type: 'sans-serif', key: 'title' },
+			{ name: 'Nunito Variable', type: 'sans-serif', key: 'title-2' },
+			{ name: 'Libre Franklin Variable', type: 'sans-serif', key: 'paragraph' },
+			{ name: 'League Spartan Variable', type: 'sans-serif', key: 'subtitle' }
+		],
+		colours: ['#FFFDF9', '#F2F9EB', '#013A67', '#44B3CE', '#609A29', '#EA931F', '#BF0034'],
+		version: '0.0.1',
+		language: 'en',
+		reduce_animation: false
+	}
+
 	onMount(() => {
-		theme.load(
-			{
-				dark: false,
-				fonts: [
-					{ name: 'Jua', type: 'sans-serif', key: 'title' },
-					{ name: 'Nunito Variable', type: 'sans-serif', key: 'title-2' },
-					{ name: 'Libre Franklin Variable', type: 'sans-serif', key: 'paragraph' },
-					{ name: 'League Spartan Variable', type: 'sans-serif', key: 'subtitle' }
-				],
-				colours: ['#FFFDF9', '#F2F9EB', '#013A67', '#44B3CE', '#609A29', '#EA931F', '#BF0034'],
-				version: '0.0.1',
-				language: 'en',
-				reduce_animation: false
-			},
-			'etips-theme',
-			'#theme-wrapper'
-		)
+		// theme.load(
+		// 	{
+		// 		dark: false,
+		// 		fonts: [
+		// 			{ name: 'Jua', type: 'sans-serif', key: 'title' },
+		// 			{ name: 'Nunito Variable', type: 'sans-serif', key: 'title-2' },
+		// 			{ name: 'Libre Franklin Variable', type: 'sans-serif', key: 'paragraph' },
+		// 			{ name: 'League Spartan Variable', type: 'sans-serif', key: 'subtitle' }
+		// 		],
+		// 		colours: ['#FFFDF9', '#F2F9EB', '#013A67', '#44B3CE', '#609A29', '#EA931F', '#BF0034'],
+		// 		version: '0.0.1',
+		// 		language: 'en',
+		// 		reduce_animation: false
+		// 	},
+		// 	'etips-theme',
+		// 	'#theme-wrapper'
+		// )
 	})
 </script>
 
 {#if debug}
 	<pre>{JSON.stringify(data, null, 2)}</pre>
 {/if}
-<div id="theme-wrapper" class="lg:h-screen lg:w-screen lg:overflow-hidden">
+<div
+	id="theme-wrapper"
+	class="lg:h-screen lg:w-screen lg:overflow-hidden"
+	style:--theme-colour-1={theme.colours[0]}
+	style:--theme-colour-2={theme.colours[1]}
+	style:--theme-colour-3={theme.colours[2]}
+	style:--theme-colour-4={theme.colours[3]}
+	style:--theme-colour-5={theme.colours[4]}
+	style:--theme-colour-6={theme.colours[5]}
+	style:--theme-colour-7={theme.colours[6]}
+	style:--theme-font-title={theme.fonts[0].name}
+	style:--theme-font-title-2={theme.fonts[1].name}
+	style:--theme-font-paragraph={theme.fonts[2].name}
+	style:--theme-font-subtitle={theme.fonts[3].name}
+>
 	<Notification></Notification>
 	<Nav copy={data.copy}></Nav>
 	<main
