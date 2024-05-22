@@ -14,6 +14,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	return {
 		pages,
 		side: locals.session.side,
+		role: locals.session.role,
 		copy:
 			locals.session.side === 'left'
 				? 'Best from the Left'

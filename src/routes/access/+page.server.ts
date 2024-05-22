@@ -1,3 +1,4 @@
+import { message } from '$lib/stores/notify.js'
 import type { Page } from '$lib/types/index.js'
 import { readItems } from '@directus/sdk'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
@@ -63,6 +64,7 @@ export const actions: Actions = {
 		const disclaimer_consent = String(form.get('disclaimer-consent')) === 'on' ? true : false
 		const gdpr_consent = String(form.get('gdpr-consent')) === 'on' ? true : false
 		const side_affected = String(form.get('side-affected')) === 'on' ? 'left' : 'right'
+		const role = String(form.get('role'))
 		const first_name = String(form.get('first-name'))
 		const last_name = String(form.get('last-name'))
 		const email = String(form.get('email'))
@@ -89,14 +91,19 @@ export const actions: Actions = {
 				})
 			}
 		}
+		if (role !== 'parent' && role !== 'doctor') {
+			return fail(406, {
+				message: `The role ${role} doesn't exist...`
+			})
+		}
 		const cookies_opts = {
 			path: '/',
-			httpOnly: true,
+			secure: false,
+			// httpOnly: true,
 			maxAge: 1 * 60 * 60 * 24 * 30 * 12
 		}
 		cookies.set('etips-side', side_affected, cookies_opts)
-		//TODO: add access role from form!
-		cookies.set('etips-role', 'parent', cookies_opts)
+		cookies.set('etips-role', role, cookies_opts)
 		cookies.set('etips-disclaimer-consent', `${disclaimer_consent}`, cookies_opts)
 
 		//TODO: manual checks ready, send to directus at this point; also check redirect url so its not manually set

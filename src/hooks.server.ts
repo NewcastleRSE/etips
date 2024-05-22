@@ -7,7 +7,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	console.time(`id: ${id}`)
 	event.locals.directus = directus
 	event.locals.session = {
-		side: event.cookies.get('etips-side') ?? 'none'
+		side: event.cookies.get('etips-side') ?? 'none',
+		role: event.cookies.get('etips-role') ?? 'public'
 	}
 	const response = await resolve(event)
 	console.timeEnd(`id: ${id}`)

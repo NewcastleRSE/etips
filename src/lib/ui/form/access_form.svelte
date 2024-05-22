@@ -33,7 +33,6 @@
 		return acc
 	}, {} as FormCards) || { gdpr_notice: null, animation: null, disclaimer: null }
 
-	// let criteria_met = false
 	let contact_consent = false
 	let disclaimer_consent = false
 	let role = ''
@@ -60,12 +59,6 @@
 	{#if cards.disclaimer}
 		<FormDisclaimer card={cards.disclaimer}></FormDisclaimer>
 	{/if}
-	<!-- <SelectionInput -->
-	<!-- 	bind:checked={criteria_met} -->
-	<!-- 	required -->
-	<!-- 	label="Confirm inclusion/exclusion criteria met" -->
-	<!-- 	name="criteria-met" -->
-	<!-- ></SelectionInput> -->
 	<SelectionInput
 		bind:checked={disclaimer_consent}
 		required
@@ -74,6 +67,7 @@
 	></SelectionInput>
 	{#if disclaimer_consent}
 		<RoleSelection bind:role></RoleSelection>
+		<input type="text" name="role" bind:value={role} class="hidden opacity-0" />
 		{#if role === 'doctor'}
 			<DoctorFormFlow {cards}></DoctorFormFlow>
 		{/if}

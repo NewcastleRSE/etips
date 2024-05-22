@@ -35,8 +35,10 @@
 			class:side-title-border={$page.params.slug}
 		>
 			<button
+				disabled={$page.data.role === 'public' ? true : undefined}
 				class="absolute"
 				on:click={() => {
+					if ($page.data.role !== 'public') openDialog()
 				}}
 				>{copy}
 			</button>

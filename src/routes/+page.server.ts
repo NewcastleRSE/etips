@@ -1,7 +1,7 @@
 import { readItems } from '@directus/sdk'
 import type { LayoutServerLoad } from './$types'
 import type { Page } from '$lib/types'
-import { fail } from '@sveltejs/kit'
+import { fail, redirect } from '@sveltejs/kit'
 
 export const load: LayoutServerLoad = async ({ locals }) => {
 	const { directus } = locals
@@ -61,5 +61,11 @@ export const actions = {
 		return fail(400, {
 			message: 'Side must be left or right!'
 		})
+	},
+	reset: async ({ cookies }) => {
+		cookies.delete('etips-disclaimer-consent', { path: '/' })
+		cookies.delete('etips-role', { path: '/' })
+		cookies.delete('etips-side', { path: '/' })
+		redirect(307, '/access')
 	}
 }

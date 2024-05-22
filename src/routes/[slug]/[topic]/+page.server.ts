@@ -1,8 +1,9 @@
 import type { Page, Topic } from '$lib/types'
+import { redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { readItems } from '@directus/sdk'
 
-export const load: PageServerLoad = async ({ locals, params }) => {
+export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 	const { directus } = locals
 	// const page = await directus.request(
 	// 	readItems('pages', {
@@ -81,7 +82,19 @@ export const load: PageServerLoad = async ({ locals, params }) => {
 			}
 		})
 	)
-
+	if (
+		!cookies.get('etips-side') ||
+		!cookies.get('etips-role') ||
+		!cookies.get('etips-disclaimer-consent')
+	) {
+		redirect(307, '/access')
+	}
+	if (cookies.get('etips-disclaimer-consent') !== 'true') {
+		cookies.delete('etips-disclaimer-consent', { path: '/' })
+		cookies.delete('etips-role', { path: '/' })
+		cookies.delete('etips-side', { path: '/' })
+		redirect(307, '/access')
+	}
 	return {
 		//HACK: remove type assertion
 		// page: page[0] as Page,

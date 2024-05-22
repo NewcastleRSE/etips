@@ -14,6 +14,7 @@ declare global {
 				RestClient<Collections>
 			session: {
 				side: string
+				role: string
 			}
 		}
 		// interface PageData {}

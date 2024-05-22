@@ -60,6 +60,12 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 	) {
 		redirect(307, '/access')
 	}
+	if (cookies.get('etips-disclaimer-consent') !== 'true') {
+		cookies.delete('etips-disclaimer-consent', { path: '/' })
+		cookies.delete('etips-role', { path: '/' })
+		cookies.delete('etips-side', { path: '/' })
+		redirect(307, '/access')
+	}
 	if (page[0].category !== 'restricted') {
 		redirect(307, '/access')
 	}
