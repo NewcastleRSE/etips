@@ -25,7 +25,7 @@
 				<!-- <div class="card-position-wrapper {card.cards_id.position}"> -->
 				{#if card.cards_id && typeof card.cards_id !== 'string' && card.cards_id.position === 'full'}
 					{#if card.cards_id && typeof card.cards_id !== 'string'}
-						{#if card.cards_id.type === 'text'}
+						{#if card.cards_id.type === 'text' || card.cards_id.type === 'rhyme'}
 							<CardText {display} card={card.cards_id}></CardText>
 						{/if}
 						{#if card.cards_id.type === 'media'}
@@ -56,7 +56,7 @@
 						<!-- <div class="card-position-wrapper {card.cards_id.position}"> -->
 						{#if card.cards_id && typeof card.cards_id !== 'string' && card.cards_id.position === 'left'}
 							{#if card.cards_id && typeof card.cards_id !== 'string'}
-								{#if card.cards_id.type === 'text'}
+								{#if card.cards_id.type === 'text' || card.cards_id.type === 'rhyme'}
 									<CardText {display} card={card.cards_id}></CardText>
 								{/if}
 								{#if card.cards_id.type === 'media' || card.cards_id.type === 'hero'}
@@ -84,7 +84,7 @@
 						<!-- <div class="card-position-wrapper {card.cards_id.position}"> -->
 						{#if card.cards_id && typeof card.cards_id !== 'string' && card.cards_id.position === 'right'}
 							{#if card.cards_id && typeof card.cards_id !== 'string'}
-								{#if card.cards_id.type === 'text'}
+								{#if card.cards_id.type === 'text' || card.cards_id.type === 'rhyme'}
 									<CardText {display} card={card.cards_id}></CardText>
 								{/if}
 								{#if card.cards_id.type === 'media' || card.cards_id.type === 'hero'}

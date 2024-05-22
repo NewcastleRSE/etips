@@ -1,33 +1,22 @@
 <script lang="ts">
 	import type { Card } from '$lib/types'
-	import type { DirectusFile } from '@directus/sdk'
 	import CardText from './card_text.svelte'
 	import Gallery from '$lib/ui/media/gallery.svelte'
 	import Vimeo from '../media/vimeo.svelte'
 	import CardVideo from './card_video.svelte'
-	import { goto } from '$app/navigation'
-	import { side } from '$lib/stores/layout'
-	import DynamicIcon from '../icons/dynamic_icon.svelte'
-	import { page } from '$app/stores'
+	import CardFile from './card_file.svelte'
+	import CardYoutube from './card_youtube.svelte'
 	export let card: Card
 	export let display: string = 'cards'
 	export let direction: 'horizontal' | 'vertical' = 'vertical'
-	const download_icon = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-download" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-  <path d="M12 17v-6" />
-  <path d="M9.5 14.5l2.5 2.5l2.5 -2.5" />
-</svg>`
-	let cursorX = 0
-	let cursorY = 0
 </script>
 
 <div
 	class:card-cards={display === 'cards'}
 	class:card-list={display === 'list'}
 	class:card-continuous={display === 'continuous'}
-	class="media-card flex flex-col gap-4 p-4 lg:p-8"
+	class:gap-4={card.media_type !== 'file'}
+	class="media-card flex flex-col p-4 lg:p-8"
 	id={card.id}
 >
 	<div
@@ -39,40 +28,13 @@
 			<Gallery category={card.category} media={card.media}></Gallery>
 		{/if}
 		{#if card.media_type === 'video'}
-			<CardVideo media={card.media}></CardVideo>
+			<CardVideo {card}></CardVideo>
 		{/if}
 		{#if card.media_type === 'file'}
-			{#if card.media}
-				{#each card.media as media}
-					{#if media.directus_files_id && typeof media.directus_files_id !== 'string'}
-						<a
-							href="/assets/{media.directus_files_id.id}"
-							download
-							class="file-download flex items-center gap-4"
-							style:--cursor-x="{cursorX}px"
-							style:--cursor-y="{cursorY}px"
-							on:pointermove={(e) => {
-								cursorX = e.layerX
-								cursorY = e.layerY
-							}}
-						>
-							<DynamicIcon icon={download_icon} size={48}></DynamicIcon>
-							<p>{media.directus_files_id.title}</p>
-						</a>
-					{/if}
-				{/each}
-			{/if}
+			<CardFile {card}></CardFile>
 		{/if}
-
 		{#if card.media_type === 'youtube'}
-			<iframe
-				src={card.url?.replaceAll(
-					'https://www.youtube.com/watch?v=',
-					'https://www.youtube-nocookie.com/embed/'
-				)}
-				title={card.title ?? ''}
-				class="aspect-video w-full"
-			></iframe>
+			<CardYoutube {card}></CardYoutube>
 		{/if}
 		{#if card.media_type === 'vimeo'}
 			<Vimeo video_id={card.url?.replaceAll('https://vimeo.com/', '')}></Vimeo>
@@ -117,21 +79,5 @@
 		border-radius: 0.5rem;
 		background-color: var(--theme-colour-1);
 		border: 1px solid var(--theme-colour-5);
-	}
-	.file-download {
-		color: var(--theme-colour-3);
-		font-family: var(--theme-font-title-1);
-		font-weight: 500;
-		position: relative;
-	}
-	.file-download:hover::after {
-		content: 'Click to download';
-		position: absolute;
-		background: var(--theme-colour-1);
-		border: 1px solid var(--theme-colour-3);
-		border-radius: 9999px;
-		padding: 0 1rem;
-		top: var(--cursor-y);
-		left: var(--cursor-x);
 	}
 </style>

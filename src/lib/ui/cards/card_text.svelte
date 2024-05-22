@@ -13,17 +13,11 @@
 	onMount(() => {
 		const query = $page.url.searchParams.get('query')
 		if (query) {
-			// copy = copy.replaceAll(new RegExp(query, 'gi'), `<mark>${query}</mark>`)
 			const result = findQueryLocation(copy, query, 2)
 			const test = singleString(copy, result, highlightStr)
 			if (test !== '') {
 				copy = test
 			}
-			//
-			// console.log(test)
-			// if (result.length > 0) {
-			// 	copy = result[0]
-			// }
 		}
 	})
 </script>
@@ -38,16 +32,24 @@
 		id={!nested ? card.id : getId()}
 	>
 		{#if card.title || card.subtitle}
-			<div class="text-title-container mb-4">
+			<div class="text-title-container" class:mb-4={card.copy}>
 				<h3 class:hidden={!card.title} class="mb-2 text-xl md:text-2xl">{card.title}</h3>
 				<h4 class:hidden={!card.subtitle} class="text-xl">{card.subtitle}</h4>
 			</div>
 		{/if}
-		<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
-			{#if card.copy}
-				{@html copy}
-			{/if}
-		</div>
+		{#if card.type === 'rhyme'}
+			<div class:hidden={!card.copy || card.copy === ''} class="rhyme prose-lg">
+				{#if card.copy}
+					{@html copy}
+				{/if}
+			</div>
+		{:else}
+			<div class:hidden={!card.copy || card.copy === ''} class="copy prose-sm lg:prose-base">
+				{#if card.copy}
+					{@html copy}
+				{/if}
+			</div>
+		{/if}
 	</div>
 {/if}
 
@@ -110,6 +112,12 @@
 	/* 	font-family: var(--theme-font-paragraph); */
 	/* } */
 
+	:global(.rhyme > *) {
+		color: var(--theme-colour-6);
+		font-size: 1.4rem;
+		font-family: var(--theme-font-title-2);
+		font-weight: 700;
+	}
 	:global(.copy > h3) {
 		font-size: 1.5rem /* 24px */;
 		line-height: 2rem /* 32px */;
