@@ -23,8 +23,8 @@
 	></TextInput>
 
 	<SelectionInput
-		left_label="Left"
-		right_label="Right"
+		left_label="Left side of brain affected"
+		right_label="Right side of brain affected"
 		required
 		label="Side of brain affected"
 		name="side-affected"

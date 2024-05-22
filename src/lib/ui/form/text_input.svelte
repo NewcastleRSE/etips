@@ -8,10 +8,8 @@
 	export let max = 52
 </script>
 
-<div class="text-input mb-2 flex flex-col gap-2">
-	<label class="label text-sm md:text-base" data-required={required ? 'yes' : 'no'} for={id}
-		>{label}</label
-	>
+<div class="text-input my-4 flex flex-col gap-2">
+	<label class="label text-lg" data-required={required ? 'yes' : 'no'} for={id}>{label}</label>
 	<input
 		required
 		{min}
