@@ -16,7 +16,7 @@
 				}}
 			>
 				<div class="card-video-thumbnail h-full w-full blur-sm">
-					<Picture image={card.thumbnail}></Picture>
+					<Picture fit="contain" image={card.thumbnail}></Picture>
 				</div>
 				<!-- <img class="object-cover" src="/assets/{card.thumbnail}" alt="" /> -->
 				<div class="play-icon absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
