@@ -9,7 +9,7 @@
 	// import { theme } from '$lib/stores/theme'
 	import Footer from '$lib/ui/footer/footer.svelte'
 	import Notification from '$lib/ui/notify/notification.svelte'
-	import { afterNavigate } from '$app/navigation'
+	import { afterNavigate, beforeNavigate } from '$app/navigation'
 	import { navigated } from '$lib/stores/layout'
 	import Button from '$lib/ui/button/button.svelte'
 	import Reset from '$lib/dialogs/reset.svelte'
@@ -18,7 +18,12 @@
 	$side = data.side
 	let debug = false
 	let navigations = 0
+	let navigating = false
+	beforeNavigate(() => {
+		navigating = true
+	})
 	afterNavigate(() => {
+		navigating = false
 		if (navigations >= 1) {
 			$navigated = true
 		}
@@ -78,7 +83,7 @@
 	style:--theme-font-subtitle={theme.fonts[3].name}
 >
 	<Notification></Notification>
-	<Nav copy={data.copy}></Nav>
+	<Nav {navigating} copy={data.copy}></Nav>
 	<main
 		class="relative w-screen pb-12 lg:grid lg:h-[calc(100%-8rem)] lg:grid-cols-1 lg:overflow-hidden lg:pb-0"
 	>

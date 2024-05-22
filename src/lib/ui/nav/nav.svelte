@@ -5,6 +5,7 @@
 	import SearchBar from '../search/search_bar.svelte'
 	import NavTopics from './nav_topics.svelte'
 	export let copy: string
+	export let navigating: boolean
 	let windowWidth = 0
 	const openDialog = () => {
 		const dialog = document.getElementById('dialog-change-side') as HTMLDialogElement
@@ -19,14 +20,14 @@
 <nav
 	class="grid-cols[minmax(0,3fr),minmax(0,1fr)] z-50 grid h-12 w-full md:h-16 lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
 >
-	<div class="nav-left-col flex items-center lg:col-span-1 lg:col-start-1">
+	<div class="nav-left-col flex items-center lg:col-span-1 lg:col-start-1" class:navigating>
 		<button
-			class="etips-button flex h-full w-full items-center justify-center px-4 lg:px-0"
+			class="etips-button bg-red flex h-full w-full items-center justify-center px-4 lg:px-0"
 			on:click={() => {
 				goto(`/`)
 			}}
 		>
-			<img src="/favicon.png" alt="etips logo" class=" w-32" />
+			<img src="/favicon.png" alt="etips logo" class="w-32 mix-blend-multiply" />
 		</button>
 		<div
 			class="side-title relative flex h-full w-full items-center px-4 text-sm lg:justify-center lg:text-lg"
@@ -34,10 +35,8 @@
 			class:side-title-border={$page.params.slug}
 		>
 			<button
-				disabled={$page.data.side === 'left' || $page.data.side === 'right' ? undefined : true}
 				class="absolute"
 				on:click={() => {
-					openDialog()
 				}}
 				>{copy}
 			</button>
@@ -107,6 +106,64 @@
 		}
 		.side-title-border {
 			border-right: 3px solid var(--theme-colour-4);
+		}
+	}
+	.navigating {
+		background-color: var(--theme-colour-1);
+		position: relative;
+		overflow: hidden;
+	}
+	.navigating::before {
+		position: absolute;
+		opacity: 0;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		/* border-radius: 999px; */
+		/* filter: blur(10px); */
+		content: '';
+		background-color: color-mix(in oklab, var(--theme-colour-4) 60%, var(--theme-colour-1) 80%);
+		animation: loading 3s ease-in-out infinite forwards;
+	}
+	@keyframes loading {
+		0% {
+			left: -120%;
+			opacity: 1;
+			width: 0%;
+			background-color: color-mix(in oklab, var(--theme-colour-4) 60%, var(--theme-colour-1) 80%);
+		}
+		25% {
+			width: 50%;
+			background-color: color-mix(in oklab, var(--theme-colour-5) 100%, var(--theme-colour-1) 20%);
+		}
+		50% {
+			left: 120%;
+			opacity: 0;
+			width: 100%;
+			background-color: color-mix(in oklab, var(--theme-colour-6) 60%, var(--theme-colour-1) 80%);
+		}
+		51% {
+			left: -100%;
+			opacity: 0;
+			width: 0%;
+		}
+		52% {
+			opacity: 1;
+			width: 0%;
+		}
+		75% {
+			width: 50%;
+			background-color: color-mix(in oklab, var(--theme-colour-6) 100%, var(--theme-colour-1) 80%);
+		}
+		95% {
+			left: 120%;
+			opacity: 0;
+			width: 0%;
+		}
+		100% {
+			left: 200%;
+			background-color: color-mix(in oklab, var(--theme-colour-4) 60%, var(--theme-colour-1) 80%);
 		}
 	}
 </style>
