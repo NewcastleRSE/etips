@@ -63,7 +63,7 @@ export const actions: Actions = {
 		const form = await request.formData()
 		const disclaimer_consent = String(form.get('disclaimer-consent')) === 'on' ? true : false
 		const gdpr_consent = String(form.get('gdpr-consent')) === 'on' ? true : false
-		const side_affected = String(form.get('side-affected')) === 'on' ? 'left' : 'right'
+		const side_affected = String(form.get('side-affected')) === 'on' ? 'right' : 'left'
 		const role = String(form.get('role'))
 		const first_name = String(form.get('first-name'))
 		const last_name = String(form.get('last-name'))
