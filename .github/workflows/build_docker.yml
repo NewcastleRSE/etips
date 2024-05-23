@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: NewcastleRSE/etips
+  IMAGE_NAME: newcastlerse/etips
 
 jobs:
   build-and-push-image:
