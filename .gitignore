@@ -8,3 +8,7 @@ node_modules
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+/data/db/postgres/data
+/data/db/postgres/restore
+/data/caddy/caddy_config
+/data/caddy/caddy_data

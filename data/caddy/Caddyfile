@@ -1,0 +1,11 @@
+{$DOMAIN} {
+  reverse_proxy etips:3000
+}
+
+cms.{$DOMAIN} {
+  reverse_proxy directus:8055
+}
+
+events.{$DOMAIN} {
+  reverse_proxy umami:3000
+}
