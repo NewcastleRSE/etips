@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { applyAction, enhance } from '$app/forms'
-	import { invalidateAll } from '$app/navigation'
+	import { goto, invalidateAll } from '$app/navigation'
 	import type { ActionResult } from '@sveltejs/kit'
 	import DynamicIcon from '../icons/dynamic_icon.svelte'
 	import { page } from '$app/stores'
@@ -16,13 +16,13 @@
 			await applyAction(res)
 		}
 	}
-	let search_bar_open = false
+	export let search_bar_open = false
 </script>
 
 {#if $page.params.slug}
 	{#if search_bar_open}
 		<form
-			class="flex h-full w-full"
+			class="flex h-full w-full overflow-hidden"
 			action="/search"
 			method="post"
 			use:enhance={() => {
@@ -37,7 +37,7 @@
 			}}
 		>
 			<input
-				class="search-input h-full w-full"
+				class="search-input"
 				required
 				type="text"
 				name="query"
@@ -49,8 +49,10 @@
 				class="search-button"
 				type="button"
 				on:click={() => {
-					invalidateAll()
+					// invalidateAll()
+					$page.url.searchParams.delete('query')
 					query = ''
+					goto($page.url.pathname)
 				}}>Clear</button
 			>
 		</form>
@@ -71,7 +73,7 @@
 		color: var(--theme-colour-4);
 		flex-shrink: 0;
 		height: 100%;
-		aspect-ratio: 1 / 1;
+		padding: 0 0.6rem;
 		border-right: 1px solid var(--theme-colour-4);
 		text-align: center;
 	}
@@ -80,14 +82,22 @@
 	}
 	.search-input {
 		border-top: none;
-		border-bottom: 1px solid var(--theme-colour-4);
+		border-left: none;
+		border-bottom: none;
+		width: 100%;
+		/* border-bottom: 1px solid var(--theme-colour-4); */
 		border-right: 1px solid var(--theme-colour-4);
-		border-left: 1px solid var(--theme-colour-4);
+	}
+	.selected {
+		background-color: var(--theme-colour-5);
 	}
 	.open-search-bar-button {
 		border-left: 1px solid var(--theme-colour-4);
 	}
-	.selected {
-		background-color: var(--theme-colour-5);
+	@media (min-width: 1024px) {
+		.search-input {
+			/* border-left: 1px solid var(--theme-colour-4); */
+			/* border-bottom: 1px solid var(--theme-colour-4); */
+		}
 	}
 </style>
