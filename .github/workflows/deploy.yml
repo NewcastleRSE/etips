@@ -26,11 +26,13 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
+            cd ~
+            source .bashrc
             cd ~/etips
             git pull origin main
             sops -d vars.env > .env
-            docker-compose pull
-            docker-compose up -d --build
+            docker compose pull
+            docker compose up -d --build
           EOF
 
       # - name: Set up SSH
