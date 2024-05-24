@@ -5,8 +5,8 @@
 	import SearchBar from '../search/search_bar.svelte'
 	import NavTopics from './nav_topics.svelte'
 	export let copy: string
-	// export let navigating: boolean
-	let navigating = true
+	export let navigating: boolean
+	// let navigating = true
 	let windowWidth = 0
 	const openDialog = () => {
 		const dialog = document.getElementById('dialog-change-side') as HTMLDialogElement
