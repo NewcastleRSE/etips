@@ -26,6 +26,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
             cd ~/etips
             git pull origin main
+            sops -d vars.env > .env
             docker-compose pull
             docker-compose up -d --build
           EOF

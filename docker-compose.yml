@@ -44,7 +44,7 @@ services:
 
   directus:
     container_name: directus
-    image: ghcr.io/artgpz/directus-template/server:c478bbdb19d4aaf912604e317bae46806904d748
+    image: ghcr.io/artgpz/directus-template/server:latest
     restart: unless-stopped
     volumes:
       - ./data/directus/database:/directus/database:rw
@@ -58,12 +58,12 @@ services:
         condition: service_healthy
 
   etips:
-    # image: etips
-    # build:
-    #   context: .
-    #   dockerfile: Dockerfile
-    # user: node
-    image: ghrc.io/newcastlerse/etips:latest
+    image: etips
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: node
+    # image: ghrc.io/newcastlerse/etips:latest
     container_name: etips
     env_file:
       - .env
