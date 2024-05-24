@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { scrollIntoView } from '$lib/utils/scroll'
 	import CardMedia from '../cards/card_media.svelte'
 	import CardText from '../cards/card_text.svelte'
 	import SelectionInput from './selection_input.svelte'
@@ -7,7 +8,7 @@
 	let specific_case = false
 </script>
 
-<div class="doctor-flow-form my-12">
+<div class="doctor-flow-form my-12" use:scrollIntoView>
 	<SelectionInput
 		bind:checked={specific_case}
 		left_label="Specific case"
