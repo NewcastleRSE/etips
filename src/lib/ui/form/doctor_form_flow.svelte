@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { scrollIntoView } from '$lib/utils/scroll'
-	import CardMedia from '../cards/card_media.svelte'
 	import CardText from '../cards/card_text.svelte'
 	import SelectionInput from './selection_input.svelte'
 	import TextInput from './text_input.svelte'
