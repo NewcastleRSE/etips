@@ -26,9 +26,9 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
-            export SOPS_AGE_KEY_FILE=/home/$SSH_USER/.age/key.txt
+            export SOPS_AGE_KEY_FILE= ~/.age/key.txt
             echo $SOPS_AGE_KEY_FILE
-            cd $SSH_USER/etips
+            cd ~/etips
             git pull origin main
             sops -d vars.env > .env
             sudo docker compose pull
