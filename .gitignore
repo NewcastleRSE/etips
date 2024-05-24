@@ -12,3 +12,4 @@ vite.config.ts.timestamp-*
 /data/db/postgres/restore
 /data/caddy/caddy_config
 /data/caddy/caddy_data
+/data/directus/uploads/*
