@@ -14,6 +14,7 @@
 	import Button from '$lib/ui/button/button.svelte'
 	import Reset from '$lib/dialogs/reset.svelte'
 	import { side } from '$lib/stores/layout'
+	import { PUBLIC_ANALYTICS_DOMAIN, PUBLIC_ANALYTICS_WEBSITE_ID } from '$env/static/public'
 	export let data
 	$side = data.side
 	let debug = false
@@ -63,6 +64,14 @@
 		// )
 	})
 </script>
+
+<svelte:head>
+	<script
+		defer
+		src="{PUBLIC_ANALYTICS_DOMAIN}/script.js"
+		data-website-id={PUBLIC_ANALYTICS_WEBSITE_ID}
+	></script>
+</svelte:head>
 
 {#if debug}
 	<pre>{JSON.stringify(data, null, 2)}</pre>

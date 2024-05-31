@@ -1,12 +1,12 @@
 <script lang="ts">
-	import CardMedia from '../cards/card_media.svelte'
+	import { scrollIntoView } from '$lib/utils/scroll'
 	import CardText from '../cards/card_text.svelte'
 	import SelectionInput from './selection_input.svelte'
 	import TextInput from './text_input.svelte'
 	export let cards
 </script>
 
-<div class="parent-flow-form my-12">
+<div class="parent-flow-form my-12" use:scrollIntoView>
 	<TextInput
 		required
 		label="Age of child (in weeks)"

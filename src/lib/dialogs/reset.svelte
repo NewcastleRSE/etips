@@ -17,8 +17,8 @@
 	{#if $page.data.role === 'doctor'}
 		<form
 			method="post"
-			action="/?/change-side"
-			use:enhance={({}) => {
+			action="/access?/change-side"
+			use:enhance={() => {
 				return async ({ result, update }) => {
 					if (result.type === 'success') {
 						await invalidateAll()
@@ -50,8 +50,8 @@
 	{#if $page.data.role === 'parent'}
 		<form
 			method="post"
-			action="/?/reset"
-			use:enhance={({}) => {
+			action="/access?/reset"
+			use:enhance={() => {
 				return async ({ result, update }) => {
 					if (result.type === 'redirect') {
 						goto(result.location).then(() => {
