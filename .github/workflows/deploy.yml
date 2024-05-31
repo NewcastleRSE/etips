@@ -27,7 +27,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no $SSH_USER@$SSH_HOST << 'EOF'
             cd ~/etips
-            docker image prune -f
+            docker image prune -af
             git pull origin main
             sops -d vars.env > .env
             sudo docker compose pull
