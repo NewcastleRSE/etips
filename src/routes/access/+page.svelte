@@ -6,6 +6,12 @@
 	let role = ''
 </script>
 
+<svelte:head>
+	{#key $page}
+		<title>{genTitle(['Welcome'])}</title>
+	{/key}
+</svelte:head>
+
 <!-- TODO: fix scroll size on desktop -->
 <!-- <div class="content-container min-h-screen w-screen overflow-x-hidden lg:w-full"> -->
 

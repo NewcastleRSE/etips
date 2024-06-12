@@ -5,6 +5,7 @@
 	import TextInput from './text_input.svelte'
 	export let cards
 	let specific_case = false
+	let preterm = false
 </script>
 
 <div class="doctor-flow-form my-12" use:scrollIntoView>
@@ -25,16 +26,25 @@
 			name="age-weeks"
 			id="form-age-weeks"
 		></TextInput>
-		<TextInput
-			required
-			label="Was your baby born preterm? And if so, how many weeks before the due date were they born?"
-			type="number"
-			name="age-preterm"
-			id="form-age-preterm"
-		></TextInput>
 		<SelectionInput
-			left_label="Left"
-			right_label="Right"
+			required
+			label="Was the baby born preterm (before 37 weeks gestation)? "
+			option
+			name="preterm"
+			bind:checked={preterm}
+		></SelectionInput>
+		{#if preterm}
+			<TextInput
+				required
+				label="How many weeks before the due date were they born?"
+				type="number"
+				name="age-preterm"
+				id="form-age-preterm"
+			></TextInput>
+		{/if}
+		<SelectionInput
+			left_label="Left side of the brain affected - eTIPS RIGHT website"
+			right_label="Right side of the brain affected - eTIPS LEFT website"
 			required
 			label="Side of brain affected"
 			name="side-affected"

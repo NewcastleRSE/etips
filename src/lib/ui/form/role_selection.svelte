@@ -9,11 +9,11 @@
 >
 	<button
 		class="role-selection-left-col flex h-full w-full flex-col items-center justify-evenly rounded-lg transition-all hover:opacity-100"
-		class:opacity-60={role === '' || role === 'doctor'}
-		class:opacity-100={role === 'parent'}
-		class:selected={role === 'parent'}
+		class:opacity-60={role === '' || role === 'healthcare-professional'}
+		class:opacity-100={role === 'carer'}
+		class:selected={role === 'carer'}
 		on:click={() => {
-			role = 'parent'
+			role = 'carer'
 		}}
 		type="button"
 		><svg
@@ -36,11 +36,11 @@
 	>
 	<button
 		class="role-selection-right-col flex h-full w-full flex-col items-center justify-evenly rounded-lg transition-all hover:opacity-100"
-		class:opacity-60={role === '' || role === 'parent'}
-		class:opacity-100={role === 'doctor'}
-		class:selected={role === 'doctor'}
+		class:opacity-60={role === '' || role === 'carer'}
+		class:opacity-100={role === 'healthcare-professional'}
+		class:selected={role === 'healthcare-professional'}
 		on:click={() => {
-			role = 'doctor'
+			role = 'healthcare-professional'
 		}}
 		type="button"
 	>

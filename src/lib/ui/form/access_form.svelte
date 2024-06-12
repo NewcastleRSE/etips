@@ -49,9 +49,11 @@
 				notify.send({ value: `${result.data?.message}` })
 			}
 			if (result.type === 'success') {
-				notify.send({ value: `Welcome to eTIPS` })
-				goto(`${result.data?.url}`)
-				await invalidateAll()
+				if (result.data?.url) {
+					notify.send({ value: `Welcome to eTIPS` })
+					await invalidateAll()
+					goto(`${result.data?.url}`)
+				}
 			}
 		}
 	}}
@@ -68,10 +70,10 @@
 	{#if disclaimer_consent}
 		<RoleSelection bind:role></RoleSelection>
 		<input type="text" name="role" bind:value={role} class="hidden opacity-0" />
-		{#if role === 'doctor'}
+		{#if role === 'healthcare-professional'}
 			<DoctorFormFlow {cards}></DoctorFormFlow>
 		{/if}
-		{#if role === 'parent'}
+		{#if role === 'carer'}
 			<ParentFormFlow {cards}></ParentFormFlow>
 		{/if}
 
@@ -89,6 +91,10 @@
 				{/if}
 			</SelectionInput>
 			{#if contact_consent}
+				{#if role === 'healthcare-professional'}
+					<TextInput required label="Job title" type="text" name="job-title" id="form-job-title"
+					></TextInput>
+				{/if}
 				<TextInput required label="First name" type="text" name="first-name" id="form-first-name"
 				></TextInput>
 				<TextInput required label="Last name" type="text" name="last-name" id="form-last-name"
@@ -116,10 +122,10 @@
 		border-right: 1px solid var(--theme-colour-4);
 		background-color: var(--theme-colour-1);
 	}
-	.parent {
+	.carer {
 		background: color-mix(in srgb, var(--theme-colour-4) 10%, white 80%);
 	}
-	.doctor {
+	.healthcare-professional {
 		background: color-mix(in srgb, var(--theme-colour-5) 10%, white 80%);
 	}
 </style>
