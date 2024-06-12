@@ -16,6 +16,7 @@ declare global {
 				side: string
 				role: string
 			}
+			startTimer: number
 		}
 		// interface PageData {}
 		// interface PageState {}
