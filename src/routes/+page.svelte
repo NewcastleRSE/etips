@@ -1,11 +1,19 @@
 <script lang="ts">
 	import { goto } from '$app/navigation'
+	import { page } from '$app/stores'
 	import Button from '$lib/ui/button/button.svelte'
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
+	import { genTitle } from '$lib/utils/seo.js'
 	export let data
 	$: cards = data.page.cards.filter((c) => c.cards_id?.type === 'hero')
 	//NOTE:assersion to stop ts yell, add checks?
 </script>
+
+<svelte:head>
+	{#key $page}
+		<title>{genTitle(['Welcome'])}</title>
+	{/key}
+</svelte:head>
 
 <div class="content-container overflow-y-scroll">
 	{#if data.page.cards}

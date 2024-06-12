@@ -36,6 +36,7 @@ jobs:
           DIRECTUS_URL: ${{ secrets.DIRECTUS_URL }}
           DIRECTUS_TOKEN: ${{ secrets.DIRECTUS_TOKEN }}
           PUBLIC_CMS_ENDPOINT: ${{ secrets.PUBLIC_CMS_ENDPOINT }}
+          NODE_ENV: development
 
   # close_pull_request_job:
   #   if: github.event_name == 'pull_request' && github.event.action == 'closed'

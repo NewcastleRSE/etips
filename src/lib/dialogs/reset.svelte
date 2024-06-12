@@ -14,11 +14,11 @@
 <dialog id="dialog-change-side" class="rounded-lg p-4">
 	<h4>You're currently in</h4>
 	<h3 class="my-4 border-b text-center text-xl">{data.copy}</h3>
-	{#if $page.data.role === 'doctor'}
+	{#if $page.data.role === 'healthcare-professional'}
 		<form
 			method="post"
-			action="/?/change-side"
-			use:enhance={({}) => {
+			action="/access?/change-side"
+			use:enhance={() => {
 				return async ({ result, update }) => {
 					if (result.type === 'success') {
 						await invalidateAll()
@@ -47,11 +47,11 @@
 			</div>
 		</form>
 	{/if}
-	{#if $page.data.role === 'parent'}
+	{#if $page.data.role === 'carer'}
 		<form
 			method="post"
-			action="/?/reset"
-			use:enhance={({}) => {
+			action="/access?/reset"
+			use:enhance={() => {
 				return async ({ result, update }) => {
 					if (result.type === 'redirect') {
 						goto(result.location).then(() => {

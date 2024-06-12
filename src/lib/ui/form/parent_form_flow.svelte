@@ -1,12 +1,13 @@
 <script lang="ts">
-	import CardMedia from '../cards/card_media.svelte'
+	import { scrollIntoView } from '$lib/utils/scroll'
 	import CardText from '../cards/card_text.svelte'
 	import SelectionInput from './selection_input.svelte'
 	import TextInput from './text_input.svelte'
 	export let cards
+	let preterm = false
 </script>
 
-<div class="parent-flow-form my-12">
+<div class="parent-flow-form my-12" use:scrollIntoView>
 	<TextInput
 		required
 		label="Age of child (in weeks)"
@@ -14,17 +15,26 @@
 		name="age-weeks"
 		id="form-age-weeks"
 	></TextInput>
-	<TextInput
-		required
-		label="Was your baby born preterm? And if so, how many weeks before the due date were they born?"
-		type="number"
-		name="age-preterm"
-		id="form-age-preterm"
-	></TextInput>
-
 	<SelectionInput
-		left_label="Left side of brain affected"
-		right_label="Right side of brain affected"
+		required
+		label="Was your baby born preterm (before 37 weeks gestation)? "
+		option
+		name="preterm"
+		bind:checked={preterm}
+	></SelectionInput>
+
+	{#if preterm}
+		<TextInput
+			required
+			label="How many weeks before the due date were they born?"
+			type="number"
+			name="age-preterm"
+			id="form-age-preterm"
+		></TextInput>
+	{/if}
+	<SelectionInput
+		left_label="Left side of the brain affected - eTIPS RIGHT website"
+		right_label="Right side of the brain affected - eTIPS LEFT website"
 		required
 		label="Side of brain affected"
 		name="side-affected"

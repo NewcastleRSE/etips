@@ -4,7 +4,7 @@
 	import Button from '../button/button.svelte'
 	import { page } from '$app/stores'
 	import { browser } from '$app/environment'
-	export let topics: Topic[]
+	export let topics: Topic[] | undefined
 	function setButtons(topics: Topic[], slug: string) {
 		const filtered = topics.filter((t) => t.slug === slug)
 		const currentIndex = topics.indexOf(filtered[0])
@@ -22,7 +22,7 @@
 			next
 		}
 	}
-	$: buttons = setButtons(topics, $page.params.topic)
+	$: buttons = topics ? setButtons(topics, $page.params.topic) : []
 	const dispatch = createEventDispatcher()
 	$: if ($page.params.topic && browser) {
 		setTimeout(() => {
@@ -34,7 +34,7 @@
 	}
 </script>
 
-{#if $page.params.topic && $page.params.slug}
+{#if $page.params.topic && $page.params.slug && topics}
 	<nav
 		class="topics-nav sticky left-0 top-12 z-50 grid h-12 grid-cols-[minmax(0,3rem),minmax(0,1fr),minmax(0,3rem)] transition-all md:top-16 md:h-16 md:grid-cols-[minmax(0,4rem),minmax(0,1fr),minmax(0,4rem)] lg:top-0"
 	>

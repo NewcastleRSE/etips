@@ -1,7 +1,7 @@
 import type { Page } from '$lib/types'
 import { readItems } from '@directus/sdk'
 import type { LayoutServerLoad } from '../$types'
-import { redirect } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 
 export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 	const { directus } = locals
@@ -52,6 +52,9 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 			}
 		})
 	)
+	if (page.length === 0) {
+		error(404, `${params.slug} doesn't exist...`)
+	}
 	if (
 		page[0].category === 'restricted' &&
 		(!cookies.get('etips-side') ||
