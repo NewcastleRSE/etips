@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	export let data
 	import AccessForm from '$lib/ui/form/access_form.svelte'
+	import { genTitle } from '$lib/utils/seo.js'
 	let role = ''
 </script>
 
@@ -9,8 +11,8 @@
 
 <div
 	class="accept-page overflow-y-scroll"
-	class:doctor={role === 'doctor'}
-	class:parent={role === 'parent'}
+	class:doctor={role === 'healthcare-professional'}
+	class:parent={role === 'carer'}
 >
 	<AccessForm {data}></AccessForm>
 </div>

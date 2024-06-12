@@ -3,10 +3,16 @@
 	import { page } from '$app/stores'
 	import Button from '$lib/ui/button/button.svelte'
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
+	import { genTitle } from '$lib/utils/seo.js'
 	import { fade, fly, slide } from 'svelte/transition'
 	export let data
 </script>
 
+<svelte:head>
+	{#key $page}
+		<title>{genTitle([$page.params.slug])}</title>
+	{/key}
+</svelte:head>
 <!-- HACK: to get scroll for now -->
 <div class="content-container w-screen overflow-x-hidden lg:w-full">
 	{#if data.page.cards}
