@@ -57,7 +57,7 @@
 	>
 		{#if !search_bar_open}
 			<div class="nav-wrapper hidden w-full lg:block">
-				{#if $page.params.slug && !$page.params.topic}
+				{#if $page.params.slug && !$page.params.topic && $page.data.page}
 					<h3 class="content-desktop-header px-8 text-center text-2xl">
 						Available topics in <strong style="color: var(--theme-colour-3)"
 							>{$page.data.page.title}</strong
@@ -74,7 +74,9 @@
 				{/if}
 			</div>
 		{/if}
-		<SearchBar bind:search_bar_open></SearchBar>
+		{#if $page.data.page}
+			<SearchBar bind:search_bar_open></SearchBar>
+		{/if}
 		<!-- <div class="nav-left-border h-full lg:hidden"> -->
 		<!-- 	<Button -->
 		<!-- 		on:click={() => { -->
