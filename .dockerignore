@@ -13,3 +13,10 @@ README.md
 node_modules
 build
 package
+data
+tests
+.eslintrc.cjs
+.eslintignore
+.prettierrc
+.prettierignore
+.docker-compose.yml
