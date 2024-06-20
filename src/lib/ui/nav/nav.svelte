@@ -36,20 +36,22 @@
 		>
 			<img src="/favicon.png" alt="etips logo" class="w-32 mix-blend-multiply" />
 		</button>
-		<div
-			class="side-title relative flex h-full w-full items-center justify-center px-4 lg:text-lg"
-			class:hidden={copy === ''}
-			class:side-title-border={$page.params.slug}
-		>
-			<button
-				disabled={$page.data.role === 'public' ? true : undefined}
-				class="absolute"
-				on:click={() => {
-					if ($page.data.role !== 'public') openDialog()
-				}}
-				>{copy}
-			</button>
-		</div>
+		{#if !$page.url.pathname.includes('pages')}
+			<div
+				class="side-title relative flex h-full w-full items-center justify-center px-4 lg:text-lg"
+				class:hidden={copy === ''}
+				class:side-title-border={$page.params.slug}
+			>
+				<button
+					disabled={$page.data.role === 'public' ? true : undefined}
+					class="absolute"
+					on:click={() => {
+						if ($page.data.role !== 'public') openDialog()
+					}}
+					>{copy}
+				</button>
+			</div>
+		{/if}
 	</div>
 	<div
 		class="nav-right-col col-span-1 col-start-2 flex items-center justify-end transition-all lg:justify-normal"
@@ -59,8 +61,8 @@
 			<div class="nav-wrapper hidden w-full lg:block">
 				{#if $page.params.slug && !$page.params.topic && $page.data.page}
 					<h3 class="content-desktop-header px-8 text-center text-2xl">
-						Available topics in <strong style="color: var(--theme-colour-3)"
-							>{$page.data.page.title}</strong
+						{#if !$page.url.pathname.includes('pages')}Available topics in{/if}<strong
+							style="color: var(--theme-colour-3)">{$page.data.page.title}</strong
 						>
 					</h3>
 				{/if}

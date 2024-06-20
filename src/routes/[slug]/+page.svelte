@@ -34,9 +34,6 @@
 		<div
 			class="content-desktop flex h-full flex-wrap p-2 lg:grid lg:grid-cols-3 xl:grid-cols-4 xl:p-4 2xl:grid-cols-5"
 		>
-			<!-- <h3 class="content-desktop-header p-8 text-2xl"> -->
-			<!-- 	Available topics in {$page.data.page.title} -->
-			<!-- </h3> -->
 			{#if data.page.topics}
 				{#key data.page}
 					{#each data.page.topics as topic, i}

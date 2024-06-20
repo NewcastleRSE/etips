@@ -98,7 +98,7 @@
 	>
 		<slot></slot>
 	</main>
-	<Footer></Footer>
+	<Footer {data}></Footer>
 	<Reset {data}></Reset>
 </div>
 
