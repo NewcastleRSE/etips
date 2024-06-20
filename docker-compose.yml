@@ -57,22 +57,22 @@ services:
       postgres:
         condition: service_healthy
 
-  etips:
-    # image: etips
-    build:
-      context: .
-      dockerfile: Dockerfile
-    user: node
-    # image: ghrc.io/newcastlerse/etips:latest
-    container_name: etips
-    env_file:
-      - .env
-    restart: unless-stopped
-    networks:
-      - subnet
-    depends_on:
-      postgres:
-        condition: service_healthy
+  #etips:
+  # image: etips
+  #build:
+  #context: .
+  #dockerfile: Dockerfile
+  #user: node
+  # image: ghrc.io/newcastlerse/etips:latest
+  #container_name: etips
+  #env_file:
+  #- .env
+  #restart: unless-stopped
+  #networks:
+  #- subnet
+  #depends_on:
+  #postgres:
+  #condition: service_healthy
 
   umami:
     container_name: umami
