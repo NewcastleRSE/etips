@@ -27,7 +27,7 @@ WORKDIR /app
 COPY package*.json .
 COPY .npmrc .
 RUN npm install
-COPY . .
+# COPY . .
 RUN npm run build
 RUN npm prune --production
 
