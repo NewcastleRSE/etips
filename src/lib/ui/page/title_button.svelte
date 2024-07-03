@@ -27,9 +27,13 @@
 			dispatch('click', slug)
 		}}
 	>
-		<h2 class="page-title-text text-xl capitalize">{title}</h2>
+		<h2 class="page-title-text overflow-hidden text-ellipsis text-nowrap text-xl capitalize">
+			{title}{$page.params.topic ? ` - ${$page.data.topic.title}` : ''}
+		</h2>
 		<div class="icon-wrapper lg:hidden">
 			<DynamicIcon
+				stroke={2.5}
+				size={32}
 				selected={!$page.params.topic}
 				icon={!$page.params.topic ? down_chevron : right_chevron}
 			></DynamicIcon>
