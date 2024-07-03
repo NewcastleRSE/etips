@@ -4,8 +4,6 @@ import { log } from '@arturoguzman/art-ui'
 import { type Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-	// const id = getId()
-	// console.time(`id: ${id}`)
 	event.locals.startTimer = Date.now()
 	event.locals.directus = directus
 	event.locals.session = {
@@ -13,7 +11,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 		role: event.cookies.get('etips-role') ?? 'public'
 	}
 	const role = event.cookies.get('etips-role')
-	if (!verifyCookie(role, ['carer', 'healthcare-professional'])) {
+	if (
+		!verifyCookie(role, ['carer', 'healthcare-professional']) &&
+		!event.url.pathname.includes('/assets')
+	) {
 		event.cookies.delete('etips-disclaimer-consent', { path: '/' })
 		event.cookies.delete('etips-role', { path: '/' })
 		event.cookies.delete('etips-side', { path: '/' })
