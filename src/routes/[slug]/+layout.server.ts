@@ -63,7 +63,7 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 		error(404, `${params.slug} doesn't exist...`)
 	}
 	if (
-		page[0].category === 'restricted' &&
+		(page[0].category === 'restricted' || page[0].category === 'restricted_hcp') &&
 		(!cookies.get('etips-side') ||
 			!cookies.get('etips-role') ||
 			!cookies.get('etips-disclaimer-consent'))
@@ -76,7 +76,8 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 		cookies.delete('etips-side', { path: '/' })
 		redirect(307, '/access')
 	}
-	if (page[0].category !== 'restricted') {
+	if (page[0].category !== 'restricted' && page[0].category !== 'restricted_hcp') {
+		console.log('wheenenenenenn')
 		redirect(307, '/access')
 	}
 	const topics = await directus.request(

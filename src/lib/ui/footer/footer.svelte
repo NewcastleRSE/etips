@@ -8,9 +8,10 @@
 		<img src="/nu_logo.png" class="h-12 object-contain md:h-16" />
 		<img src="" alt="" />
 	</div>
-	<div class="footer-right-col flex justify-end gap-4 pr-4">
+	<div class="footer-right-col flex justify-end gap-4 pr-4 text-xs md:text-base">
 		{#each data.pages.filter((p) => p.category === 'research') as page}
 			<button
+				class="text-ellipsis text-nowrap"
 				on:click={() => {
 					goto(`/pages/${page.slug}`)
 				}}>{page.title}</button

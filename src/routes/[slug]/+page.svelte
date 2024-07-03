@@ -4,7 +4,7 @@
 	import Button from '$lib/ui/button/button.svelte'
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
 	import { genTitle } from '$lib/utils/seo.js'
-	import { fade, fly, slide } from 'svelte/transition'
+	import { fly } from 'svelte/transition'
 	export let data
 </script>
 
@@ -13,7 +13,6 @@
 		<title>{genTitle([$page.params.slug])}</title>
 	{/key}
 </svelte:head>
-<!-- HACK: to get scroll for now -->
 <div class="content-container w-screen overflow-x-hidden lg:w-full">
 	{#if data.page.cards}
 		<div class="content-mobile lg:hidden">
@@ -108,13 +107,4 @@
 			background: inherit;
 		}
 	}
-	/* .content-desktop-header { */
-	/* 	font-family: var(--theme-font-title-2); */
-	/* 	font-weight: 700; */
-	/* 	color: var(--theme-colour-4); */
-	/* } */
-	/* .cards { */
-	/* 	border-right: 1px solid var(--theme-colour-4); */
-	/* 	border-left: 1px solid var(--theme-colour-4); */
-	/* } */
 </style>

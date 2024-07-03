@@ -27,9 +27,17 @@
 			dispatch('click', slug)
 		}}
 	>
-		<h2 class="page-title-text overflow-hidden text-ellipsis text-nowrap text-xl capitalize">
+		<h2
+			class="page-title-text overflow-hidden text-ellipsis text-nowrap text-xl capitalize md:hidden"
+		>
 			{title}{$page.params.topic ? ` - ${$page.data.topic.title}` : ''}
 		</h2>
+		<h2
+			class="page-title-text hidden overflow-hidden text-ellipsis text-nowrap text-xl capitalize md:block"
+		>
+			{title}
+		</h2>
+
 		<div class="icon-wrapper lg:hidden">
 			<DynamicIcon
 				stroke={2.5}

@@ -38,7 +38,7 @@
 			</div>
 		{/if}
 		{#if card.type === 'rhyme'}
-			<div class:hidden={!card.copy || card.copy === ''} class="rhyme prose-lg">
+			<div class:hidden={!card.copy || card.copy === ''} class="rhyme prose-sm md:prose-lg">
 				{#if card.copy}
 					{@html copy}
 				{/if}
@@ -108,15 +108,20 @@
 		font-family: var(--theme-font-subtitle);
 		font-weight: 400;
 	}
-	/* p { */
-	/* 	font-family: var(--theme-font-paragraph); */
-	/* } */
 
 	:global(.rhyme > *) {
 		color: var(--theme-colour-6);
-		font-size: 1.4rem;
+		font-size: 1.1rem;
 		font-family: var(--theme-font-title-2);
 		font-weight: 700;
+	}
+	@media (min-width: 768px) {
+		:global(.rhyme > *) {
+			color: var(--theme-colour-6);
+			font-size: 1.4rem;
+			font-family: var(--theme-font-title-2);
+			font-weight: 700;
+		}
 	}
 	:global(.copy > h3) {
 		font-size: 1.5rem /* 24px */;

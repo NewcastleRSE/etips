@@ -22,7 +22,7 @@
 			<a
 				href="/assets/{media.directus_files_id.id}"
 				download
-				class="file-download grid grid-cols-1 grid-rows-[minmax(0,1fr)] gap-8"
+				class="file-download grid grid-cols-1 grid-rows-[minmax(0,1fr)] gap-8 overflow-hidden"
 				style:--cursor-x="{cursorX}px"
 				style:--cursor-y="{cursorY}px"
 				on:pointerenter={() => {
@@ -38,9 +38,17 @@
 					<!-- <img src="/assets/{card.thumbnail}" class="h-64 p-4" alt="" /> -->
 					<!-- <Picture alt="a" image={card.thumbnail}></Picture> -->
 				{/if}
-				<div class="flex items-center justify-start gap-4">
-					<DynamicIcon icon={download_icon} size={48}></DynamicIcon>
-					<p class="text-lg">{hover ? 'Click to download' : media.directus_files_id.title}</p>
+				<div class="flex items-center justify-start gap-1 md:gap-4">
+					<div class="md:hidden">
+						<DynamicIcon icon={download_icon} size={24}></DynamicIcon>
+					</div>
+					<div class="hidden md:block">
+						<DynamicIcon icon={download_icon} size={48}></DynamicIcon>
+					</div>
+
+					<p class="text-sm md:text-lg">
+						{hover ? 'Click to download' : media.directus_files_id.title}
+					</p>
 				</div>
 			</a>
 		{/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import type { Page } from '$lib/types'
 	import NavPagesButton from './nav_pages_button.svelte'
 	export let direction = 'horizontal'
@@ -9,7 +10,7 @@
 
 <nav class="sticky left-0 top-0 z-50 flex {direction} w-screen lg:w-full">
 	{#each pages as page_button}
-		{#if page_button.category === 'restricted'}
+		{#if page_button.category === 'restricted' || (page_button.category === 'restricted_hcp' && $page.data.role === 'healthcare-professional')}
 			<NavPagesButton {page_button} {direction}></NavPagesButton>
 		{/if}
 	{/each}
@@ -23,8 +24,6 @@
 		height: 3rem;
 		width: 100%;
 		border-bottom: 1px solid var(--theme-colour-4);
-		/* overflow-y: hidden; */
-		/* overflow-x: scroll; */
 	}
 	.vertical {
 		height: 100%;

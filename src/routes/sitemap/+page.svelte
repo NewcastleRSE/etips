@@ -7,7 +7,7 @@
 	{#each data.sitemap as page}
 		<button
 			class="mb-4 rounded-lg border border-black bg-white p-4"
-			class:restricted={page.category === 'restricted'}
+			class:restricted={page.category === 'restricted' || page.category === 'restricted_hcp'}
 			on:click|self={() => {
 				goto(`${page.category === 'research' ? '/pages/' : '/'}${page.slug}`)
 			}}
