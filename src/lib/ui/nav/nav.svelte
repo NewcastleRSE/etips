@@ -17,9 +17,11 @@
 
 <svelte:window bind:innerWidth={windowWidth} />
 <nav
-	class="z-50 grid h-14 w-full transition-all md:h-16 lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)]"
+	class="z-50 grid h-14 w-full transition-all md:h-16 lg:grid-cols-[minmax(0,4fr),minmax(0,9fr)] print:hidden"
 	class:grid-cols-[minmax(0,1fr)]={!$page.params.slug}
-	class:grid-cols-[minmax(0,7fr),minmax(0,1fr)]={$page.params.slug && !search_bar_open}
+	class:grid-cols-[minmax(0,7fr),minmax(0,1fr)]={$page.params.slug &&
+		!search_bar_open &&
+		!$page.params.slug}
 	class:grid-cols-[minmax(0,0fr),minmax(0,1fr)]={$page.params.slug && search_bar_open}
 	class:navigating
 >
@@ -53,40 +55,42 @@
 			</div>
 		{/if}
 	</div>
-	<div
-		class="nav-right-col col-span-1 col-start-2 flex items-center justify-end transition-all lg:justify-normal"
-		class:hidden={!$page.params.slug}
-	>
-		{#if !search_bar_open}
-			<div class="nav-wrapper hidden w-full lg:block">
-				{#if $page.params.slug && !$page.params.topic && $page.data.page}
-					<h3 class="content-desktop-header px-8 text-center text-2xl">
-						{#if !$page.url.pathname.includes('pages')}Available topics in
-						{/if}<strong style="color: var(--theme-colour-3)">{$page.data.page.title}</strong>
-					</h3>
-				{/if}
-				{#if $page.params.slug && $page.params.topic}
-					<NavTopics
-						on:click={(e) => {
-							goto(`/${$page.params.slug}/${e.detail}`)
-						}}
-						topics={$page.data.topics}
-					></NavTopics>
-				{/if}
-			</div>
-		{/if}
-		{#if $page.data.page}
-			<SearchBar bind:search_bar_open></SearchBar>
-		{/if}
-		<!-- <div class="nav-left-border h-full lg:hidden"> -->
-		<!-- 	<Button -->
-		<!-- 		on:click={() => { -->
-		<!-- 			goto('/access') -->
-		<!-- 		}} -->
-		<!-- 		label="Enter" -->
-		<!-- 	></Button> -->
-		<!-- </div> -->
-	</div>
+	{#if !$page.url.pathname.includes('pages')}
+		<div
+			class="nav-right-col col-span-1 col-start-2 flex items-center justify-end transition-all lg:justify-normal"
+			class:hidden={!$page.params.slug}
+		>
+			{#if !search_bar_open}
+				<div class="nav-wrapper hidden w-full lg:block">
+					{#if $page.params.slug && !$page.params.topic && $page.data.page}
+						<h3 class="content-desktop-header px-8 text-center text-2xl">
+							{#if !$page.url.pathname.includes('pages')}Available topics in
+							{/if}<strong style="color: var(--theme-colour-3)">{$page.data.page.title}</strong>
+						</h3>
+					{/if}
+					{#if $page.params.slug && $page.params.topic}
+						<NavTopics
+							on:click={(e) => {
+								goto(`/${$page.params.slug}/${e.detail}`)
+							}}
+							topics={$page.data.topics}
+						></NavTopics>
+					{/if}
+				</div>
+			{/if}
+			{#if $page.data.page}
+				<SearchBar bind:search_bar_open></SearchBar>
+			{/if}
+			<!-- <div class="nav-left-border h-full lg:hidden"> -->
+			<!-- 	<Button -->
+			<!-- 		on:click={() => { -->
+			<!-- 			goto('/access') -->
+			<!-- 		}} -->
+			<!-- 		label="Enter" -->
+			<!-- 	></Button> -->
+			<!-- </div> -->
+		</div>
+	{/if}
 </nav>
 
 <style>

@@ -3,7 +3,7 @@
 	export let data
 </script>
 
-<footer class="fixed bottom-0 left-0 grid h-12 w-screen grid-cols-2 md:h-16">
+<footer class="fixed bottom-0 left-0 grid h-12 w-screen grid-cols-2 md:h-16 print:hidden">
 	<div class="footer-left-col h-full pl-4">
 		<img src="/nu_logo.png" class="h-12 object-contain md:h-16" />
 		<img src="" alt="" />
