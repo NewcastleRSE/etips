@@ -1,8 +1,8 @@
 import { directus } from '$lib/directus'
+import { verifyCookie } from '$lib/utils/cookies'
 import { log } from '@arturoguzman/art-ui'
 import { type Handle } from '@sveltejs/kit'
 
-const roles = ['carer', 'healthcare-professional']
 export const handle: Handle = async ({ event, resolve }) => {
 	// const id = getId()
 	// console.time(`id: ${id}`)
@@ -13,7 +13,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		role: event.cookies.get('etips-role') ?? 'public'
 	}
 	const role = event.cookies.get('etips-role')
-	if (role && !roles.includes(role)) {
+	if (!verifyCookie(role, ['carer', 'healthcare-professional'])) {
 		event.cookies.delete('etips-disclaimer-consent', { path: '/' })
 		event.cookies.delete('etips-role', { path: '/' })
 		event.cookies.delete('etips-side', { path: '/' })

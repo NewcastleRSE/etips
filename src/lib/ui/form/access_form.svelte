@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
+	import { applyAction, enhance } from '$app/forms'
 	import { goto, invalidateAll } from '$app/navigation'
 	import { notify } from '$lib/stores/notify'
 	import type { Card, Page, Topic } from '$lib/types'
@@ -7,6 +7,7 @@
 	import SelectionInput from '$lib/ui/form/selection_input.svelte'
 	import TextInput from '$lib/ui/form/text_input.svelte'
 	import { scrollIntoView } from '$lib/utils/scroll'
+	import { redirect } from '@sveltejs/kit'
 	import CardText from '../cards/card_text.svelte'
 	import DoctorFormFlow from './doctor_form_flow.svelte'
 	import FormDisclaimer from './form_disclaimer.svelte'
@@ -51,9 +52,14 @@
 			if (result.type === 'success') {
 				if (result.data?.url) {
 					notify.send({ value: `Welcome to eTIPS` })
-					await invalidateAll()
 					goto(`${result.data?.url}`)
+					await applyAction(result)
+					// await invalidateAll()
 				}
+			}
+			if (result.type === 'redirect') {
+				notify.send({ value: `Welcome to eTIPS` })
+				await applyAction(result)
 			}
 		}
 	}}

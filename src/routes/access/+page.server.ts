@@ -1,16 +1,21 @@
-import { message } from '$lib/stores/notify.js'
 import type { Page } from '$lib/types/index.js'
 import { createItem, readItems } from '@directus/sdk'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
 
-export const load = async ({ cookies, locals }) => {
-	const etips_side = cookies.get('etips-side')
-	const etips_role = cookies.get('etips-role')
-	const etips_disclaimer_consent = cookies.get('etips-disclaimer-consent')
-	if (etips_side || etips_disclaimer_consent || etips_role) {
+export const load = async ({ cookies, locals, request }) => {
+	const existing_cookies = [
+		cookies.get('etips-side'),
+		cookies.get('etips-role'),
+		cookies.get('etips-disclaimer-consent')
+	]
+		.filter((c) => c !== undefined)
+		.filter((c) => c !== '')
+	if (existing_cookies.length < 3) {
 		cookies.delete('etips-disclaimer-consent', { path: '/' })
 		cookies.delete('etips-role', { path: '/' })
 		cookies.delete('etips-side', { path: '/' })
+	}
+	if (existing_cookies.length === 3) {
 		redirect(307, '/intro')
 	}
 	const { directus } = locals
@@ -161,13 +166,12 @@ export const actions: Actions = {
 		cookies.set('etips-side', side_affected, cookies_opts)
 		cookies.set('etips-role', role, cookies_opts)
 		cookies.set('etips-disclaimer-consent', `${disclaimer_consent}`, cookies_opts)
-
-		//TODO: manual checks ready, send to directus at this point; also check redirect url so its not manually set
-		return {
-			status: 200,
-			message: 'ok',
-			url: `/intro`
-		}
+		redirect(307, '/intro')
+		// return {
+		// 	status: 200,
+		// 	message: 'ok',
+		// 	url: `/intro`
+		// }
 	},
 	'change-side': async ({ request, cookies }) => {
 		const form = await request.formData()
