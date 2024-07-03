@@ -66,7 +66,8 @@ export const load = async ({ cookies, locals }) => {
 
 export const actions: Actions = {
 	register: async ({ request, cookies, locals }) => {
-		const email_regex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+		const email_regex =
+			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		const form = await request.formData()
 		const disclaimer_consent = String(form.get('disclaimer-consent')) === 'on' ? true : false
 		const role = String(form.get('role'))
