@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { PagesCard, TopicsCard } from '$lib/types'
+	import type { Card, PagesCard, TopicsCard } from '$lib/types'
 	import CardAlert from './card_alert.svelte'
 	import CardEmphasis from './card_emphasis.svelte'
 	import CardHero from './card_hero.svelte'
@@ -9,105 +9,119 @@
 	export let display = 'cards'
 	export let cards: PagesCard[] | TopicsCard[]
 	export let desktop_left = false
+	$: organised_cards = cards.reduce(
+		(acc, el, i) => {
+			const card = el.cards_id
+			if (card && typeof card !== 'string') {
+				if (i === 0) {
+					acc.push({ type: `${card.position}`, cards: [card] })
+					return acc
+				}
+				if (acc[acc.length - 1] && acc[acc.length - 1].type === card.position) {
+					acc[acc.length - 1].cards.push(card)
+					return acc
+				}
+				acc.push({ type: `${card.position}`, cards: [card] })
+			}
+			return acc
+		},
+		[] as { type: string; cards: Card[] }[]
+	)
 </script>
 
 {#if cards.length > 0}
 	<div
-		class="cards-container mx-4 overflow-x-hidden md:overflow-y-scroll"
+		class="cards-container mx-4 grid grid-cols-2 overflow-x-hidden md:overflow-y-scroll"
 		class:cards={display === 'cards'}
 		class:list={display === 'list'}
 		class:continuous={display === 'continuous'}
 		class:two-columns={display === 'two-columns'}
 		class:desktop_left
 	>
-		{#key cards}
-			{#each cards as card, i}
-				<!-- <div class="card-position-wrapper {card.cards_id.position}"> -->
-				{#if card.cards_id && typeof card.cards_id !== 'string' && card.cards_id.position === 'full'}
-					{#if card.cards_id && typeof card.cards_id !== 'string'}
-						{#if card.cards_id.type === 'text' || card.cards_id.type === 'rhyme'}
-							<CardText {display} card={card.cards_id}></CardText>
-						{/if}
-						{#if card.cards_id.type === 'media'}
-							<CardMedia {display} card={card.cards_id}></CardMedia>
-						{/if}
-						{#if card.cards_id.type === 'numbered'}
-							<CardNumbered {display} card={card.cards_id}></CardNumbered>
-						{/if}
-						{#if card.cards_id.type === 'emphasis'}
-							<CardEmphasis card={card.cards_id}></CardEmphasis>
-						{/if}
-						{#if card.cards_id.type === 'alert'}
-							<CardAlert card={card.cards_id}></CardAlert>
-						{/if}
-						{#if card.cards_id.type === 'hero'}
-							<CardHero card={card.cards_id}></CardHero>
-						{/if}
-					{/if}
-					{#if display === 'continuous' && i < cards.length - 1}
-						<div class="separator"></div>
-					{/if}
+		{#key organised_cards}
+			{#each organised_cards as card_col, i}
+				{#if card_col.type === 'full'}
+					<div class="full">
+						{#each card_col.cards as card}
+							{#if card.type === 'text' || card.type === 'rhyme'}
+								<CardText {display} {card}></CardText>
+							{/if}
+							{#if card.type === 'media'}
+								<CardMedia {display} {card}></CardMedia>
+							{/if}
+							{#if card.type === 'numbered'}
+								<CardNumbered {display} {card}></CardNumbered>
+							{/if}
+							{#if card.type === 'emphasis'}
+								<CardEmphasis {card}></CardEmphasis>
+							{/if}
+							{#if card.type === 'alert'}
+								<CardAlert {card}></CardAlert>
+							{/if}
+							{#if card.type === 'hero'}
+								<CardHero {card}></CardHero>
+							{/if}
+							{#if display === 'continuous' && i < cards.length - 1}
+								<div class="separator"></div>
+							{/if}
+						{/each}
+					</div>
 				{/if}
-				<!-- </div> -->
+				{#if card_col.type === 'left'}
+					<div class="left">
+						{#each card_col.cards as card}
+							{#if card.type === 'text' || card.type === 'rhyme'}
+								<CardText {display} {card}></CardText>
+							{/if}
+							{#if card.type === 'media'}
+								<CardMedia {display} {card}></CardMedia>
+							{/if}
+							{#if card.type === 'numbered'}
+								<CardNumbered {display} {card}></CardNumbered>
+							{/if}
+							{#if card.type === 'emphasis'}
+								<CardEmphasis {card}></CardEmphasis>
+							{/if}
+							{#if card.type === 'alert'}
+								<CardAlert {card}></CardAlert>
+							{/if}
+							{#if card.type === 'hero'}
+								<CardHero {card}></CardHero>
+							{/if}
+							{#if display === 'continuous' && i < cards.length - 1}
+								<div class="separator"></div>
+							{/if}
+						{/each}
+					</div>
+				{/if}
+				{#if card_col.type === 'right'}
+					<div class="right">
+						{#each card_col.cards as card}
+							{#if card.type === 'text' || card.type === 'rhyme'}
+								<CardText {display} {card}></CardText>
+							{/if}
+							{#if card.type === 'media'}
+								<CardMedia {display} {card}></CardMedia>
+							{/if}
+							{#if card.type === 'numbered'}
+								<CardNumbered {display} {card}></CardNumbered>
+							{/if}
+							{#if card.type === 'emphasis'}
+								<CardEmphasis {card}></CardEmphasis>
+							{/if}
+							{#if card.type === 'alert'}
+								<CardAlert {card}></CardAlert>
+							{/if}
+							{#if card.type === 'hero'}
+								<CardHero {card}></CardHero>
+							{/if}
+							{#if display === 'continuous' && i < cards.length - 1}
+								<div class="separator"></div>
+							{/if}
+						{/each}
+					</div>
+				{/if}
 			{/each}
-			<div class="cards-container-columns lg:grid lg:grid-cols-2 lg:gap-8">
-				<div class="cards-container-left-col">
-					{#each cards as card, i}
-						<!-- <div class="card-position-wrapper {card.cards_id.position}"> -->
-						{#if card.cards_id && typeof card.cards_id !== 'string' && card.cards_id.position === 'left'}
-							{#if card.cards_id && typeof card.cards_id !== 'string'}
-								{#if card.cards_id.type === 'text' || card.cards_id.type === 'rhyme'}
-									<CardText {display} card={card.cards_id}></CardText>
-								{/if}
-								{#if card.cards_id.type === 'media' || card.cards_id.type === 'hero'}
-									<CardMedia {display} card={card.cards_id}></CardMedia>
-								{/if}
-								{#if card.cards_id.type === 'numbered'}
-									<CardNumbered {display} card={card.cards_id}></CardNumbered>
-								{/if}
-								{#if card.cards_id.type === 'emphasis'}
-									<CardEmphasis card={card.cards_id}></CardEmphasis>
-								{/if}
-								{#if card.cards_id.type === 'alert'}
-									<CardAlert card={card.cards_id}></CardAlert>
-								{/if}
-							{/if}
-							{#if display === 'continuous' && i < cards.length - 1}
-								<div class="separator"></div>
-							{/if}
-						{/if}
-						<!-- </div> -->
-					{/each}
-				</div>
-				<div class="cards-container-right-col">
-					{#each cards as card, i}
-						<!-- <div class="card-position-wrapper {card.cards_id.position}"> -->
-						{#if card.cards_id && typeof card.cards_id !== 'string' && card.cards_id.position === 'right'}
-							{#if card.cards_id && typeof card.cards_id !== 'string'}
-								{#if card.cards_id.type === 'text' || card.cards_id.type === 'rhyme'}
-									<CardText {display} card={card.cards_id}></CardText>
-								{/if}
-								{#if card.cards_id.type === 'media' || card.cards_id.type === 'hero'}
-									<CardMedia {display} card={card.cards_id}></CardMedia>
-								{/if}
-								{#if card.cards_id.type === 'numbered'}
-									<CardNumbered {display} card={card.cards_id}></CardNumbered>
-								{/if}
-								{#if card.cards_id.type === 'emphasis'}
-									<CardEmphasis card={card.cards_id}></CardEmphasis>
-								{/if}
-								{#if card.cards_id.type === 'alert'}
-									<CardAlert card={card.cards_id}></CardAlert>
-								{/if}
-							{/if}
-							{#if display === 'continuous' && i < cards.length - 1}
-								<div class="separator"></div>
-							{/if}
-						{/if}
-						<!-- </div> -->
-					{/each}
-				</div>
-			</div>
 		{/key}
 	</div>
 {/if}
@@ -128,12 +142,12 @@
 	.left {
 		grid-column-start: 1;
 		grid-column-end: 2;
-		margin-right: 1rem;
+		margin-right: 0.5rem;
 	}
 	.right {
 		grid-column-start: 2;
 		grid-column-end: 3;
-		margin-left: 1rem;
+		margin-left: 0.5rem;
 	}
 	.list {
 		border-left: 1px solid var(--theme-colour-5);
