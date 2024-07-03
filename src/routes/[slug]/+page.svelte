@@ -32,7 +32,7 @@
 			{/if}
 		</div>
 		<div
-			class="content-desktop flex h-full flex-wrap p-2 lg:grid lg:grid-cols-3 xl:grid-cols-4 xl:p-4 2xl:grid-cols-5"
+			class="content flex h-full flex-wrap bg-white/40 p-2 lg:grid lg:grid-cols-3 lg:bg-white/0 xl:grid-cols-4 xl:p-4 2xl:grid-cols-5"
 		>
 			{#if data.page.topics}
 				{#key data.page}
