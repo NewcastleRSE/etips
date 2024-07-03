@@ -8,6 +8,9 @@ export const load = async ({ cookies, locals }) => {
 	const etips_role = cookies.get('etips-role')
 	const etips_disclaimer_consent = cookies.get('etips-disclaimer-consent')
 	if (etips_side || etips_disclaimer_consent || etips_role) {
+		cookies.delete('etips-disclaimer-consent', { path: '/' })
+		cookies.delete('etips-role', { path: '/' })
+		cookies.delete('etips-side', { path: '/' })
 		redirect(307, '/intro')
 	}
 	const { directus } = locals

@@ -1,7 +1,8 @@
 import { directus } from '$lib/directus'
-import { getId, log } from '@arturoguzman/art-ui'
-import type { Handle } from '@sveltejs/kit'
+import { log } from '@arturoguzman/art-ui'
+import { type Handle } from '@sveltejs/kit'
 
+const roles = ['carer', 'healthcare-professional']
 export const handle: Handle = async ({ event, resolve }) => {
 	// const id = getId()
 	// console.time(`id: ${id}`)
@@ -10,6 +11,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.session = {
 		side: event.cookies.get('etips-side') ?? 'none',
 		role: event.cookies.get('etips-role') ?? 'public'
+	}
+	const role = event.cookies.get('etips-role')
+	if (role && !roles.includes(role)) {
+		event.cookies.delete('etips-disclaimer-consent', { path: '/' })
+		event.cookies.delete('etips-role', { path: '/' })
+		event.cookies.delete('etips-side', { path: '/' })
 	}
 	const response = await resolve(event)
 	if (!event.url.pathname.includes('/assets')) {
