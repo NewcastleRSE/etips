@@ -68,12 +68,6 @@
 								</svg>
 								<p>{topic.title}</p>
 							</button>
-							<!-- <Button -->
-							<!-- 	label={topic.title} -->
-							<!-- 	on:click={() => { -->
-							<!-- 		goto(`/${$page.params.slug}/${topic.slug}`) -->
-							<!-- 	}} -->
-							<!-- ></Button> -->
 						</div>
 					{/each}
 				{/key}

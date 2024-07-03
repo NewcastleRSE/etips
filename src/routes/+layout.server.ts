@@ -7,7 +7,16 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	const pages = await directus
 		.request(
 			readItems('pages', {
-				fields: ['id', 'status', 'sort', 'title', 'category', 'slug', 'copy', 'icon', 'topics']
+				fields: ['id', 'status', 'sort', 'title', 'category', 'slug', 'copy', 'icon', 'topics'],
+				deep: {
+					topics: {
+						_filter: {
+							status: {
+								_eq: 'published'
+							}
+						}
+					}
+				}
 			})
 		)
 		.catch(() => error(500, `Backend is not reachable right now...`))

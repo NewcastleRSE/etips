@@ -27,7 +27,16 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 				'topics',
 				{ cards: [{ cards_id: [{ media: [{ directus_files_id: ['*'] }] }, '*'] }] },
 				{ topics: [{ cards: [{ cards_id: ['*'] }] }] }
-			]
+			],
+			deep: {
+				topics: {
+					_filter: {
+						status: {
+							_eq: 'published'
+						}
+					}
+				}
+			}
 		})
 	)
 	return {

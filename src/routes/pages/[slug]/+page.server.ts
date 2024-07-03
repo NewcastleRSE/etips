@@ -1,8 +1,7 @@
 import type { Page } from '$lib/types'
 import { readItems } from '@directus/sdk'
-import { error, redirect } from '@sveltejs/kit'
 
-export const load = async ({ locals, params, cookies }) => {
+export const load = async ({ locals, params }) => {
 	const { directus } = locals
 	const page = await directus.request(
 		readItems('pages', {
@@ -47,22 +46,17 @@ export const load = async ({ locals, params, cookies }) => {
 							}
 						]
 					}
+				},
+				topics: {
+					_filter: {
+						status: {
+							_eq: 'published'
+						}
+					}
 				}
 			}
 		})
 	)
-	// const topics = await directus.request(
-	// 	readItems('topics', {
-	// 		fields: ['*', { category: ['title', 'slug'] }, { cards: [{ cards_id: ['*'] }] }],
-	// 		filter: {
-	// 			category: {
-	// 				slug: {
-	// 					_eq: params.slug
-	// 				}
-	// 			}
-	// 		}
-	// 	})
-	// )
 
 	return {
 		//HACK: remove type assertion

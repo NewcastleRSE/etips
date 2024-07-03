@@ -1,28 +1,10 @@
 import type { Page, Topic } from '$lib/types'
-import { redirect } from '@sveltejs/kit'
+import { error, redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { readItems } from '@directus/sdk'
 
 export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 	const { directus } = locals
-	// const page = await directus.request(
-	// 	readItems('pages', {
-	// 		filter: { _and: [{ slug: { _eq: params.slug } }] },
-	// 		fields: [
-	// 			'id',
-	// 			'status',
-	// 			'sort',
-	// 			'title',
-	// 			'category',
-	// 			'slug',
-	// 			'copy',
-	// 			'icon',
-	// 			'topics',
-	// 			{ cards: [{ cards_id: ['*'] }] },
-	// 			{ topics: [{ cards: [{ cards_id: ['*'] }] }] }
-	// 		]
-	// 	})
-	// )
 	const topic = await directus.request(
 		readItems('topics', {
 			fields: [
@@ -47,6 +29,11 @@ export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 					{
 						slug: {
 							_eq: params.topic
+						}
+					},
+					{
+						status: {
+							_eq: 'published'
 						}
 					}
 				]
@@ -94,6 +81,9 @@ export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 		cookies.delete('etips-role', { path: '/' })
 		cookies.delete('etips-side', { path: '/' })
 		redirect(307, '/access')
+	}
+	if (topic.length === 0) {
+		error(404, 'This page does not exist!')
 	}
 	return {
 		//HACK: remove type assertion

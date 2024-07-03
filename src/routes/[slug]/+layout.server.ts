@@ -48,6 +48,13 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 							}
 						]
 					}
+				},
+				topics: {
+					_filter: {
+						status: {
+							_eq: 'published'
+						}
+					}
 				}
 			}
 		})
@@ -76,6 +83,9 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 		readItems('topics', {
 			fields: ['*', { category: ['title', 'slug'] }, { cards: [{ cards_id: ['*'] }] }],
 			filter: {
+				status: {
+					_eq: 'published'
+				},
 				category: {
 					slug: {
 						_eq: params.slug

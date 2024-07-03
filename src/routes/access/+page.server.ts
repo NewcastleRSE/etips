@@ -35,6 +35,13 @@ export const load = async ({ cookies, locals }) => {
 							}
 						]
 					}
+				},
+				topics: {
+					_filter: {
+						status: {
+							_eq: 'published'
+						}
+					}
 				}
 			},
 			fields: [

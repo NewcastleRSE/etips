@@ -74,7 +74,7 @@
 </svelte:head>
 
 {#if debug}
-	<pre>{JSON.stringify(data, null, 2)}</pre>
+	<pre class="text-xs">{JSON.stringify(data, null, 2)}</pre>
 {/if}
 <div
 	id="theme-wrapper"
