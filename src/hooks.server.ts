@@ -23,14 +23,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 	if (!event.url.pathname.includes('/assets')) {
 		log({ response: response, event: event, status: response.status })
 	}
-	// console.timeEnd(`id: ${id}`)
 	return response
 }
 
 export const handleError = async ({ event, status, message }) => {
-	// const errorId = crypto.randomUUID()
 	log({ status: status, event: event, content: message })
-
 	return {
 		message: status === 404 ? `This page does not exist!` : 'Whoops!'
 		// errorId

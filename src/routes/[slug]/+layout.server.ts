@@ -19,7 +19,7 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 				'icon',
 				'topics',
 				{ cards: [{ cards_id: ['*', { media: [{ directus_files_id: ['*'] }] }] }] },
-				{ topics: [{ cards: [{ cards_id: ['*'] }] }, 'title', 'slug'] }
+				{ topics: [{ cards: [{ cards_id: ['*'] }] }, 'title', 'slug', 'icon'] }
 			],
 			deep: {
 				cards: {
