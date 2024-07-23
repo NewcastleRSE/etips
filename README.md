@@ -97,11 +97,9 @@ TBC
 
 ### Test
 
-[https://blue-flower-03cddcb03.5.azurestaticapps.net](https://blue-flower-03cddcb03.5.azurestaticapps.net/)
-
 ### Production
 
-TBC
+[https://etips.org.uk](https://etips.org.uk)
 
 ## Usage
 
