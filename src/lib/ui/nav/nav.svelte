@@ -70,8 +70,9 @@
 					{/if}
 					{#if $page.params.slug && $page.params.topic}
 						<NavTopics
-							on:click={(e) => {
-								goto(`/${$page.params.slug}/${e.detail}`)
+							on:click={async (e) => {
+								await goto(`/${$page.params.slug}/${e.detail}`)
+								document.getElementById('desktop-content')?.scrollTo(0, 0)
 							}}
 							topics={$page.data.topics}
 						></NavTopics>

@@ -79,6 +79,7 @@
 			{/if}
 		</div>
 		<div
+			id="desktop-content"
 			class="slug-layout-right-col relative col-span-1 col-start-2 row-span-1 row-start-1 h-full w-full overflow-y-scroll"
 		>
 			<button
