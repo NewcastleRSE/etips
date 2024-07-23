@@ -9,3 +9,11 @@ cms.{$DOMAIN} {
 events.{$DOMAIN} {
   reverse_proxy umami:3000
 }
+
+www.{$DOMAIN} {
+  redir https://{$DOMAIN}{uri}
+}
+
+etips.artgp.xyz {
+  redir https://{$DOMAIN}{uri}
+}
