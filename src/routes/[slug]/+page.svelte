@@ -47,7 +47,7 @@
 								}}
 							>
 								{#if topic.icon}
-									<div class="icon flex w-full gap-2">
+									<div class="icon flex w-full justify-center gap-2">
 										{@html topic.icon}
 									</div>
 								{:else}
