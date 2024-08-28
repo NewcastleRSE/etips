@@ -10,6 +10,6 @@ http://events.{$DOMAIN} {
   reverse_proxy umami:3000
 }
 
-http://www.{$DOMAIN} {
-  redir https://{$DOMAIN}{uri}
-}
+#http://www.{$DOMAIN} {
+#  redir https://{$DOMAIN}{uri}
+#}
