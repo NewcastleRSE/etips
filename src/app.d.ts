@@ -17,6 +17,7 @@ declare global {
 				role: string
 			}
 			startTimer: number
+      bot: boolean 
 		}
 		// interface PageData {}
 		// interface PageState {}

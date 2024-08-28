@@ -66,18 +66,17 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 		(page[0].category === 'restricted' || page[0].category === 'restricted_hcp') &&
 		(!cookies.get('etips-side') ||
 			!cookies.get('etips-role') ||
-			!cookies.get('etips-disclaimer-consent'))
+			!cookies.get('etips-disclaimer-consent')) && locals.bot === false
 	) {
 		redirect(307, '/access')
 	}
-	if (cookies.get('etips-disclaimer-consent') !== 'true') {
+	if (cookies.get('etips-disclaimer-consent') !== 'true' && locals.bot === false) {
 		cookies.delete('etips-disclaimer-consent', { path: '/' })
 		cookies.delete('etips-role', { path: '/' })
 		cookies.delete('etips-side', { path: '/' })
 		redirect(307, '/access')
 	}
 	if (page[0].category !== 'restricted' && page[0].category !== 'restricted_hcp') {
-		console.log('wheenenenenenn')
 		redirect(307, '/access')
 	}
 	const topics = await directus.request(

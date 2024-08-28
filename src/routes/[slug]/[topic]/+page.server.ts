@@ -70,13 +70,13 @@ export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 		})
 	)
 	if (
-		!cookies.get('etips-side') ||
+(!cookies.get('etips-side') ||
 		!cookies.get('etips-role') ||
-		!cookies.get('etips-disclaimer-consent')
+		!cookies.get('etips-disclaimer-consent') && locals.bot === false)
 	) {
 		redirect(307, '/access')
 	}
-	if (cookies.get('etips-disclaimer-consent') !== 'true') {
+	if (cookies.get('etips-disclaimer-consent') !== 'true' && locals.bot === false) {
 		cookies.delete('etips-disclaimer-consent', { path: '/' })
 		cookies.delete('etips-role', { path: '/' })
 		cookies.delete('etips-side', { path: '/' })
