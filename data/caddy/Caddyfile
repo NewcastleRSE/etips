@@ -1,15 +1,15 @@
-http://{$DOMAIN} {
+{$DOMAIN} {
   reverse_proxy etips:3000
 }
 
-http://cms.{$DOMAIN} {
+cms.{$DOMAIN} {
   reverse_proxy directus:8055
 }
 
-http://events.{$DOMAIN} {
+events.{$DOMAIN} {
   reverse_proxy umami:3000
 }
 
-#http://www.{$DOMAIN} {
+#www.{$DOMAIN} {
 #  redir https://{$DOMAIN}{uri}
 #}
