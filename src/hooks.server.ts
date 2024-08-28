@@ -6,7 +6,6 @@ import { type Handle } from '@sveltejs/kit'
 export const crawlers = ['Googlebot','Googlebot-Image','Googlebot-News', 'Storebot-Google', 'Google-InspectionTool', 'GoogleOther']
 
 export const handle: Handle = async ({ event, resolve }) => {
-  console.log(event.request.headers)
   event.locals.startTimer = Date.now()
 	event.locals.directus = directus
   event.locals.bot = false
