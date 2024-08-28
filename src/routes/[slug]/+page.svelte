@@ -1,18 +1,42 @@
 <script lang="ts">
+	import SvelteSeo from 'svelte-seo'
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
 	import Button from '$lib/ui/button/button.svelte'
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
-	import { genTitle } from '$lib/utils/seo.js'
+	import { genDescription, genTitle } from '$lib/utils/seo.js'
 	import { fly } from 'svelte/transition'
 	export let data
+	$: page_title = genTitle([$page.params.slug])
+	$: page_description = genDescription(data.page.cards)
+	$: page_url = `https://etips.org.uk/${$page.params.slug}`
 </script>
 
 <svelte:head>
 	{#key $page}
-		<title>{genTitle([$page.params.slug])}</title>
+		<title>{page_title}</title>
 	{/key}
 </svelte:head>
+<SvelteSeo
+	title={page_title}
+	description={page_description}
+	canonical={page_url}
+	openGraph={{
+		title: page_title,
+		description: page_description,
+		url: page_url,
+		type: 'website',
+		images: [
+			{
+				url: 'https://etips.org.uk/favicon.png',
+				width: 800,
+				height: 600,
+				alt: 'e-tips logo'
+			}
+		],
+		site_name: page_title
+	}}
+></SvelteSeo>
 <div class="content-container w-screen overflow-x-hidden lg:w-full">
 	{#if data.page.cards}
 		<div class="content-mobile lg:hidden">
