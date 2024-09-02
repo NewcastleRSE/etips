@@ -10,6 +10,7 @@
 	let page_title = genTitle(['Welcome'])
 	let page_url = 'https://etips.org.uk'
 	let page_description = `eTIPS is an early therapy approach in perinatal stroke, supporting parents to encourage their baby's movements from an early age and within the first 6 months of life. The materials on this website were developed and used in a pilot feasibility study. The paper summarising this study is available open access at Feasibility trial of an early therapy in perinatal stroke (eTIPS) | BMC Neurology | Full Text (biomedcentral.com).`
+	let page_keywords = `perinatal stroke, therapy, baby therapy, baby support, medical research, research, Newcastle, Newcastle University, medical advice, health, medicine`
 </script>
 
 <svelte:head>
@@ -36,6 +37,7 @@
 		],
 		site_name: page_title
 	}}
+	keywords={page_keywords}
 ></SvelteSeo>
 <div class="content-container overflow-y-scroll">
 	{#if data.page.cards}

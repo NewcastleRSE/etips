@@ -10,6 +10,7 @@
 	$: page_title = genTitle([$page.params.slug])
 	$: page_description = genDescription(data.page.cards)
 	$: page_url = `https://etips.org.uk/${$page.params.slug}`
+	let page_keywords = `perinatal stroke, therapy, baby therapy, baby support, medical research, research, Newcastle, Newcastle University, medical advice, health, medicine`
 </script>
 
 <svelte:head>
@@ -36,6 +37,7 @@
 		],
 		site_name: page_title
 	}}
+	keywords={page_keywords}
 ></SvelteSeo>
 <div class="content-container w-screen overflow-x-hidden lg:w-full">
 	{#if data.page.cards}
