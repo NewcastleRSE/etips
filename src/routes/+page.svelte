@@ -3,10 +3,13 @@
 	import { page } from '$app/stores'
 	import Button from '$lib/ui/button/button.svelte'
 	import CardsContainer from '$lib/ui/cards/cards_container.svelte'
+	import SvelteSeo from 'svelte-seo'
 	import { genTitle } from '$lib/utils/seo.js'
 	export let data
 	$: cards = data.page.cards.filter((c) => c.cards_id?.type === 'hero')
-	//NOTE:assersion to stop ts yell, add checks?
+	let page_title = genTitle(['Welcome'])
+	let page_url = 'https://etips.org.uk'
+	let page_description = `eTIPS is an early therapy approach in perinatal stroke, supporting parents to encourage their baby's movements from an early age and within the first 6 months of life. The materials on this website were developed and used in a pilot feasibility study. The paper summarising this study is available open access at Feasibility trial of an early therapy in perinatal stroke (eTIPS) | BMC Neurology | Full Text (biomedcentral.com).`
 </script>
 
 <svelte:head>
@@ -14,7 +17,26 @@
 		<title>{genTitle(['Welcome'])}</title>
 	{/key}
 </svelte:head>
-
+<SvelteSeo
+	title={page_title}
+	description={page_description}
+	canonical={page_url}
+	openGraph={{
+		title: page_title,
+		description: page_description,
+		url: page_url,
+		type: 'website',
+		images: [
+			{
+				url: 'https://etips.org.uk/favicon.png',
+				width: 800,
+				height: 600,
+				alt: 'e-tips logo'
+			}
+		],
+		site_name: page_title
+	}}
+></SvelteSeo>
 <div class="content-container overflow-y-scroll">
 	{#if data.page.cards}
 		<CardsContainer {cards}></CardsContainer>
