@@ -1,3 +1,10 @@
+{
+  log {
+    output file /var/log/syslog
+    format json
+  }
+}
+
 {$DOMAIN} {
   reverse_proxy etips:3000
 }
