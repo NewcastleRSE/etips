@@ -9,6 +9,7 @@ services:
       - ./data/db/postgres/scripts:/docker-entrypoint-initdb.d
       - ./data/db/postgres/data:/var/lib/postgresql/data
       - ./data/db/postgres/restore:/home/dump:ro
+      - ./data/db/postgres/backup:/home/data/backup
     env_file:
       - .env
     networks:
