@@ -2,6 +2,7 @@ import type { Page, Topic } from '$lib/types'
 import { error, redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { readItems } from '@directus/sdk'
+import { verifyAccess } from '$lib/utils/auth'
 
 export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 	const { directus } = locals
@@ -69,22 +70,11 @@ export const load: PageServerLoad = async ({ locals, params, cookies }) => {
 			}
 		})
 	)
-	if (
-(!cookies.get('etips-side') ||
-		!cookies.get('etips-role') ||
-		!cookies.get('etips-disclaimer-consent') && locals.bot === false)
-	) {
-		redirect(307, '/access')
-	}
-	if (cookies.get('etips-disclaimer-consent') !== 'true' && locals.bot === false) {
-		cookies.delete('etips-disclaimer-consent', { path: '/' })
-		cookies.delete('etips-role', { path: '/' })
-		cookies.delete('etips-side', { path: '/' })
-		redirect(307, '/access')
-	}
 	if (topic.length === 0) {
 		error(404, 'This page does not exist!')
 	}
+	const accessAllowed = verifyAccess('topic', cookies, locals.bot)
+	if (!accessAllowed) redirect(307, '/access')
 	return {
 		//HACK: remove type assertion
 		// page: page[0] as Page,

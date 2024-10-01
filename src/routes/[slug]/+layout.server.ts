@@ -2,6 +2,7 @@ import type { Page } from '$lib/types'
 import { readItems } from '@directus/sdk'
 import type { LayoutServerLoad } from '../$types'
 import { error, redirect } from '@sveltejs/kit'
+import { verifyAccess } from '$lib/utils/auth'
 
 export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 	const { directus } = locals
@@ -62,23 +63,8 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 	if (page.length === 0) {
 		error(404, `${params.slug} doesn't exist...`)
 	}
-	if (
-		(page[0].category === 'restricted' || page[0].category === 'restricted_hcp') &&
-		(!cookies.get('etips-side') ||
-			!cookies.get('etips-role') ||
-			!cookies.get('etips-disclaimer-consent')) && locals.bot === false
-	) {
-		redirect(307, '/access')
-	}
-	if (cookies.get('etips-disclaimer-consent') !== 'true' && locals.bot === false) {
-		cookies.delete('etips-disclaimer-consent', { path: '/' })
-		cookies.delete('etips-role', { path: '/' })
-		cookies.delete('etips-side', { path: '/' })
-		redirect(307, '/access')
-	}
-	if (page[0].category !== 'restricted' && page[0].category !== 'restricted_hcp') {
-		redirect(307, '/access')
-	}
+	const accessAllowed = verifyAccess('slug', cookies, locals.bot, page[0].category)
+	if (!accessAllowed) redirect(307, '/access')
 	const topics = await directus.request(
 		readItems('topics', {
 			fields: ['*', { category: ['title', 'slug'] }, { cards: [{ cards_id: ['*'] }] }],

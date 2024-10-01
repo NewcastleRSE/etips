@@ -3,14 +3,14 @@ import { verifyCookie } from '$lib/utils/cookies'
 import { log } from '@arturoguzman/art-ui'
 import { type Handle } from '@sveltejs/kit'
 
-export const crawlers = [
-	'Googlebot',
-	'Googlebot-Image',
-	'Googlebot-News',
-	'Storebot-Google',
-	'Google-InspectionTool',
-	'GoogleOther'
-]
+// export const crawlers = [
+// 	'Googlebot',
+// 	'Googlebot-Image',
+// 	'Googlebot-News',
+// 	'Storebot-Google',
+// 	'Google-InspectionTool',
+// 	'GoogleOther'
+// ]
 
 export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.startTimer = Date.now()
@@ -23,7 +23,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const role = event.cookies.get('etips-role')
 	const user_agent = event.request.headers.get('user-agent')
 	console.log(user_agent)
-	if (user_agent && crawlers.some((v) => user_agent.includes(v))) {
+	if (user_agent && user_agent.toLowerCase().includes('google')) {
+		console.log('bot detected, allowing access')
 		event.locals.bot = true
 		event.locals.session = {
 			side: 'left',
