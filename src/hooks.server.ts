@@ -22,7 +22,6 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 	const role = event.cookies.get('etips-role')
 	const user_agent = event.request.headers.get('user-agent')
-	console.log(user_agent)
 	if (
 		user_agent &&
 		(user_agent.toLowerCase().includes('google') || user_agent.toLowerCase().includes('bingbot'))
