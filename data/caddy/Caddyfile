@@ -1,25 +1,24 @@
 {
-  log {
-    output file /var/log/syslog
-    format json
-  }
+	log {
+		output file /var/log/syslog
+		format json
+	}
 }
 
 www.{$DOMAIN} {
-  redir https://{$DOMAIN}{uri}
+	redir https://{$DOMAIN}{uri}
 }
 
-
 {$DOMAIN} {
-  reverse_proxy etips:3000
+	reverse_proxy etips:3000
 }
 
 cms.{$DOMAIN} {
-  reverse_proxy directus:8055
+	reverse_proxy directus:8055
 }
 
 events.{$DOMAIN} {
-  reverse_proxy umami:3000
+	reverse_proxy umami:3000
 }
 
 #www.{$DOMAIN} {
