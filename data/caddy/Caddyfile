@@ -5,6 +5,11 @@
   }
 }
 
+www.{$DOMAIN} {
+  redir https://{$DOMAIN}{uri}
+}
+
+
 {$DOMAIN} {
   reverse_proxy etips:3000
 }
