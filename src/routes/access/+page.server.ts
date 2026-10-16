@@ -1,6 +1,13 @@
 import type { Page } from '$lib/types/index.js'
 import { createItem, readItems } from '@directus/sdk'
 import { fail, redirect, type Actions } from '@sveltejs/kit'
+import { clientAddress } from '$lib/server/client_address'
+import { createRateLimiter } from '$lib/server/rate_limit'
+import { cookie_opts } from '$lib/utils/cookies'
+
+// Counts only valid registrations (the abuse case is junk contacts), and is
+// generous because NHS staff often share one hospital IP.
+const registerAllowed = createRateLimiter(20, 1000 * 60 * 10)
 
 export const load = async ({ cookies, locals, request }) => {
 	const existing_cookies = [
@@ -73,7 +80,8 @@ export const load = async ({ cookies, locals, request }) => {
 }
 
 export const actions: Actions = {
-	register: async ({ request, cookies, locals }) => {
+	register: async (event) => {
+		const { request, cookies, locals } = event
 		const email_regex =
 			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		const form = await request.formData()
@@ -143,6 +151,11 @@ export const actions: Actions = {
 				})
 			}
 		}
+		if (!registerAllowed(clientAddress(event))) {
+			return fail(429, {
+				message: 'Too many registrations from your network, please try again in a few minutes'
+			})
+		}
 		await locals.directus.request(
 			createItem('contacts', {
 				gdpr_consent,
@@ -157,15 +170,9 @@ export const actions: Actions = {
 				age_preterm
 			})
 		)
-		const cookies_opts = {
-			path: '/',
-			secure: false,
-			// httpOnly: true,
-			maxAge: 1 * 60 * 60 * 24 * 30 * 12
-		}
-		cookies.set('etips-side', side_affected, cookies_opts)
-		cookies.set('etips-role', role, cookies_opts)
-		cookies.set('etips-disclaimer-consent', `${disclaimer_consent}`, cookies_opts)
+		cookies.set('etips-side', side_affected, cookie_opts)
+		cookies.set('etips-role', role, cookie_opts)
+		cookies.set('etips-disclaimer-consent', `${disclaimer_consent}`, cookie_opts)
 		redirect(307, '/intro')
 		// return {
 		// 	status: 200,
@@ -184,12 +191,7 @@ export const actions: Actions = {
 			return fail(400, { message: 'Must register first!' })
 		}
 		if (side === 'left' || side === 'right') {
-			const cookies_opts = {
-				path: '/',
-				httpOnly: true,
-				maxAge: 1 * 60 * 60 * 24 * 30 * 12
-			}
-			cookies.set('etips-side', side, cookies_opts)
+			cookies.set('etips-side', side, cookie_opts)
 			return {
 				message: 'ok'
 			}
