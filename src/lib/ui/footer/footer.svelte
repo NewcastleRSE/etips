@@ -5,8 +5,7 @@
 
 <footer class="fixed bottom-0 left-0 grid h-12 w-screen grid-cols-2 md:h-16 print:hidden">
 	<div class="footer-left-col h-full pl-4">
-		<img src="/nu_logo.png" class="h-12 object-contain md:h-16" />
-		<img src="" alt="" />
+		<img src="/nu_logo.png" alt="Newcastle University" class="h-12 object-contain md:h-16" />
 	</div>
 	<div class="footer-right-col flex justify-end gap-4 pr-4 text-xs md:text-base">
 		{#each data.pages.filter((p) => p.category === 'research') as page}
