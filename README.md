@@ -27,6 +27,10 @@ Services (included in the docker-compose.yml file)
 [Umami](https://umami.is)
 [Caddy](https://caddyserver.com)
 
+## Hosted on Azure
+RSE General Subscription 
+e-tips Resource Group
+
 ## Getting Started
 
 ### Prerequisites
