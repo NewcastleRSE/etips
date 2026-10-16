@@ -30,6 +30,7 @@ Services (included in the docker-compose.yml file)
 ## Hosted on Azure
 RSE General Subscription 
 e-tips Resource Group
+Active VM is e-tips-restore
 
 ## Getting Started
 
