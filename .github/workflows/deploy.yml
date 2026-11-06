@@ -14,8 +14,9 @@ env:
   IMAGE: ghcr.io/newcastlerse/etips
 
 jobs:
+  # The VM is ARM, so build on an ARM runner.
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       packages: write
@@ -33,6 +34,7 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           context: .
+          platforms: linux/arm64
           push: true
           tags: |
             ${{ env.IMAGE }}:${{ github.sha }}
