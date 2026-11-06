@@ -6,6 +6,7 @@
 	import CardVideo from './card_video.svelte'
 	import CardFile from './card_file.svelte'
 	import CardYoutube from './card_youtube.svelte'
+	import CardTranscript from './card_transcript.svelte'
 	export let card: Card
 	export let display: string = 'cards'
 	export let direction: 'horizontal' | 'vertical' = 'vertical'
@@ -37,7 +38,11 @@
 			<CardYoutube {card}></CardYoutube>
 		{/if}
 		{#if card.media_type === 'vimeo'}
-			<Vimeo video_id={card.url?.replaceAll('https://vimeo.com/', '')}></Vimeo>
+			<Vimeo
+				video_id={card.url?.replaceAll('https://vimeo.com/', '')}
+				title={card.title}
+				transcript={!!card.transcript}
+			></Vimeo>
 		{/if}
 	</div>
 	<div class="media-card-right-col">
@@ -45,6 +50,9 @@
 			<CardText nested {card}></CardText>
 		{/if}
 	</div>
+	{#if ['video', 'youtube', 'vimeo'].includes(card.media_type ?? '')}
+		<CardTranscript {card}></CardTranscript>
+	{/if}
 </div>
 
 <style>

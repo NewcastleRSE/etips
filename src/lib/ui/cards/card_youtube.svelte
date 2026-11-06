@@ -9,6 +9,6 @@
 		'https://www.youtube.com/watch?v=',
 		'https://www.youtube-nocookie.com/embed/'
 	)}
-	title={card.title ?? ''}
+	title="Video: {card.title ?? ''}{card.transcript ? ' (transcript below)' : ''}"
 	class="aspect-video w-full"
 ></iframe>

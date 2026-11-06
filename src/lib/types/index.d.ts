@@ -22,6 +22,7 @@ export interface Card {
 	number?: number | null
 	position?: 'full' | 'left' | 'right' | 'full_end' | null
 	thumbnail?: string | DirectusFile | null
+	transcript?: string | null
 }
 
 export interface CardsFile {
