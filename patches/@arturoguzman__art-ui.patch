@@ -1,0 +1,14 @@
+diff --git a/dist/ui/picture/picture.svelte b/dist/ui/picture/picture.svelte
+index afd1b4c4276820585e3406a2b79a6fe37fd790c7..220905d4d692911b2a3f484762f9f438f0f193f5 100644
+--- a/dist/ui/picture/picture.svelte
++++ b/dist/ui/picture/picture.svelte
+@@ -237,7 +237,8 @@
+ 				id="preimage-{img.ident}"
+ 				class="pre-image loading"
+ 				src={preloadImageSrc}
+-				alt="loading image {img.title}"
++				alt=""
++				aria-hidden="true"
+ 			/>
+ 		</div>
+ 	</div>

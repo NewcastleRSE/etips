@@ -2,6 +2,7 @@ FROM node:lts-alpine AS builder
 WORKDIR /app
 RUN npm install -g pnpm@11.5.0
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc ./
+COPY patches patches
 RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build

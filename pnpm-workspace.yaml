@@ -2,3 +2,5 @@ allowBuilds:
   '@sveltejs/kit': false
   esbuild: false
   svelte-preprocess: false
+patchedDependencies:
+  '@arturoguzman/art-ui': patches/@arturoguzman__art-ui.patch
