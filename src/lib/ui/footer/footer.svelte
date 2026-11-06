@@ -7,7 +7,7 @@
 	<div class="footer-left-col h-full pl-4">
 		<img src="/nu_logo.png" alt="Newcastle University" class="h-12 object-contain md:h-16" />
 	</div>
-	<div class="footer-right-col flex justify-end gap-4 pr-4 text-xs md:text-base">
+	<div class="footer-right-col flex justify-end gap-4 pr-4 text-sm md:text-base">
 		{#each data.pages.filter((p) => p.category === 'research') as page}
 			<button
 				class="text-ellipsis text-nowrap"
@@ -22,14 +22,16 @@
 <style>
 	footer {
 		z-index: 999;
-		border-top: 1px solid var(--theme-colour-4);
+		border-top: 1px solid var(--theme-text-blue);
 		background-color: var(--theme-colour-1);
 	}
 	button {
-		color: var(--theme-colour-4);
+		color: var(--theme-colour-3);
+		text-decoration: underline;
+		text-underline-offset: 3px;
 		transition: all 0.3s ease-in-out;
 	}
 	button:hover {
-		color: var(--theme-colour-3);
+		color: var(--theme-text-blue);
 	}
 </style>

@@ -74,11 +74,11 @@
 	}
 	.role-selection-left-col {
 		color: var(--theme-colour-1);
-		background: var(--theme-colour-4);
+		background: var(--theme-text-blue);
 	}
 	.role-selection-right-col {
 		color: var(--theme-colour-1);
-		background: var(--theme-colour-5);
+		background: var(--theme-text-green);
 	}
 	.selected {
 		border: 4px solid var(--theme-colour-3);

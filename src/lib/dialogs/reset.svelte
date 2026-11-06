@@ -99,10 +99,10 @@
 	}
 	.form-select {
 		border-radius: 0.5rem;
-		border: 1px solid var(--theme-colour-4);
+		border: 1px solid var(--theme-text-blue);
 	}
 	h3 {
-		color: var(--theme-colour-4);
+		color: var(--theme-text-blue);
 		font-weight: 700;
 	}
 </style>

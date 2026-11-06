@@ -84,7 +84,7 @@
 										height="88"
 										viewBox="0 0 24 24"
 										stroke-width="1.5"
-										stroke="#44b3ce"
+										stroke="#257A8E"
 										fill="none"
 										stroke-linecap="round"
 										stroke-linejoin="round"
@@ -117,9 +117,13 @@
 	.available-topics-button {
 		font-family: var(--theme-font-title);
 		background-color: var(--theme-colour-1);
-		border: 1px solid var(--theme-colour-4);
-		color: var(--theme-colour-4);
+		border: 1px solid var(--theme-text-blue);
+		color: var(--theme-text-blue);
 		transition: all 0.3s ease-in-out;
+	}
+	/* Icons pasted into Directus carry their own stroke colour. Use the theme's instead */
+	.icon :global(svg) {
+		stroke: var(--theme-text-blue);
 	}
 	.available-topics-button:hover {
 		background-color: var(--theme-colour-1);

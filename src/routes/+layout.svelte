@@ -39,6 +39,9 @@
 			{ name: 'League Spartan Variable', type: 'sans-serif', key: 'subtitle' }
 		],
 		colours: ['#FFFDF9', '#F2F9EB', '#013A67', '#44B3CE', '#609A29', '#EA931F', '#BF0034'],
+		// Darker blue, green and orange for text, icons, borders and fills behind
+		// white text. They pass WCAG AA (4.5:1) on the cream and pale green.
+		text_colours: ['#257A8E', '#4E7E21', '#A1620F'],
 		version: '0.0.1',
 		language: 'en',
 		reduce_animation: false
@@ -86,6 +89,9 @@
 	style:--theme-colour-5={theme.colours[4]}
 	style:--theme-colour-6={theme.colours[5]}
 	style:--theme-colour-7={theme.colours[6]}
+	style:--theme-text-blue={theme.text_colours[0]}
+	style:--theme-text-green={theme.text_colours[1]}
+	style:--theme-text-orange={theme.text_colours[2]}
 	style:--theme-font-title={theme.fonts[0].name}
 	style:--theme-font-title-2={theme.fonts[1].name}
 	style:--theme-font-paragraph={theme.fonts[2].name}

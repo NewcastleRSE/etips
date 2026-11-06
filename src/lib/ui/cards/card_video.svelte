@@ -57,7 +57,7 @@
 
 <style>
 	.card-video-thumbnail-button {
-		border: 1px solid var(--theme-colour-4);
+		border: 1px solid var(--theme-text-blue);
 		border-radius: 1rem;
 		box-shadow: 2px 2px 10px
 			color-mix(in oklab, var(--theme-colour-6) 40%, var(--theme-colour-1) 90%);

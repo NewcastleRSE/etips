@@ -52,19 +52,19 @@
 <style>
 	.page-title {
 		background-color: var(--theme-colour-1);
-		border-bottom: 1px solid var(--theme-colour-4);
+		border-bottom: 1px solid var(--theme-text-blue);
 		font-family: var(--theme-font-title);
-		color: var(--theme-colour-5);
+		color: var(--theme-text-green);
 		transition: all 0.3s ease-in-out;
 	}
 	.selected {
-		background-color: var(--theme-colour-5);
+		background-color: var(--theme-text-green);
 		color: var(--theme-colour-1);
 	}
 	/* NOTE: to avoid selected marks in desktop */
 	@media (min-width: 1024px) {
 		.selected {
-			color: var(--theme-colour-5);
+			color: var(--theme-text-green);
 			background-color: var(--theme-colour-1);
 		}
 	}

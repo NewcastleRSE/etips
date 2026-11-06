@@ -128,7 +128,7 @@
 
 <style>
 	.cards-container {
-		border-bottom: 1px solid var(--theme-colour-5);
+		border-bottom: 1px solid var(--theme-text-green);
 		width: min(100% - 2rem, 1200px);
 		margin-inline: auto;
 	}
@@ -150,13 +150,13 @@
 		margin-left: 0.5rem;
 	}
 	.list {
-		border-left: 1px solid var(--theme-colour-5);
-		border-right: 1px solid var(--theme-colour-5);
+		border-left: 1px solid var(--theme-text-green);
+		border-right: 1px solid var(--theme-text-green);
 		background-color: var(--theme-colour-1);
 	}
 	.continuous {
-		border-left: 1px solid var(--theme-colour-5);
-		border-right: 1px solid var(--theme-colour-5);
+		border-left: 1px solid var(--theme-text-green);
+		border-right: 1px solid var(--theme-text-green);
 		background-color: var(--theme-colour-1);
 	}
 	.desktop_left {

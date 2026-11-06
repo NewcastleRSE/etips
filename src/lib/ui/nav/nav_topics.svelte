@@ -51,7 +51,7 @@
 					height="36"
 					viewBox="0 0 24 24"
 					stroke-width="1.5"
-					stroke="#44B3CE"
+					stroke="#257A8E"
 					fill="none"
 					stroke-linecap="round"
 					stroke-linejoin="round"
@@ -91,7 +91,7 @@
 					height="36"
 					viewBox="0 0 24 24"
 					stroke-width="1.5"
-					stroke="#44B3CE"
+					stroke="#257A8E"
 					fill="none"
 					stroke-linecap="round"
 					stroke-linejoin="round"
@@ -106,17 +106,17 @@
 
 <style>
 	nav {
-		border-bottom: 1px solid var(--theme-colour-4);
+		border-bottom: 1px solid var(--theme-text-blue);
 		background-color: var(--theme-colour-1);
 	}
 
 	.topics-nav-right-col {
 		background-color: var(--theme-colour-1);
-		border-right: 1px solid var(--theme-colour-4);
+		border-right: 1px solid var(--theme-text-blue);
 	}
 	.topics-nav-centre-col {
-		border-left: 1px solid var(--theme-colour-4);
-		border-right: 1px solid var(--theme-colour-4);
+		border-left: 1px solid var(--theme-text-blue);
+		border-right: 1px solid var(--theme-text-blue);
 	}
 	@media (min-width: 1024px) {
 		.topics-nav-centre-col:hover {

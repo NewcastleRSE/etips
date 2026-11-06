@@ -29,14 +29,14 @@
 
 <style>
 	.card-emphasis {
-		color: var(--theme-colour-6);
+		color: var(--theme-text-orange);
 	}
 	.card-title {
 		border-radius: 0.4rem;
 		padding: 0 12px;
 		width: auto;
 		color: var(--theme-colour-1);
-		background: var(--theme-colour-6);
+		background: var(--theme-text-orange);
 	}
 	@keyframes appear {
 		0% {
@@ -53,19 +53,19 @@
 	}
 	.card-list:not(.nested) {
 		background-color: var(--theme-colour-1);
-		border-top: 1px solid var(--theme-colour-5);
+		border-top: 1px solid var(--theme-text-green);
 	}
 	.card-list:nth-child(1):not(.nested) {
 		border-top: none;
 	}
 	.card-list:last-child:not(.nested) {
-		border-bottom: 1px solid var(--theme-colour-5);
+		border-bottom: 1px solid var(--theme-text-green);
 	}
 	.card-cards:not(.nested) {
 		margin: 1rem 0;
 		border-radius: 0.5rem;
 		background-color: white;
-		border: 1px solid var(--theme-colour-6);
+		border: 1px solid var(--theme-text-orange);
 	}
 	.card-continuous:not(.nested) {
 		margin: 1.5rem 0;

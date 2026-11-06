@@ -46,7 +46,7 @@
 <style>
 	.card-list {
 		background-color: var(--theme-colour-1);
-		border-top: 1px solid var(--theme-colour-5);
+		border-top: 1px solid var(--theme-text-green);
 	}
 	.media-card {
 		animation: appear 0.3s ease-in-out forwards;
@@ -65,7 +65,7 @@
 		border-top: none;
 	}
 	.card-list:last-child {
-		border-bottom: 1px solid var(--theme-colour-5);
+		border-bottom: 1px solid var(--theme-text-green);
 	}
 	.card-continuous {
 		margin: 1.5rem 0;
@@ -74,6 +74,6 @@
 		margin: 1rem 0;
 		border-radius: 0.5rem;
 		background-color: var(--theme-colour-1);
-		border: 1px solid var(--theme-colour-5);
+		border: 1px solid var(--theme-text-green);
 	}
 </style>

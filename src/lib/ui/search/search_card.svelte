@@ -60,13 +60,13 @@
 
 <style>
 	.search-topic-card {
-		/* border: 1px solid var(--theme-colour-4); */
+		/* border: 1px solid var(--theme-text-blue); */
 		/* border-radius: 0.5rem; */
 		border-right: 3px solid var(--theme-colour-1);
 		/* background-color: var(--theme-colour-1); */
 	}
 	.results-container {
-		border: 1px dotted var(--theme-colour-6);
+		border: 1px dotted var(--theme-text-orange);
 		border-radius: 0.5rem;
 		padding: 0.8rem;
 		background-color: var(--theme-colour-1);
@@ -74,7 +74,7 @@
 		max-height: 12rem;
 	}
 	.result-button {
-		border: 1px solid var(--theme-colour-5);
+		border: 1px solid var(--theme-text-green);
 		border-radius: 999px;
 		padding: 0.2rem 0.6rem;
 	}

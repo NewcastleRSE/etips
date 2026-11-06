@@ -27,10 +27,10 @@
 		transition: all 0.3 ease-in-out;
 	}
 	.svg.selected {
-		/* background-color: var(--theme-colour-6); */
+		/* background-color: var(--theme-text-orange); */
 	}
 	:global(.svg > svg) {
-		stroke: var(--theme-colour-4);
+		stroke: var(--theme-text-blue);
 	}
 	:global(.svg.selected > svg) {
 		stroke: var(--theme-colour-1);
