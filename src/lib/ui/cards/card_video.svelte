@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_CMS_ENDPOINT } from '$env/static/public'
+	import { env } from '$env/dynamic/public'
 	import type { Card } from '$lib/types'
 	import { Picture } from '@arturoguzman/art-ui'
 	export let card: Card
@@ -47,7 +47,7 @@
 				{#each card.media as m}
 					{@const file = m.directus_files_id}
 					{#if file && typeof file !== 'string' && file.id && file.type && file.type.includes('video')}
-						<source src={`${PUBLIC_CMS_ENDPOINT}/assets/${file.id}`} type={file.type} />
+						<source src={`${env.PUBLIC_CMS_ENDPOINT}/assets/${file.id}`} type={file.type} />
 					{/if}
 				{/each}
 			</video>
