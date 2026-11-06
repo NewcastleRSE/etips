@@ -20,3 +20,9 @@ tests
 .prettierrc
 .prettierignore
 .docker-compose.yml
+.env
+.env.*
+vars.env
+docker-compose.yml
+.github
+docs
