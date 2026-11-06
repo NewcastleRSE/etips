@@ -1,7 +1,7 @@
-import { DIRECTUS_TOKEN, DIRECTUS_URL } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import type { Collections } from '$lib/types'
 import { createDirectus, rest, staticToken } from '@directus/sdk'
 
-export const directus = createDirectus<Collections>(DIRECTUS_URL)
-	.with(staticToken(DIRECTUS_TOKEN))
+export const directus = createDirectus<Collections>(env.DIRECTUS_URL)
+	.with(staticToken(env.DIRECTUS_TOKEN))
 	.with(rest())

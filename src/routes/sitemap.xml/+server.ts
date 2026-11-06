@@ -1,8 +1,8 @@
-import { DOMAIN } from '$env/static/private'
+import { env } from '$env/dynamic/private'
 import { readItems } from '@directus/sdk'
 import { error } from '@sveltejs/kit'
 
-const site: string = `https://${DOMAIN}`
+const site: string = `https://${env.DOMAIN}`
 export async function GET({ locals }) {
 	const { directus } = locals
 	const pages = await directus.request(
