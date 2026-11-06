@@ -4,6 +4,8 @@
 	import { onDestroy } from 'svelte'
 	export let id = getId()
 	export let video_id: string | number = 0
+	export let title: string | null | undefined = ''
+	export let transcript = false
 	let video: Player | null = null
 	const mountVideo = (e: HTMLElement) => {
 		setTimeout(() => {
@@ -19,6 +21,10 @@
 				portrait: false,
 				title: false,
 				byline: false
+			})
+			video.ready().then(() => {
+				const iframe = e.querySelector('iframe')
+				if (iframe) iframe.title = `Video: ${title ?? ''}${transcript ? ' (transcript below)' : ''}`
 			})
 		}, 1000)
 	}

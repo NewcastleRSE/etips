@@ -10,6 +10,9 @@
 	<div class="card-video-container relative aspect-video w-full">
 		{#if !video_enabled}
 			<button
+				aria-label="Play video: {card.title ?? ''}{card.transcript
+					? '. A transcript is below the video.'
+					: ''}"
 				class="card-video-thumbnail-button absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 p-12"
 				on:click={() => {
 					video_enabled = true
@@ -42,7 +45,12 @@
 				</div>
 			</button>
 		{:else}
-			<video controls autoplay playsinline>
+			<video
+				controls
+				autoplay
+				playsinline
+				aria-label="Video: {card.title ?? ''}{card.transcript ? ' (transcript below)' : ''}"
+			>
 				<track kind="captions" />
 				{#each card.media as m}
 					{@const file = m.directus_files_id}
