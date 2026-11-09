@@ -34,7 +34,7 @@
 	}
 	input {
 		border-radius: 0.5rem;
-		border-color: var(--theme-colour-4);
+		border-color: var(--theme-text-blue);
 	}
 	label[data-required='yes']::after {
 		content: ' *';

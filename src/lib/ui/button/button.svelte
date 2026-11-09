@@ -41,22 +41,24 @@
 
 <style>
 	button {
-		color: var(--theme-colour-4);
-		border: 1px solid var(--theme-colour-4);
+		color: var(--theme-text-blue);
+		border: 1px solid var(--theme-text-blue);
 		transition: all 0.3s ease-in-out;
 		position: relative;
 	}
 	button:hover:not(:disabled):not(:active) {
 		color: var(--theme-colour-1);
-		background-color: color-mix(in oklab, var(--theme-colour-5) 50%, white 70%);
+		background-color: var(--theme-text-green);
+		border-color: var(--theme-text-green);
 	}
 	button:active {
-		background-color: color-mix(in oklab, var(--theme-colour-5) 70%, white 30%);
+		color: var(--theme-colour-1);
+		background-color: var(--theme-text-green);
 		scale: 0.97;
 	}
 	.selected {
 		color: var(--theme-colour-1);
-		background-color: var(--theme-colour-5);
+		background-color: var(--theme-text-green);
 	}
 	button:disabled {
 		opacity: 0.85;

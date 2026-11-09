@@ -23,14 +23,14 @@
 	.horizontal {
 		height: 3rem;
 		width: 100%;
-		border-bottom: 1px solid var(--theme-colour-4);
+		border-bottom: 1px solid var(--theme-text-blue);
 	}
 	.vertical {
 		height: 100%;
 		width: 3rem;
 		/* overflow: hidden; */
 		flex-direction: column;
-		border-right: 1px solid var(--theme-colour-4);
+		border-right: 1px solid var(--theme-text-blue);
 	}
 	@media (min-width: 768px) {
 		.horizontal {
@@ -45,6 +45,6 @@
 		}
 	}
 	.selected {
-		background-color: var(--theme-colour-6);
+		background-color: var(--theme-text-orange);
 	}
 </style>

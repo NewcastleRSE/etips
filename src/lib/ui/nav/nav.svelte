@@ -100,28 +100,28 @@
 	}
 	nav {
 		background-color: var(--theme-colour-1);
-		border-bottom: 1px solid var(--theme-colour-4);
+		border-bottom: 1px solid var(--theme-text-blue);
 	}
 
 	.side-title {
-		color: var(--theme-colour-4);
+		color: var(--theme-text-blue);
 		font-family: var(--theme-font-title);
 	}
 	.etips-button {
-		border-right: 1px solid var(--theme-colour-4);
+		border-right: 1px solid var(--theme-text-blue);
 	}
 	.content-desktop-header {
 		font-family: var(--theme-font-title-2);
 		font-weight: 700;
-		color: var(--theme-colour-4);
+		color: var(--theme-text-blue);
 	}
 
 	@media (min-width: 1024px) {
 		.side-title {
-			border-right: 1px solid var(--theme-colour-4);
+			border-right: 1px solid var(--theme-text-blue);
 		}
 		.side-title-border {
-			border-right: 3px solid var(--theme-colour-4);
+			border-right: 3px solid var(--theme-text-blue);
 		}
 	}
 	.navigating {

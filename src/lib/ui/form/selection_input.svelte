@@ -140,7 +140,7 @@
 		transition: all 0.3s ease-in-out;
 	}
 	/* button:hover { */
-	/* 	background-color: var(--theme-colour-5); */
+	/* 	background-color: var(--theme-text-green); */
 	/* 	color: var(--theme-colour-1); */
 	/* } */
 	button[data-checked='yes'] {
@@ -159,43 +159,47 @@
 		width: 50%;
 		left: var(--checked-position);
 		top: 0px;
-		background-color: var(--theme-colour-5);
+		background-color: var(--theme-text-green);
 		opacity: var(--checked_opacity);
 		pointer-events: none;
 		transition: all 0.3s ease-in-out;
 	}
 	.checkbox-button-container[data-checked='yes'][data-option='no'][data-hovering='no']::before {
-		background-color: var(--theme-colour-5);
+		background-color: var(--theme-text-green);
 	}
 	.checkbox-button-container[data-checked='no'][data-option='no'][data-hovering='no']::before {
 		background-color: var(--theme-colour-7);
 	}
 	.checkbox-button-container[data-hovering='yes']:hover::before {
-		background-color: var(--theme-colour-4);
+		background-color: var(--theme-text-blue);
 	}
 	.checkbox-button-container[data-hovering='yes'] > button {
 		color: var(--theme-colour-3);
+	}
+	/* White on the dark green / red fill of the selected option */
+	.checkbox-button-container[data-hovering='no'] > button[data-checked='yes'] {
+		color: var(--theme-colour-1);
 	}
 	.checkbox-button-container[data-hover-message]:hover::after {
 		content: attr(data-hover-message);
 		position: fixed;
 		top: var(--cursor-y);
 		left: var(--cursor-x);
-		color: var(--theme-colour-5);
+		color: var(--theme-text-green);
 		background-color: var(--theme-colour-1);
 		padding: 0 1rem;
-		border: 1px solid var(--theme-colour-5);
+		border: 1px solid var(--theme-text-green);
 		border-radius: 1000px;
 		transform: translate(-50%, 0);
 		z-index: 100;
 		pointer-events: none;
 	}
 	.button-left {
-		border: 1px solid var(--theme-colour-4);
+		border: 1px solid var(--theme-text-blue);
 	}
 	.button-right {
 		border-style: solid;
-		border-color: var(--theme-colour-4);
+		border-color: var(--theme-text-blue);
 		border-width: 1px 1px 1px 0;
 	}
 </style>

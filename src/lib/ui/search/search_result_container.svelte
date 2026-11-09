@@ -33,7 +33,7 @@
 
 <style>
 	.search-result-page-container {
-		border: 1px solid var(--theme-colour-5);
+		border: 1px solid var(--theme-text-green);
 		border-radius: 1rem;
 		background-color: var(--theme-colour-1);
 		color: var(--theme-colour-3);

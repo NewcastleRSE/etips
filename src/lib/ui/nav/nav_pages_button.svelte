@@ -58,14 +58,14 @@
 	.pages-nav-button-horizontal {
 		height: 100%;
 		background-color: var(--theme-colour-1);
-		border-right: 1px solid var(--theme-colour-4);
+		border-right: 1px solid var(--theme-text-blue);
 		position: relative;
 		transition: all 0.3 ease-in-out;
 	}
 	.pages-nav-button-vertical {
 		width: 100%;
 		background-color: var(--theme-colour-1);
-		border-bottom: 1px solid var(--theme-colour-4);
+		border-bottom: 1px solid var(--theme-text-blue);
 		position: relative;
 		transition: all 0.3 ease-in-out;
 	}
@@ -77,16 +77,16 @@
 		left: var(--cursor-x);
 		transform: translate(0%, -25%);
 		background: var(--theme-colour-1);
-		color: var(--theme-colour-6);
+		color: var(--theme-text-orange);
 		border-radius: 999px;
-		border: 1px solid var(--theme-colour-6);
+		border: 1px solid var(--theme-text-orange);
 		padding: 0 1rem;
 	}
 	.pages-nav-button-horizontal:last-child {
 		border-right: none;
 	}
 	.selected {
-		background-color: var(--theme-colour-6);
+		background-color: var(--theme-text-orange);
 		border: none;
 	}
 </style>

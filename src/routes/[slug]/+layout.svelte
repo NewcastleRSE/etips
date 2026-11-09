@@ -95,7 +95,7 @@
 						height="44"
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
-						stroke="#44b3ce"
+						stroke="#257A8E"
 						fill="none"
 						stroke-linecap="round"
 						stroke-linejoin="round"
@@ -115,7 +115,7 @@
 						height="44"
 						viewBox="0 0 24 24"
 						stroke-width="1.5"
-						stroke="#44b3ce"
+						stroke="#257A8E"
 						fill="none"
 						stroke-linecap="round"
 						stroke-linejoin="round"
@@ -142,7 +142,7 @@
 
 <style>
 	.slug-layout-left-col[data-open] {
-		border-right: 3px solid var(--theme-colour-6);
+		border-right: 3px solid var(--theme-text-orange);
 		background-color: color-mix(in oklab, var(--theme-colour-4) 20%, white 90%);
 		overflow-y: scroll;
 	}
@@ -152,11 +152,11 @@
 		top: 20%;
 		right: 0px;
 		transform: translate(100%, 0%);
-		color: var(--theme-colour-5);
+		color: var(--theme-text-green);
 		background-color: var(--theme-colour-1);
 		padding: 0 1rem;
 		border-radius: 999px;
-		border: 1px solid var(--theme-colour-5);
+		border: 1px solid var(--theme-text-green);
 	}
 	@media (min-width: 1024px) {
 		.slug-layout-left-col:hover {

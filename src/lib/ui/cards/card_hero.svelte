@@ -4,6 +4,7 @@
 	import CardText from './card_text.svelte'
 	import Gallery from '$lib/ui/media/gallery.svelte'
 	import Vimeo from '../media/vimeo.svelte'
+	import CardTranscript from './card_transcript.svelte'
 	export let card: Card
 	export let display: string = 'cards'
 	export let direction: 'horizontal' | 'vertical' = 'vertical'
@@ -30,23 +31,30 @@
 					`https://www.youtube.com/watch?v=`,
 					`https://www.youtube-nocookie.com/embed/`
 				)}
-				title={card.title ?? ''}
+				title="Video: {card.title ?? ''}{card.transcript ? ' (transcript below)' : ''}"
 				class="aspect-video w-full"
 			></iframe>
 		{/if}
 		{#if card.media_type === 'vimeo'}
-			<Vimeo video_id={card.url?.replaceAll('https://vimeo.com/', '')}></Vimeo>
+			<Vimeo
+				video_id={card.url?.replaceAll('https://vimeo.com/', '')}
+				title={card.title}
+				transcript={!!card.transcript}
+			></Vimeo>
 		{/if}
 	</div>
 	<div class="hero-card-right-col">
 		<CardText nested {card}></CardText>
 	</div>
+	{#if card.media_type === 'youtube' || card.media_type === 'vimeo'}
+		<CardTranscript {card}></CardTranscript>
+	{/if}
 </div>
 
 <style>
 	.card-list {
 		background-color: var(--theme-colour-1);
-		border-top: 1px solid var(--theme-colour-5);
+		border-top: 1px solid var(--theme-text-green);
 	}
 	.media-card {
 		animation: appear 0.3s ease-in-out forwards;
@@ -65,7 +73,7 @@
 		border-top: none;
 	}
 	.card-list:last-child {
-		border-bottom: 1px solid var(--theme-colour-5);
+		border-bottom: 1px solid var(--theme-text-green);
 	}
 	.card-continuous {
 		margin: 1.5rem 0;
@@ -74,6 +82,6 @@
 		margin: 1rem 0;
 		border-radius: 0.5rem;
 		background-color: var(--theme-colour-1);
-		border: 1px solid var(--theme-colour-5);
+		border: 1px solid var(--theme-text-green);
 	}
 </style>

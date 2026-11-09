@@ -48,8 +48,8 @@
 		font-weight: 600;
 		font-family: var(--theme-font-title);
 		color: var(--theme-colour-1);
-		background-color: color-mix(in oklab, var(--theme-colour-5) 95%, white 10%);
-		/* border: 2px solid var(--theme-colour-5); */
+		background-color: var(--theme-text-green);
+		/* border: 2px solid var(--theme-text-green); */
 	}
 	@keyframes appear {
 		0% {
@@ -66,19 +66,19 @@
 	}
 	.card-list:not(.nested) {
 		background-color: var(--theme-colour-1);
-		border-top: 1px solid var(--theme-colour-5);
+		border-top: 1px solid var(--theme-text-green);
 	}
 	.card-list:nth-child(1):not(.nested) {
 		border-top: none;
 	}
 	.card-list:last-child:not(.nested) {
-		border-bottom: 1px solid var(--theme-colour-5);
+		border-bottom: 1px solid var(--theme-text-green);
 	}
 	.card-cards:not(.nested) {
 		margin: 1rem 0;
 		border-radius: 0.5rem;
 		background-color: var(--theme-colour-1);
-		border: 1px solid var(--theme-colour-5);
+		border: 1px solid var(--theme-text-green);
 	}
 	.card-continuous:not(.nested) {
 		margin: 1.5rem 0;
@@ -87,7 +87,7 @@
 		.card-numbered-number {
 			width: 3rem;
 			height: 3rem;
-			/* border: 2px solid var(--theme-colour-5); */
+			/* border: 2px solid var(--theme-text-green); */
 		}
 	}
 

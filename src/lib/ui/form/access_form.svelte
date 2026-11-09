@@ -124,8 +124,8 @@
 		padding: 1rem 1.5rem;
 		margin-inline: auto;
 		width: min(100% - 2rem, 800px);
-		border-left: 1px solid var(--theme-colour-4);
-		border-right: 1px solid var(--theme-colour-4);
+		border-left: 1px solid var(--theme-text-blue);
+		border-right: 1px solid var(--theme-text-blue);
 		background-color: var(--theme-colour-1);
 	}
 	.carer {
