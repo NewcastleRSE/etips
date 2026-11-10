@@ -12,7 +12,7 @@ export interface Card {
 	date_updated?: string | null
 	title?: string | null
 	subtitle?: string | null
-	type?: 'text' | 'media' | 'alert' | 'numbered' | 'button' | 'emphasis' | 'hero' | 'form' | 'rhyme'
+	type?: 'text' | 'media' | 'alert' | 'numbered' | 'button' | 'emphasis' | 'hero' | 'form' | 'rhyme' | 'mini_guide'
 	media?: CardsFile[]
 	category?: 'all' | 'left' | 'right' | 'twin'
 	icon?: string | null
@@ -47,6 +47,21 @@ export interface Contact {
 	side_affected?: string | null
 	date_created?: string | null
 	date_updated?: string | null
+}
+
+export interface Language {
+	code: string
+	name?: string
+	native_name?: string | null
+	sort?: number | null
+}
+
+export interface MiniGuide {
+	id: string
+	status?: 'published' | 'draft' | 'archived'
+	side?: 'left' | 'right'
+	language?: string | Language | null
+	file?: string | DirectusFile | null
 }
 
 export interface Page {
@@ -100,6 +115,8 @@ export interface Collections {
 	cards: Card[]
 	cards_files: CardsFile[]
 	contacts: Contact[]
+	languages: Language[]
+	mini_guides: MiniGuide[]
 	pages: Page[]
 	pages_cards: PagesCard[]
 	topics: Topic[]
