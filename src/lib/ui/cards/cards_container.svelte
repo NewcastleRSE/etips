@@ -6,6 +6,7 @@
 	import CardMedia from './card_media.svelte'
 	import CardNumbered from './card_numbered.svelte'
 	import CardText from './card_text.svelte'
+	import CardMiniGuide from './card_mini_guide.svelte'
 	export let display = 'cards'
 	export let cards: PagesCard[] | TopicsCard[]
 	export let desktop_left = false
@@ -61,6 +62,9 @@
 							{#if card.type === 'hero'}
 								<CardHero {card}></CardHero>
 							{/if}
+							{#if card.type === 'mini_guide'}
+								<CardMiniGuide {card}></CardMiniGuide>
+							{/if}
 							{#if display === 'continuous' && i < cards.length - 1}
 								<div class="separator"></div>
 							{/if}
@@ -88,6 +92,9 @@
 							{#if card.type === 'hero'}
 								<CardHero {card}></CardHero>
 							{/if}
+							{#if card.type === 'mini_guide'}
+								<CardMiniGuide {card}></CardMiniGuide>
+							{/if}
 							{#if display === 'continuous' && i < cards.length - 1}
 								<div class="separator"></div>
 							{/if}
@@ -114,6 +121,9 @@
 							{/if}
 							{#if card.type === 'hero'}
 								<CardHero {card}></CardHero>
+							{/if}
+							{#if card.type === 'mini_guide'}
+								<CardMiniGuide {card}></CardMiniGuide>
 							{/if}
 							{#if display === 'continuous' && i < cards.length - 1}
 								<div class="separator"></div>

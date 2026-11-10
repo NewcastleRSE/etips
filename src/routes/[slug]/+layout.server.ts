@@ -1,8 +1,15 @@
-import type { Page } from '$lib/types'
+import type { MiniGuide, Page } from '$lib/types'
 import { readItems } from '@directus/sdk'
 import type { LayoutServerLoad } from '../$types'
 import { error, redirect } from '@sveltejs/kit'
 import { verifyAccess } from '$lib/utils/auth'
+
+// Languages in the order set in Directus, then alphabetically
+const byLanguage = (a: MiniGuide, b: MiniGuide) => {
+	const la = typeof a.language === 'object' ? a.language : null
+	const lb = typeof b.language === 'object' ? b.language : null
+	return (la?.sort ?? 0) - (lb?.sort ?? 0) || (la?.name ?? '').localeCompare(lb?.name ?? '')
+}
 
 export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 	const { directus } = locals
@@ -81,9 +88,30 @@ export const load: LayoutServerLoad = async ({ locals, params, cookies }) => {
 		})
 	)
 
+	// Mini guides for the visitor's side, used by the mini_guide card. Falls back to
+	// none so pages still load if the collection is missing or unreadable
+	const side = locals.session.side
+	const mini_guides =
+		side === 'left' || side === 'right'
+			? await directus
+					.request(
+						readItems('mini_guides', {
+							fields: [
+								'id',
+								{ language: ['code', 'name', 'native_name', 'sort'] },
+								{ file: ['id', 'filesize'] }
+							],
+							filter: { status: { _eq: 'published' }, side: { _eq: side } },
+							limit: -1
+						})
+					)
+					.catch(() => [])
+			: []
+
 	return {
 		//HACK: remove type assertion
 		page: page[0] as Page,
-		topics
+		topics,
+		mini_guides: (mini_guides as MiniGuide[]).sort(byLanguage)
 	}
 }
