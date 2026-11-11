@@ -27,14 +27,10 @@
 			dispatch('click', slug)
 		}}
 	>
-		<h2
-			class="page-title-text overflow-hidden text-ellipsis text-nowrap text-xl capitalize md:hidden"
-		>
+		<h2 class="page-title-text overflow-hidden text-ellipsis text-nowrap text-xl md:hidden">
 			{title}{$page.params.topic ? ` - ${$page.data.topic.title}` : ''}
 		</h2>
-		<h2
-			class="page-title-text hidden overflow-hidden text-ellipsis text-nowrap text-xl capitalize md:block"
-		>
+		<h2 class="page-title-text hidden overflow-hidden text-ellipsis text-nowrap text-xl md:block">
 			{title}
 		</h2>
 
