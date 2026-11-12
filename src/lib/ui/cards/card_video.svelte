@@ -1,9 +1,20 @@
 <script lang="ts">
 	import { env } from '$env/dynamic/public'
 	import type { Card } from '$lib/types'
+	import type { DirectusFile } from '@directus/sdk'
 	import { Picture } from '@arturoguzman/art-ui'
 	export let card: Card
 	let video_enabled = false
+
+	// MP4 (H.264/AAC) first as every browser can play it. Was currently running into an issue where Safari picks the first type it
+	// thinks it supports and won't fall back if a WebM then fails to decode which just results in a bad quality video
+	$: sources = (card.media ?? [])
+		.map((m) => m.directus_files_id)
+		.filter(
+			(f): f is DirectusFile =>
+				!!f && typeof f !== 'string' && !!f.id && !!f.type && f.type.includes('video')
+		)
+		.sort((a, b) => Number(b.type === 'video/mp4') - Number(a.type === 'video/mp4'))
 </script>
 
 {#if card.media && card.thumbnail}
@@ -52,11 +63,8 @@
 				aria-label="Video: {card.title ?? ''}{card.transcript ? ' (transcript below)' : ''}"
 			>
 				<track kind="captions" />
-				{#each card.media as m}
-					{@const file = m.directus_files_id}
-					{#if file && typeof file !== 'string' && file.id && file.type && file.type.includes('video')}
-						<source src={`${env.PUBLIC_CMS_ENDPOINT}/assets/${file.id}`} type={file.type} />
-					{/if}
+				{#each sources as file}
+					<source src={`${env.PUBLIC_CMS_ENDPOINT}/assets/${file.id}`} type={file.type} />
 				{/each}
 			</video>
 		{/if}
