@@ -38,9 +38,9 @@
 				</select>
 			</div>
 			<div class="form-buttons flex w-full justify-between gap-4">
-				<form method="dialog" class="flex-shrink-0">
-					<Button label="Close"></Button>
-				</form>
+				<div class="flex-shrink-0">
+					<Button type="button" label="Close" on:click={closeDialog}></Button>
+				</div>
 				<div class="close-button">
 					<Button type="submit" label="Change side"></Button>
 				</div>
@@ -76,9 +76,9 @@
 				</p>
 			</div>
 			<div class="form-buttons flex w-full justify-between gap-4">
-				<form method="dialog" class="flex-shrink-0">
-					<Button label="Close"></Button>
-				</form>
+				<div class="flex-shrink-0">
+					<Button type="button" label="Close" on:click={closeDialog}></Button>
+				</div>
 				<div class="close-button">
 					<Button type="submit" label="Change side"></Button>
 				</div>
