@@ -52,6 +52,7 @@
 						if ($page.data.role !== 'public') openDialog()
 					}}
 					>{copy}
+					<p class="button-cta text-sm">(Click here to change sides)</p>
 				</button>
 			</div>
 		{/if}
